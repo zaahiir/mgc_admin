@@ -1,0 +1,1 @@
+import"./chunk-AAPNLDO3.js";var t=[{path:"",data:{title:"Booking"},children:[{path:"",loadComponent:()=>import("./chunk-LJDTBSAX.js").then(o=>o.ListBookingComponent),data:{title:"List Booking"}}]}];export{t as bookingRoutes};
