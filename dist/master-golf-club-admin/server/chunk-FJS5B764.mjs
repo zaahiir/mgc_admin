@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Nb as a,Ob as r,ia as o,kc as i,tc as c}from"./chunk-BUS3XCSB.mjs";import"./chunk-DYLV4RNH.mjs";var d=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-create-coupon"]],standalone:!0,features:[c],decls:2,vars:0,template:function(n,s){n&1&&(a(0,"p"),i(1,"create-coupon works!"),r())}});let t=e;return t})();export{d as CreateCouponComponent};

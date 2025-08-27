@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-DYLV4RNH.mjs";var e=[{path:"",data:{title:"Events"},children:[{path:"",loadComponent:()=>import("./chunk-Z56ZG2NW.mjs").then(t=>t.ListEventsComponent),data:{title:"List Events"}},{path:"add",loadComponent:()=>import("./chunk-FO2FGRKX.mjs").then(t=>t.CreateEventsComponent),data:{title:"New Events"}},{path:"update/:id",loadComponent:()=>import("./chunk-WTTGI3YE.mjs").then(t=>t.UpdateEventsComponent),data:{title:"Update Events"}}]}];export{e as eventsRoutes};

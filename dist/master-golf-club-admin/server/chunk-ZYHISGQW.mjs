@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Nb as a,Ob as r,ia as n,kc as i,tc as s}from"./chunk-BUS3XCSB.mjs";import"./chunk-DYLV4RNH.mjs";var m=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-update-scoreboard"]],standalone:!0,features:[s],decls:2,vars:0,template:function(o,d){o&1&&(a(0,"p"),i(1,"update-scoreboard works!"),r())}});let t=e;return t})();export{m as UpdateScoreboardComponent};

@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-DYLV4RNH.mjs";var n=[{path:"",data:{title:"Tournament"},children:[{path:"",loadComponent:()=>import("./chunk-BEJJOKPL.mjs").then(t=>t.ListTournamentComponent),data:{title:"List Tournaments"}},{path:"add",loadComponent:()=>import("./chunk-A5BJG37D.mjs").then(t=>t.CreateTournamentComponent),data:{title:"New Tournament"}},{path:"update",loadComponent:()=>import("./chunk-SN3FKV5B.mjs").then(t=>t.UpdateTournamentComponent),data:{title:"Update Tournaments"}}]}];export{n as tournamentRoutes};

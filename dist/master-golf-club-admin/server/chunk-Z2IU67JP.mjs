@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-DYLV4RNH.mjs";var e=[{path:"",data:{title:"Courses"},children:[{path:"",loadComponent:()=>import("./chunk-BY733Q7E.mjs").then(t=>t.ListCoursesComponent),data:{title:"List Courses"}},{path:"add",loadComponent:()=>import("./chunk-YKFCSQR2.mjs").then(t=>t.CreateCoursesComponent),data:{title:"New Courses"}},{path:"update/:id",loadComponent:()=>import("./chunk-FLY7BQT5.mjs").then(t=>t.UpdateCoursesComponent),data:{title:"Update Coursess"}}]}];export{e as coursesRoutes};

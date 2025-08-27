@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Nb as r,Ob as a,ia as n,kc as i,tc as s}from"./chunk-BUS3XCSB.mjs";import"./chunk-DYLV4RNH.mjs";var m=(()=>{let e=class e{};e.\u0275fac=function(o){return new(o||e)},e.\u0275cmp=n({type:e,selectors:[["app-create-scoreboard"]],standalone:!0,features:[s],decls:2,vars:0,template:function(o,p){o&1&&(r(0,"p"),i(1,"create-scoreboard works!"),a())}});let t=e;return t})();export{m as CreateScoreboardComponent};

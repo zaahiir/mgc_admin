@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import"./chunk-DYLV4RNH.mjs";var t=[{path:"",data:{title:"Member"},children:[{path:"",loadComponent:()=>import("./chunk-6W2IGW2C.mjs").then(e=>e.ListMembersComponent),data:{title:"List Members"}},{path:"add",loadComponent:()=>import("./chunk-4FPSA2OQ.mjs").then(e=>e.CreateMemberComponent),data:{title:"New Member"}},{path:"update/:id",loadComponent:()=>import("./chunk-RQ2NYO2B.mjs").then(e=>e.UpdateMembersComponent),data:{title:"Update Members"}}]}];export{t as membersRoutes};
