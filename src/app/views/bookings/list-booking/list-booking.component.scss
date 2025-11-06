@@ -316,6 +316,36 @@ c-button-group {
   color: #6c757d;
 }
 
+.status-expired {
+  color: #6c757d;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+// Expired booking styles
+.expired-booking-row {
+  opacity: 0.6;
+  background-color: #f5f5f5 !important;
+  
+  .booking-id,
+  .booking-date,
+  .booking-time {
+    text-decoration: line-through;
+    color: #999 !important;
+  }
+  
+  &:hover {
+    background-color: #efefef !important;
+  }
+}
+
+c-badge[color="secondary"] {
+  &.text-decoration-line-through {
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+}
+
 // Utility classes
 .cursor-pointer {
   cursor: pointer;

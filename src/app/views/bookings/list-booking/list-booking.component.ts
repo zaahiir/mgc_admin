@@ -157,6 +157,67 @@ export class ListBookingComponent implements OnInit, OnDestroy {
     { value: 4, label: '4 Players' }
   ];
 
+  // UK timezone utilities
+  private ukTimezone = 'Europe/London';
+  
+  // Helper method to get current UK time
+  private getCurrentUKTime(): Date {
+    const now = new Date();
+    return new Date(now.toLocaleString('en-US', { timeZone: this.ukTimezone }));
+  }
+  
+  // Helper method to check if a booking/request is expired (past date/time)
+  private isBookingExpired(booking: BookingDetail): boolean {
+    if (!booking.slotDate) return false;
+    
+    try {
+      const ukNow = this.getCurrentUKTime();
+      const bookingDateStr = booking.slotDate;
+      const bookingTimeStr = booking.slotTime;
+      
+      // Parse booking date - expecting format like "27 Aug 25"
+      const dateParts = bookingDateStr.split(' ');
+      if (dateParts.length < 3) return false;
+      
+      const day = parseInt(dateParts[0]);
+      const monthStr = dateParts[1];
+      const year = 2000 + parseInt(dateParts[2]); // Convert "25" to 2025
+      
+      const monthMap: { [key: string]: number } = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      
+      const month = monthMap[monthStr];
+      if (month === undefined) return false;
+      
+      const bookingDate = new Date(year, month, day);
+      
+      // If we have time, check date + time
+      if (bookingTimeStr) {
+        const [hours, minutes] = bookingTimeStr.split(':').map(Number);
+        bookingDate.setHours(hours, minutes, 0, 0);
+        
+        // Compare with current UK time
+        return bookingDate < ukNow;
+      }
+      
+      // If no time, just check if date is in the past
+      const ukToday = new Date(ukNow.getFullYear(), ukNow.getMonth(), ukNow.getDate());
+      const bookingDateOnly = new Date(bookingDate.getFullYear(), bookingDate.getMonth(), bookingDate.getDate());
+      
+      return bookingDateOnly < ukToday;
+    } catch (error) {
+      console.error('Error checking if booking is expired:', error);
+      return false;
+    }
+  }
+  
+  // Public method to check if booking is expired (for template use)
+  isExpired(booking: BookingDetail): boolean {
+    return this.isBookingExpired(booking);
+  }
+
   constructor(
     private bookingService: BookingService,
     private fb: FormBuilder
@@ -388,6 +449,7 @@ export class ListBookingComponent implements OnInit, OnDestroy {
       case 'approved': return 'success';
       case 'rejected': return 'danger';
       case 'cancelled': return 'secondary';
+      case 'expired': return 'secondary';
       default: return 'primary';
     }
   }
@@ -546,8 +608,7 @@ export class ListBookingComponent implements OnInit, OnDestroy {
 
   // Format booking data for table display
   private formatBookingForTable(booking: any, type: 'BOOKING' | 'REQUEST'): BookingDetail {
-    
-    return {
+    const formattedBooking: BookingDetail = {
       id: booking.id,
       booking_id: booking.booking_id,
       type: type,
@@ -576,12 +637,18 @@ export class ListBookingComponent implements OnInit, OnDestroy {
       status: booking.status?.toUpperCase() || 'CONFIRMED',
       details: booking
     };
+    
+    // Mark as expired if past date/time
+    if (this.isBookingExpired(formattedBooking)) {
+      formattedBooking.status = 'EXPIRED';
+    }
+    
+    return formattedBooking;
   }
 
   // Format join request data for table display
   private formatJoinRequestForTable(request: any, type: 'REQUEST'): BookingDetail {
-    
-    return {
+    const formattedRequest: BookingDetail = {
       id: request.id,
       booking_id: request.request_id || request.requestId,
       type: type,
@@ -610,6 +677,13 @@ export class ListBookingComponent implements OnInit, OnDestroy {
       status: request.status?.toUpperCase() || 'PENDING_APPROVAL',
       details: request
     };
+    
+    // Mark as expired if past date/time
+    if (this.isBookingExpired(formattedRequest)) {
+      formattedRequest.status = 'EXPIRED';
+    }
+    
+    return formattedRequest;
   }
 
   private formatDate(dateString: string): string {
