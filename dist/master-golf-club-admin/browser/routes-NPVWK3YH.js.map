@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/dashboard/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const dashboardRoutes: Routes = [\r\n    {\r\n        path: '',\r\n        loadComponent: () => import('./dashboard.component').then(m => m.DashboardComponent),\r\n        data: {\r\n          title: 'Dashboard'\r\n        }\r\n    }\r\n]\r\n"],
+  "mappings": ";;;AAEO,IAAM,kBAA0B;EACnC;IACI,MAAM;IACN,eAAe,MAAM,OAAO,mCAAuB,EAAE,KAAK,OAAK,EAAE,kBAAkB;IACnF,MAAM;MACJ,OAAO;;;;",
+  "names": []
+}

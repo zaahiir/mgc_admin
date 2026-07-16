@@ -46,6 +46,7 @@ interface CourseData {
   courseDescription?: string;
   courseLocation: string;
   courseImage?: string;
+  joinRequestExpiryHours?: number | null;
   courseAmenities: number[];
   hideStatus: number;
   imageUrl?: string;
@@ -133,6 +134,7 @@ export class CreateCoursesComponent implements OnInit {
       courseWebsite: ['', [Validators.pattern(/^https?:\/\/.+/)]],
       courseDescription: [''],
       courseLocation: ['', [Validators.required]],
+      joinRequestExpiryHours: [null, [Validators.min(0)]],
       courseAmenities: [[], [Validators.required, Validators.minLength(1)]],
       courseImage: [null],
       hideStatus: [0],
@@ -290,6 +292,7 @@ export class CreateCoursesComponent implements OnInit {
           courseWebsite: courseData.courseWebsite || '',
           courseDescription: courseData.courseDescription || '',
           courseLocation: courseData.courseLocation || '',
+          joinRequestExpiryHours: courseData.joinRequestExpiryHours ?? null,
           hideStatus: courseData.hideStatus || 0
         });
 
@@ -463,6 +466,7 @@ export class CreateCoursesComponent implements OnInit {
       formData.append('courseName', formValues.courseName || '');
       formData.append('courseAddress', formValues.courseAddress || '');
       formData.append('courseOpenFrom', formValues.courseOpenFrom || '');
+      formData.append('joinRequestExpiryHours', formValues.joinRequestExpiryHours ?? '');
       formData.append('coursePhoneNumber', formValues.coursePhoneNumber || '');
       formData.append('courseAlternatePhoneNumber', formValues.courseAlternatePhoneNumber || '');
       formData.append('courseWebsite', formValues.courseWebsite || '');

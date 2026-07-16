@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/member-message/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const memberMessageRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Member Messages'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./member-message/member-message.component').then(m => m.MemberMessageComponent),\r\n        data: {\r\n          title: 'List Member Messages'\r\n        },\r\n      },\r\n    ]\r\n  }\r\n]; "],
+  "mappings": ";;;AAEO,IAAM,sBAA8B;EACzC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

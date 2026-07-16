@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/coupon/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const couponRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Coupon'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-coupon/list-coupon.component').then(m => m.ListCouponComponent),\r\n        data: {\r\n          title: 'List Coupons'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-coupon/create-coupon.component').then(m => m.CreateCouponComponent),\r\n        data: {\r\n          title: 'New Coupon'\r\n        },\r\n      },\r\n      {\r\n        path: 'update',\r\n        loadComponent: () => import('./update-coupon/update-coupon.component').then(m => m.UpdateCouponComponent),\r\n        data: {\r\n          title: 'Update Coupons'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;;AAEO,IAAM,eAAuB;EAClC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,sCAAqC,EAAE,KAAK,OAAK,EAAE,mBAAmB;QAClG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAAyC,EAAE,KAAK,OAAK,EAAE,qBAAqB;QACxG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAAyC,EAAE,KAAK,OAAK,EAAE,qBAAqB;QACxG,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

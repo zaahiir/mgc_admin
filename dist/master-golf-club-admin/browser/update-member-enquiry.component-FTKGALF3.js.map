@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/memberEnquiry/update-member-enquiry/update-member-enquiry.component.ts", "src/app/views/memberEnquiry/update-member-enquiry/update-member-enquiry.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-update-member-enquiry',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './update-member-enquiry.component.html',\r\n  styleUrl: './update-member-enquiry.component.scss'\r\n})\r\nexport class UpdateMemberEnquiryComponent {\r\n\r\n}\r\n", "<p>update-member-enquiry works!</p>\r\n"],
+  "mappings": ";;;;;;;;;;;AASM,IAAO,gCAAP,MAAO,8BAA4B;;;mCAA5B,+BAA4B;AAAA;8FAA5B,+BAA4B,WAAA,CAAA,CAAA,2BAAA,CAAA,GAAA,YAAA,MAAA,UAAA,CAAA,6BAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,sCAAA,IAAA,KAAA;AAAA,MAAA,KAAA,GAAA;ACTzC,IAAA,yBAAA,GAAA,GAAA;AAAG,IAAA,iBAAA,GAAA,8BAAA;AAA4B,IAAA,uBAAA;;;ADSzB,IAAO,+BAAP;;6EAAO,8BAA4B,EAAA,WAAA,gCAAA,UAAA,6FAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

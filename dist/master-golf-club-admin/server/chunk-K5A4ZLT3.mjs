@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import{Nb as a,Ob as i,ia as o,kc as p,tc as r}from"./chunk-BUS3XCSB.mjs";import"./chunk-DYLV4RNH.mjs";var u=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-update-coupon"]],standalone:!0,features:[r],decls:2,vars:0,template:function(n,c){n&1&&(a(0,"p"),p(1,"update-coupon works!"),i())}});let t=e;return t})();export{u as UpdateCouponComponent};

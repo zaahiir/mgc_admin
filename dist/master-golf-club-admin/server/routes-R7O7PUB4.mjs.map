@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/members/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const membersRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Member'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-members/list-members.component').then(m => m.ListMembersComponent),\r\n        data: {\r\n          title: 'List Members'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-members/create-members.component').then(m => m.CreateMemberComponent),\r\n        data: {\r\n          title: 'New Member'\r\n        },\r\n      },\r\n      {\r\n        path: 'update/:id',\r\n        loadComponent: () => import('./update-members/update-members.component').then(m => m.UpdateMembersComponent),\r\n        data: {\r\n          title: 'Update Members'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;;AAEO,IAAM,gBAAwB;EACnC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,uCAAuC,EAAE,KAAK,OAAK,EAAE,oBAAoB;QACrG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,yCAA2C,EAAE,KAAK,OAAK,EAAE,qBAAqB;QAC1G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,yCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

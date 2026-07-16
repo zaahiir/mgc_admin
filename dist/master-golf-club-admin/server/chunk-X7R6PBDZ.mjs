@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var t=[{path:"",data:{title:"Coupon"},children:[{path:"",loadComponent:()=>import("./chunk-ZJUBUWZS.mjs").then(o=>o.ListCouponComponent),data:{title:"List Coupons"}},{path:"add",loadComponent:()=>import("./chunk-FJS5B764.mjs").then(o=>o.CreateCouponComponent),data:{title:"New Coupon"}},{path:"update",loadComponent:()=>import("./chunk-K5A4ZLT3.mjs").then(o=>o.UpdateCouponComponent),data:{title:"Update Coupons"}}]}];export{t as couponRoutes};

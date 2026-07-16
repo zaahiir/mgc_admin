@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/blog/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const blogRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Blog'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-blog/list-blog.component').then(m => m.ListBlogComponent),\r\n        data: {\r\n          title: 'List Blogs'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-blog/create-blog.component').then(m => m.CreateBlogComponent),\r\n        data: {\r\n          title: 'New Blog'\r\n        },\r\n      },\r\n      {\r\n        path: 'update/:id',\r\n        loadComponent: () => import('./update-blog/update-blog.component').then(m => m.UpdateBlogComponent),\r\n        data: {\r\n          title: 'Update Blogs'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;AAEO,IAAM,aAAqB;EAChC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,mCAAiC,EAAE,KAAK,OAAK,EAAE,iBAAiB;QAC5F,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qCAAqC,EAAE,KAAK,OAAK,EAAE,mBAAmB;QAClG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,qCAAqC,EAAE,KAAK,OAAK,EAAE,mBAAmB;QAClG,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

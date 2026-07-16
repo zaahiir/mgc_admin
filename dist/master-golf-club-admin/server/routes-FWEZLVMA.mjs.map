@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/about/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const aboutRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'about'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./about.component').then(m => m.AboutComponent),\r\n        data: {\r\n          title: 'About'\r\n        },\r\n      },\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;;AAEO,IAAM,cAAsB;EACjC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,gCAAmB,EAAE,KAAK,OAAK,EAAE,cAAc;QAC3E,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

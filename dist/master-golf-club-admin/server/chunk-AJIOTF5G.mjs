@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var e=[{path:"",data:{title:"amenities"},children:[{path:"",loadComponent:()=>import("./chunk-JBGRZJ3Y.mjs").then(t=>t.ListAmenitiesComponent),data:{title:"List amenities"}},{path:"add",loadComponent:()=>import("./chunk-XIPAPLG6.mjs").then(t=>t.CreateAmenitiesComponent),data:{title:"New amenities"}},{path:"update/:id",loadComponent:()=>import("./chunk-PZTIN4YG.mjs").then(t=>t.UpdateAmenitiesComponent),data:{title:"Update amenities"}}]}];export{e as amenitiesRoutes};

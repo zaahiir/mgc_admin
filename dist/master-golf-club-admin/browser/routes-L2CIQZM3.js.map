@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/amenities/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const amenitiesRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'amenities'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-amenities/list-amenities.component').then(m => m.ListAmenitiesComponent),\r\n        data: {\r\n          title: 'List amenities'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-amenities/create-amenities.component').then(m => m.CreateAmenitiesComponent),\r\n        data: {\r\n          title: 'New amenities'\r\n        },\r\n      },\r\n      {\r\n        path: 'update/:id',\r\n        loadComponent: () => import('./update-amenities/update-amenities.component').then(m => m.UpdateAmenitiesComponent),\r\n        data: {\r\n          title: 'Update amenities'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;AAEO,IAAM,kBAA0B;EACrC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,0CAA+C,EAAE,KAAK,OAAK,EAAE,wBAAwB;QACjH,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,0CAA+C,EAAE,KAAK,OAAK,EAAE,wBAAwB;QACjH,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

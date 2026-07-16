@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/team/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const teamRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Team'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./team.component').then(m => m.TeamComponent),\r\n        data: {\r\n          title: 'Team'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;;AAEO,IAAM,aAAqB;EAChC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,+BAAkB,EAAE,KAAK,OAAK,EAAE,aAAa;QACzE,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

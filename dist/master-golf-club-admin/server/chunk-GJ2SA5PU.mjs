@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var t=[{path:"",data:{title:"ScoreBoard"},children:[{path:"",loadComponent:()=>import("./chunk-6J7BYWEZ.mjs").then(o=>o.ListScoreboardComponent),data:{title:"List ScoreBoards"}},{path:"add",loadComponent:()=>import("./chunk-I4A3KVNU.mjs").then(o=>o.CreateScoreboardComponent),data:{title:"New ScoreBoard"}},{path:"update",loadComponent:()=>import("./chunk-ZYHISGQW.mjs").then(o=>o.UpdateScoreboardComponent),data:{title:"Update ScoreBoards"}}]}];export{t as scoreBoardRoutes};

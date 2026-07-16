@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var a=[{path:"",data:{title:"Plan"},children:[{path:"",loadComponent:()=>import("./chunk-SQETS7JF.mjs").then(t=>t.ListPlanComponent),data:{title:"List Plans"}},{path:"add",loadComponent:()=>import("./chunk-YZ26FAKK.mjs").then(t=>t.CreatePlanComponent),data:{title:"New Plan"}},{path:"update/:id",loadComponent:()=>import("./chunk-NEHZ2JHG.mjs").then(t=>t.UpdatePlanComponent),data:{title:"Update Plans"}}]}];export{a as planRoutes};

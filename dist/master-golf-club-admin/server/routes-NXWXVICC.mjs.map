@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/memberEnquiry/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const memberEnquiryRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Member Enquiries'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./member-enquiry/member-enquiry.component').then(m => m.MemberEnquiryComponent),\r\n        data: {\r\n          title: 'List Member Enquiries'\r\n        },\r\n      },\r\n      {\r\n        path: 'addMember',\r\n        loadComponent: () => import('./update-member-enquiry/update-member-enquiry.component').then(m => m.UpdateMemberEnquiryComponent),\r\n        data: {\r\n          title: 'Add Member'\r\n        },\r\n      },\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;;AAEO,IAAM,sBAA8B;EACzC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,yCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,gDAAyD,EAAE,KAAK,OAAK,EAAE,4BAA4B;QAC/H,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

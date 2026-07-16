@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var t=[{path:"",data:{title:"Member Enquiries"},children:[{path:"",loadComponent:()=>import("./chunk-YCYQFIXV.mjs").then(e=>e.MemberEnquiryComponent),data:{title:"List Member Enquiries"}},{path:"addMember",loadComponent:()=>import("./chunk-OFRUNXKI.mjs").then(e=>e.UpdateMemberEnquiryComponent),data:{title:"Add Member"}}]}];export{t as memberEnquiryRoutes};

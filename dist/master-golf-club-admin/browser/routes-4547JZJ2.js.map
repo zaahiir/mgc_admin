@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/scoreboard/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const scoreBoardRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'ScoreBoard'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-scoreboard/list-scoreboard.component').then(m => m.ListScoreboardComponent),\r\n        data: {\r\n          title: 'List ScoreBoards'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-scoreboard/create-scoreboard.component').then(m => m.CreateScoreboardComponent),\r\n        data: {\r\n          title: 'New ScoreBoard'\r\n        },\r\n      },\r\n      {\r\n        path: 'update',\r\n        loadComponent: () => import('./update-scoreboard/update-scoreboard.component').then(m => m.UpdateScoreboardComponent),\r\n        data: {\r\n          title: 'Update ScoreBoards'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;AAEO,IAAM,mBAA2B;EACtC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,yCAA6C,EAAE,KAAK,OAAK,EAAE,uBAAuB;QAC9G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,2CAAiD,EAAE,KAAK,OAAK,EAAE,yBAAyB;QACpH,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,2CAAiD,EAAE,KAAK,OAAK,EAAE,yBAAyB;QACpH,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

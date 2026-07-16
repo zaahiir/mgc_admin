@@ -48,6 +48,7 @@ interface CourseData {
   amenities: number[]; // API returns 'amenities' instead of 'courseAmenities'
   tees?: any[];       // API returns 'tees' from serializer
   allContacts?: string[];
+  joinRequestExpiryHours?: number | null;
   hideStatus?: number;
 }
 
@@ -185,6 +186,7 @@ export class UpdateCoursesComponent implements OnInit {
           courseWebsite: courseData.website || courseData.courseWebsite,
           courseDescription: courseData.description || courseData.courseDescription,
           courseLocation: courseData.location || courseData.courseLocation,
+          joinRequestExpiryHours: courseData.joinRequestExpiryHours ?? null,
           hideStatus: courseData.hideStatus || 0
         });
 
@@ -246,6 +248,7 @@ export class UpdateCoursesComponent implements OnInit {
       courseWebsite: ['', [Validators.pattern(/^https?:\/\/.+/)]],
       courseDescription: [''],
       courseLocation: ['', [Validators.required]],
+      joinRequestExpiryHours: [null, [Validators.min(0)]],
       courseAmenities: [[], [Validators.required, Validators.minLength(1)]],
       courseImage: [null],
       hideStatus: [0],
@@ -476,6 +479,7 @@ export class UpdateCoursesComponent implements OnInit {
       formData.append('courseName', formValue.courseName);
       formData.append('courseAddress', formValue.courseAddress);
       formData.append('courseOpenFrom', formValue.courseOpenFrom);
+      formData.append('joinRequestExpiryHours', formValue.joinRequestExpiryHours ?? '');
       formData.append('coursePhoneNumber', formValue.coursePhoneNumber);
       formData.append('courseAlternatePhoneNumber', formValue.courseAlternatePhoneNumber || '');
       formData.append('courseWebsite', formValue.courseWebsite || '');

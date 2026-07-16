@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/views/courses/routes.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const coursesRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Courses'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-courses/list-courses.component').then(m => m.ListCoursesComponent),\r\n        data: {\r\n          title: 'List Courses'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-courses/create-courses.component').then(m => m.CreateCoursesComponent),\r\n        data: {\r\n          title: 'New Courses'\r\n        },\r\n      },\r\n      {\r\n        path: 'update/:id',\r\n        loadComponent: () => import('./update-courses/update-courses.component').then(m => m.UpdateCoursesComponent),\r\n        data: {\r\n          title: 'Update Coursess'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
+  "mappings": ";;;AAEO,IAAM,gBAAwB;EACnC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,sCAAuC,EAAE,KAAK,OAAK,EAAE,oBAAoB;QACrG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;;;;",
+  "names": []
+}

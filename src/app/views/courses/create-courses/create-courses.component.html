@@ -48,6 +48,16 @@
             </c-form-feedback>
           </c-col>
 
+          <!-- Join Request Auto-Expiry (optional) -->
+          <c-col [cFormFloating]="true" md="12">
+            <input cFormControl id="joinRequestExpiryHours" formControlName="joinRequestExpiryHours" type="number" min="0" placeholder="Auto-expiry hours" />
+            <label cLabel for="joinRequestExpiryHours" class="ms-2">Join-request auto-expiry (hours before tee time)</label>
+            <small class="text-muted d-block mt-1 ms-2">Leave blank to disable. Pending join requests auto-expire this many hours before the tee time.</small>
+            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('joinRequestExpiryHours')">
+              {{ getErrorMessage('joinRequestExpiryHours') }}
+            </c-form-feedback>
+          </c-col>
+
           <!-- Address Field -->
           <c-col [cFormFloating]="true" md="12">
             <textarea cFormControl id="courseAddress" formControlName="courseAddress" placeholder="Course Address" rows="4"></textarea>

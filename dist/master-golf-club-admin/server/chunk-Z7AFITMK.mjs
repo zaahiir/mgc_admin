@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import"./chunk-DYLV4RNH.mjs";var o=[{path:"",data:{title:"Blog"},children:[{path:"",loadComponent:()=>import("./chunk-TO7VDCGW.mjs").then(t=>t.ListBlogComponent),data:{title:"List Blogs"}},{path:"add",loadComponent:()=>import("./chunk-3EG45DF2.mjs").then(t=>t.CreateBlogComponent),data:{title:"New Blog"}},{path:"update/:id",loadComponent:()=>import("./chunk-H5BJCLVC.mjs").then(t=>t.UpdateBlogComponent),data:{title:"Update Blogs"}}]}];export{o as blogRoutes};

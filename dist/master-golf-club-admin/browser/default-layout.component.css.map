@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/layout/default-layout/default-layout.component.scss"],
+  "sourcesContent": [":host {\r\n  .ng-scrollbar {\r\n    --scrollbar-padding: 1px;\r\n    --scrollbar-size: 5px;\r\n    --scrollbar-thumb-color: var(--cui-gray-500, #999);\r\n    --scrollbar-thumb-hover-color: var(--cui-gray-400, #999);\r\n    --scrollbar-hover-size: calc(var(--scrollbar-size) * 1.5);\r\n  }\r\n}\r\n\r\n// ng-scrollbar css variables\r\n//.cui-scrollbar {\r\n//  --scrollbar-border-radius: 7px;\r\n//  --scrollbar-padding: 1px;\r\n//  --scrollbar-viewport-margin: 0;\r\n//  --scrollbar-track-color: transparent;\r\n//  --scrollbar-wrapper-color: transparent;\r\n//  --scrollbar-thumb-color: rgba(0, 0, 0, 0.2);\r\n//  --scrollbar-thumb-hover-color: var(--scrollbar-thumb-color);\r\n//  --scrollbar-size: 5px;\r\n//  --scrollbar-hover-size: var(--scrollbar-size);\r\n//  --scrollbar-thumb-transition: height ease-out 150ms, width ease-out 150ms;\r\n//  --scrollbar-track-transition: height ease-out 150ms, width ease-out 150ms;\r\n//}\r\n"],
+  "mappings": ";AACE,MAAA,CAAA;AACE,uBAAA;AACA,oBAAA;AACA,2BAAA,IAAA,cAAA,EAAA;AACA,iCAAA,IAAA,cAAA,EAAA;AACA,0BAAA,KAAA,IAAA,kBAAA,EAAA;;",
+  "names": []
+}
