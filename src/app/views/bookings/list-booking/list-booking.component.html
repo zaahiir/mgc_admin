@@ -6,7 +6,7 @@
 <!-- Main Content -->
 <div *ngIf="!isLoading">
   <!-- Statistics Cards -->
-  <c-row class="mb-4">
+  <c-row class="mb-4 stats-row">
     <c-col xs="12" sm="6" lg="3" class="mb-3">
       <c-card class="text-center h-100 stats-card">
         <c-card-body class="d-flex flex-column justify-content-center">
@@ -273,10 +273,11 @@
         <c-col xs="12" sm="6" class="text-sm-end">
           <div class="d-flex align-items-center justify-content-sm-end gap-2">
             <label class="mb-0 text-muted small">Show:</label>
-            <select cFormSelect size="sm" style="width: auto;" (change)="changeItemsPerPage($event)">
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
+            <select cFormSelect size="sm" style="width: auto;" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="25">25</option>
+              <option [ngValue]="50">50</option>
+              <option [ngValue]="100">100</option>
             </select>
             <span class="text-muted small">records per page</span>
           </div>
@@ -284,27 +285,16 @@
       </c-row>
 
       <!-- Responsive Table -->
-      <div class="table-responsive">
-        <table cTable [hover]="true" [striped]="true" [bordered]="true">
+      <div class="table-responsive booking-table-wrapper">
+        <table cTable [hover]="true" [striped]="true" [bordered]="true" class="booking-table">
           <thead>
             <tr>
-              <th scope="col" style="width: 50px;">
-                <c-form-check>
-                  <input 
-                    cFormCheckInput 
-                    type="checkbox" 
-                    [checked]="selectAll"
-                    (change)="toggleSelectAll()">
-                </c-form-check>
-              </th>
-              <th scope="col">BOOKING ID</th>
-              <th scope="col">TYPE</th>
-              <th scope="col">MEMBER</th>
+              <th scope="col" style="width: 60px;">S.NO</th>
               <th scope="col">BOOKED DATE</th>
+              <th scope="col">BOOKING ID</th>
+              <th scope="col">MEMBER</th>
               <th scope="col">COURSE</th>
               <th scope="col">TEE</th>
-              <th scope="col">SLOT DATE</th>
-              <th scope="col">SLOT TIME</th>
               <th scope="col">PARTICIPANTS</th>
               <th scope="col">STATUS</th>
               <th scope="col" style="width: 100px;">DETAILS</th>
@@ -312,27 +302,20 @@
           </thead>
           <tbody>
             <tr *ngFor="let booking of paginatedBookings; let i = index">
+              <td class="text-nowrap">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+              <td class="text-nowrap">{{ booking.bookedDate }}</td>
               <td>
-                <c-form-check>
-                  <input 
-                    cFormCheckInput 
-                    type="checkbox" 
-                    [checked]="isSelected(booking.id)"
-                    (change)="toggleSelectBooking(booking.id)">
-                </c-form-check>
-              </td>
-              <td>
-                <code class="booking-id" [cTooltip]="'Click to copy'" (click)="copyToClipboard(booking.booking_id)">
-                  {{ booking.booking_id }}
-                </code>
-              </td>
-              <td>
-                <c-badge 
-                  [color]="booking.type === 'BOOKING' ? 'primary' : 'info'"
-                  class="d-flex align-items-center gap-1">
-                  <svg [cIcon]="getTypeIcon(booking.type)" size="sm"></svg>
-                  {{ booking.type }}
-                </c-badge>
+                <div class="d-flex flex-column align-items-start gap-1">
+                  <code class="booking-id" [cTooltip]="'Click to copy'" (click)="copyToClipboard(booking.booking_id)">
+                    {{ booking.booking_id }}
+                  </code>
+                  <c-badge
+                    [color]="booking.type === 'BOOKING' ? 'primary' : 'info'"
+                    class="d-inline-flex align-items-center gap-1">
+                    <svg [cIcon]="getTypeIcon(booking.type)" size="sm"></svg>
+                    {{ booking.type }}
+                  </c-badge>
+                </div>
               </td>
               <td>
                 <div>
@@ -340,26 +323,30 @@
                   <small class="text-muted">{{ booking.member.id }}</small>
                 </div>
               </td>
-              <td>{{ booking.bookedDate }}</td>
               <td>{{ booking.course.name }}</td>
-              <td>{{ booking.tee.name }}</td>
-              <td>{{ booking.slotDate }}</td>
-              <td>{{ booking.slotTime }}</td>
               <td>
-                <span class="fw-semibold">{{ formatParticipants(booking) }}</span>
+                <div>
+                  <div>{{ booking.tee.name }}</div>
+                  <small class="text-muted" *ngIf="booking.slotTime">
+                    <svg [cIcon]="icons.cilClock" size="sm" class="me-1"></svg>{{ booking.slotTime }}
+                  </small>
+                </div>
               </td>
               <td>
-                <c-badge 
+                <span class="fw-semibold text-nowrap">{{ formatParticipants(booking) }}</span>
+              </td>
+              <td>
+                <c-badge
                   [color]="getStatusBadgeColor(booking.status)"
-                  class="d-flex align-items-center gap-1">
+                  class="d-inline-flex align-items-center gap-1 status-badge">
                   <svg [cIcon]="getStatusIcon(booking.status)" size="sm"></svg>
-                  {{ booking.status }}
+                  <span class="status-text">{{ booking.status.split('_').join(' ') }}</span>
                 </c-badge>
               </td>
               <td>
-                <button 
-                  cButton 
-                  color="outline-primary" 
+                <button
+                  cButton
+                  color="outline-primary"
                   size="sm"
                   (click)="viewDetails(booking)"
                   [cTooltip]="'View Details'">
@@ -367,10 +354,10 @@
                 </button>
               </td>
             </tr>
-            
+
             <!-- Empty State -->
             <tr *ngIf="paginatedBookings.length === 0">
-              <td colspan="12" class="text-center py-5">
+              <td colspan="9" class="text-center py-5">
                 <div class="text-muted">
                   <svg [cIcon]="icons.cilCalendar" size="3xl" class="mb-3 opacity-50"></svg>
                   <h5>No bookings found</h5>

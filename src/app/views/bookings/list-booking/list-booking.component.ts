@@ -126,7 +126,7 @@ export class ListBookingComponent implements OnInit, OnDestroy {
   
   // Pagination
   currentPage = 1;
-  itemsPerPage = 25;
+  itemsPerPage = 10;
   totalItems = 0;
   totalPages = 0;
   pageRange: number[] = [];
@@ -547,6 +547,11 @@ export class ListBookingComponent implements OnInit, OnDestroy {
 
   changeItemsPerPage(event: any) {
     this.itemsPerPage = parseInt(event.target.value);
+    this.currentPage = 1;
+    this.updatePagination();
+  }
+
+  onItemsPerPageChange() {
     this.currentPage = 1;
     this.updatePagination();
   }

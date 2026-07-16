@@ -47,10 +47,15 @@
 // Table Styling
 .table-responsive {
   border-radius: 8px;
-  overflow: hidden;
-  
+  // Allow horizontal (left-to-right) scrolling; vertical stays visible
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+
   table {
     margin-bottom: 0;
+    // Keep columns from squashing so the table scrolls sideways on small screens
+    min-width: 900px;
     
     thead {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -103,16 +108,31 @@
 c-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  
-  &.d-flex {
+
+  &.d-flex,
+  &.d-inline-flex {
     display: inline-flex !important;
     align-items: center;
     gap: 0.25rem;
-    
+
     svg {
       width: 12px;
       height: 12px;
+      flex-shrink: 0;
     }
+  }
+}
+
+// Status badge: allow long labels (e.g. PENDING APPROVAL) to wrap to two lines
+.status-badge {
+  max-width: 120px;
+  white-space: normal;
+  text-align: left;
+
+  .status-text {
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.15;
   }
 }
 
@@ -177,7 +197,12 @@ c-button-group {
 }
 
 // Responsive Design
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
+  // Hide the statistics summary cards on mobile
+  .stats-row {
+    display: none !important;
+  }
+
   .stats-card {
     margin-bottom: 1rem;
     
@@ -370,9 +395,10 @@ c-badge[color="secondary"] {
   .table-responsive {
     overflow: visible !important;
   }
-  
+
   table {
     font-size: 0.75rem !important;
+    min-width: 0 !important;
     
     thead {
       background: #f8f9fa !important;

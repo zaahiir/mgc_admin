@@ -18,8 +18,8 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://mastergolfclub.com/apis/';
-  // private apiUrl = 'http://localhost/apis/';
+  // private apiUrl = 'https://mastergolfclub.com/apis/';
+  private apiUrl = 'http://localhost/apis/';
   private isBrowser: boolean;
 
   // Authentication state
@@ -54,11 +54,11 @@ export class AuthService {
     const token = this.getStorageItem('access_token');
     const userType = this.getUserType();
     const loginTimestamp = this.getStorageItem('login_timestamp');
-    
+
     // Check if token exists, user is superuser, and session hasn't expired
     const hasValidToken = !!token && userType === 'superuser';
     let sessionValid = true;
-    
+
     if (loginTimestamp) {
       const loginTime = parseInt(loginTimestamp, 10);
       const currentTime = Date.now();
@@ -67,7 +67,7 @@ export class AuthService {
     } else {
       sessionValid = false;
     }
-    
+
     const isAuth = hasValidToken && sessionValid;
     this.authenticationState.next(isAuth);
   }
