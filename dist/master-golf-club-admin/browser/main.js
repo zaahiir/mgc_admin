@@ -94,7 +94,19 @@ import {
   cilUserFemale,
   cilUserFollow,
   cilUserUnfollow
-} from "./chunk-A7ELECVY.js";
+} from "./chunk-3OTSM4RC.js";
+import {
+  DefaultValueAccessor,
+  FormBuilder,
+  FormControlName,
+  FormGroupDirective,
+  NgControlStatus,
+  NgControlStatusGroup,
+  ReactiveFormsModule,
+  RequiredValidator,
+  Validators,
+  ɵNgNoValidate
+} from "./chunk-EZZDAKGS.js";
 import {
   AUTO_STYLE,
   ActivatedRoute,
@@ -108,7 +120,6 @@ import {
   ColorModeService,
   ContainerComponent,
   DOCUMENT,
-  DefaultValueAccessor,
   DomRendererFactory2,
   DropdownComponent,
   DropdownDividerDirective,
@@ -117,10 +128,7 @@ import {
   DropdownModule,
   DropdownToggleDirective,
   FooterComponent,
-  FormBuilder,
-  FormControlName,
   FormDirective,
-  FormGroupDirective,
   FormModule,
   GridModule,
   HeaderComponent,
@@ -130,14 +138,10 @@ import {
   IconDirective,
   IconSetService,
   NavigationEnd,
-  NgControlStatus,
-  NgControlStatusGroup,
   NgIf,
   NgTemplateOutlet,
   NoopAnimationPlayer,
   Platform,
-  ReactiveFormsModule,
-  RequiredValidator,
   Router,
   RouterLink,
   RouterOutlet,
@@ -151,7 +155,6 @@ import {
   SidebarToggleDirective,
   SidebarTogglerDirective,
   Title,
-  Validators,
   bootstrapApplication,
   coerceBooleanProperty,
   coerceElement,
@@ -165,9 +168,8 @@ import {
   takeUntilDestroyed,
   withFetch,
   withInterceptors,
-  ɵNgNoValidate,
   ɵPRE_STYLE
-} from "./chunk-DWS3B4N5.js";
+} from "./chunk-KEGAS2QG.js";
 import {
   ANIMATION_MODULE_TYPE,
   BehaviorSubject,
@@ -7725,75 +7727,75 @@ var routes = [
     children: [
       {
         path: "dashboard",
-        loadChildren: () => import("./routes-NPVWK3YH.js").then((m) => m.dashboardRoutes)
+        loadChildren: () => import("./routes-SEQZCCBG.js").then((m) => m.dashboardRoutes)
       },
       {
         path: "about",
-        loadChildren: () => import("./routes-UO434HJN.js").then((m) => m.aboutRoutes)
+        loadChildren: () => import("./routes-VNVPQIGF.js").then((m) => m.aboutRoutes)
       },
       {
         path: "bookings",
-        loadChildren: () => import("./routes-PNRXCAVV.js").then((m) => m.bookingRoutes)
+        loadChildren: () => import("./routes-6DOB3XJB.js").then((m) => m.bookingRoutes)
       },
       {
         path: "members",
-        loadChildren: () => import("./routes-DOXAZHK5.js").then((m) => m.membersRoutes)
+        loadChildren: () => import("./routes-RCCZ4RJA.js").then((m) => m.membersRoutes)
       },
       {
         path: "plan",
-        loadChildren: () => import("./routes-AB4O2QN2.js").then((m) => m.planRoutes)
+        loadChildren: () => import("./routes-GVBJTGUO.js").then((m) => m.planRoutes)
       },
       {
         path: "courses",
-        loadChildren: () => import("./routes-E2LPBDGP.js").then((m) => m.coursesRoutes)
+        loadChildren: () => import("./routes-TP3UGCRF.js").then((m) => m.coursesRoutes)
       },
       {
         path: "events",
-        loadChildren: () => import("./routes-LHICVDH2.js").then((m) => m.eventsRoutes)
+        loadChildren: () => import("./routes-2BYFVLDO.js").then((m) => m.eventsRoutes)
       },
       {
         path: "tournament",
-        loadChildren: () => import("./routes-JOAWGTTN.js").then((m) => m.tournamentRoutes)
+        loadChildren: () => import("./routes-QG2GSIX6.js").then((m) => m.tournamentRoutes)
       },
       {
         path: "team",
-        loadChildren: () => import("./routes-ED6LWFFL.js").then((m) => m.teamRoutes)
+        loadChildren: () => import("./routes-RB265JWJ.js").then((m) => m.teamRoutes)
       },
       {
         path: "faq",
-        loadChildren: () => import("./routes-BDDRYSRM.js").then((m) => m.faqRoutes)
+        loadChildren: () => import("./routes-6I2T6DXL.js").then((m) => m.faqRoutes)
       },
       {
         path: "scoreBoard",
-        loadChildren: () => import("./routes-4547JZJ2.js").then((m) => m.scoreBoardRoutes)
+        loadChildren: () => import("./routes-JFQHC24A.js").then((m) => m.scoreBoardRoutes)
       },
       {
         path: "blog",
-        loadChildren: () => import("./routes-3DB5WYA5.js").then((m) => m.blogRoutes)
+        loadChildren: () => import("./routes-EMCPDGLM.js").then((m) => m.blogRoutes)
       },
       {
         path: "concept",
-        loadChildren: () => import("./routes-PD744FYW.js").then((m) => m.couponRoutes)
+        loadChildren: () => import("./routes-XFHNIRRD.js").then((m) => m.couponRoutes)
       },
       {
         path: "coupon",
-        loadChildren: () => import("./routes-YURJTN6J.js").then((m) => m.couponRoutes)
+        loadChildren: () => import("./routes-YIWO5QK6.js").then((m) => m.couponRoutes)
       },
       {
         path: "enquiry",
-        loadChildren: () => import("./routes-VHIUFZIM.js").then((m) => m.enquiryRoutes)
+        loadChildren: () => import("./routes-YJGUQJGU.js").then((m) => m.enquiryRoutes)
       },
       {
         path: "memberEnquiry",
-        loadChildren: () => import("./routes-7OEHSN27.js").then((m) => m.memberEnquiryRoutes)
+        loadChildren: () => import("./routes-GDU6IMCE.js").then((m) => m.memberEnquiryRoutes)
       },
       {
         path: "memberMessage",
-        loadChildren: () => import("./routes-4WSZ24W5.js").then((m) => m.memberMessageRoutes)
+        loadChildren: () => import("./routes-NUTNKJAN.js").then((m) => m.memberMessageRoutes)
       },
       {
         path: "amenities",
-        loadChildren: () => import("./routes-L2CIQZM3.js").then((m) => m.amenitiesRoutes)
+        loadChildren: () => import("./routes-6WNGGOTD.js").then((m) => m.amenitiesRoutes)
       }
     ]
   },

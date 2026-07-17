@@ -143,16 +143,123 @@ c-button-group {
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 0;
-    
+
     &:first-child {
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
     }
-    
+
     &:last-child {
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
     }
+  }
+}
+
+// Tabs stay on one line; narrow screens scroll them sideways rather than wrap
+.booking-view-tabs-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+}
+
+// View tabs: count sits in a pill so the label stays readable at a glance
+.booking-view-tabs {
+  flex-wrap: nowrap;
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    // Tighter than the default group padding so all five fit one row
+    padding: 0.45rem 0.7rem;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .tab-count {
+    display: inline-block;
+    min-width: 1.4rem;
+    padding: 0.05rem 0.35rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  // On the active (solid) tab the pill sits on a coloured fill
+  .btn:not([class*='btn-outline']) .tab-count {
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  // Expired reads as muted-but-legible rather than washed out
+  .btn.btn-outline-secondary {
+    color: #5c6570;
+    border-color: #ced4da;
+
+    &:hover {
+      background-color: #6c757d;
+      border-color: #6c757d;
+      color: #fff;
+    }
+  }
+}
+
+// Filter Controls: replace the raw native select with a consistent control
+.filter-controls {
+  label.form-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+
+  .form-select,
+  .form-control {
+    width: 100%;
+    height: calc(1.5em + 0.9rem + 2px);
+    padding: 0.45rem 2rem 0.45rem 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 0.875rem;
+    color: #2c3e50;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover:not(:disabled) {
+      border-color: #adb5bd;
+    }
+
+    &:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.18);
+      outline: none;
+    }
+  }
+
+  .form-control {
+    padding-right: 0.75rem;
+  }
+
+  // Custom chevron; native arrow is hidden so every browser matches
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 6 8 10 12 6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    background-size: 14px 14px;
+    cursor: pointer;
   }
 }
 

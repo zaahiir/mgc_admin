@@ -109,36 +109,25 @@
     <c-card-body>
       <!-- Primary Filter Row -->
       <c-row class="mb-3">
-        <c-col xs="12" md="6">
-          <div class="d-flex flex-wrap gap-2 align-items-center">
+        <c-col xs="12" md="7">
+          <div class="d-flex align-items-center booking-view-tabs-scroll">
             <!-- View Toggle Buttons -->
-            <c-button-group role="group">
-              <button 
-                cButton 
-                [color]="currentView === 'all' ? 'primary' : 'outline-primary'"
-                (click)="switchView('all')"
+            <c-button-group role="group" class="booking-view-tabs">
+              <button
+                *ngFor="let view of views"
+                cButton
+                [color]="currentView === view.value ? view.color : 'outline-' + view.color"
+                (click)="switchView(view.value)"
+                [attr.aria-pressed]="currentView === view.value"
                 size="sm">
-                All Records ({{ statistics.totalBookings }})
-              </button>
-              <button 
-                cButton 
-                [color]="currentView === 'bookings' ? 'success' : 'outline-success'"
-                (click)="switchView('bookings')"
-                size="sm">
-                Bookings ({{ statistics.confirmedBookings }})
-              </button>
-              <button 
-                cButton 
-                [color]="currentView === 'requests' ? 'warning' : 'outline-warning'"
-                (click)="switchView('requests')"
-                size="sm">
-                Requests ({{ statistics.pendingRequests + statistics.approvedRequests + statistics.rejectedRequests }})
+                {{ view.label }}
+                <span class="tab-count">{{ viewCounts[view.value] }}</span>
               </button>
             </c-button-group>
           </div>
         </c-col>
-        
-        <c-col xs="12" md="6">
+
+        <c-col xs="12" md="5">
           <div class="d-flex flex-wrap gap-2 justify-content-md-end">
             <button 
               cButton 
@@ -187,12 +176,12 @@
       </c-row>
 
       <!-- Advanced Filters -->
-      <div *ngIf="showAdvancedFilters" class="border-top pt-3">
+      <div *ngIf="showAdvancedFilters" class="border-top pt-3 filter-controls">
         <form [formGroup]="filterForm" cForm>
           <c-row class="g-3">
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Status</label>
-              <select cFormSelect formControlName="status">
+              <label cLabel>Status</label>
+              <select cSelect formControlName="status">
                 <option *ngFor="let option of statusOptions" [value]="option.value">
                   {{ option.label }} ({{ option.count }})
                 </option>
@@ -200,8 +189,8 @@
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Course</label>
-              <select cFormSelect formControlName="course" (change)="onCourseChange($event)">
+              <label cLabel>Course</label>
+              <select cSelect formControlName="course" (change)="onCourseChange($event)">
                 <option value="">All Courses</option>
                 <option *ngFor="let course of courses" [value]="course.id">
                   {{ course.name }}
@@ -210,8 +199,8 @@
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Tee</label>
-              <select cFormSelect formControlName="tee">
+              <label cLabel>Tee</label>
+              <select cSelect formControlName="tee">
                 <option value="">All Tees</option>
                 <option *ngFor="let tee of tees" [value]="tee.id">
                   {{ tee.holeNumber }} Holes
@@ -220,18 +209,18 @@
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Date From</label>
+              <label cLabel>Date From</label>
               <input cFormControl type="date" formControlName="dateFrom">
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Date To</label>
+              <label cLabel>Date To</label>
               <input cFormControl type="date" formControlName="dateTo">
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Participants</label>
-              <select cFormSelect formControlName="participants">
+              <label cLabel>Participants</label>
+              <select cSelect formControlName="participants">
                 <option *ngFor="let option of participantOptions" [value]="option.value">
                   {{ option.label }}
                 </option>
@@ -239,7 +228,7 @@
             </c-col>
             
             <c-col xs="12" sm="6" md="3">
-              <label cFormLabel>Booking ID</label>
+              <label cLabel>Booking ID</label>
               <input cFormControl type="text" placeholder="Search by ID" formControlName="bookingId">
             </c-col>
             
@@ -273,7 +262,7 @@
         <c-col xs="12" sm="6" class="text-sm-end">
           <div class="d-flex align-items-center justify-content-sm-end gap-2">
             <label class="mb-0 text-muted small">Show:</label>
-            <select cFormSelect size="sm" style="width: auto;" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
+            <select cSelect size="sm" style="width: auto;" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
               <option [ngValue]="10">10</option>
               <option [ngValue]="25">25</option>
               <option [ngValue]="50">50</option>

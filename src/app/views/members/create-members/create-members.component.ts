@@ -348,7 +348,8 @@ export class CreateMemberComponent implements OnInit {
 
     this.loading = true;
 
-    const generatedMemberId = await this.generateMemberId();
+    // The Golf Club ID is assigned by the server on save; generating it here
+    // let two concurrent admins mint the same one.
     const generatedPassword = this.generatePassword();
 
     const formData = new FormData();
@@ -379,8 +380,7 @@ export class CreateMemberComponent implements OnInit {
     formData.append('phoneNumber', (formValues.phoneNumber || '').toString().trim());
     formData.append('plan', planId.toString()); // Ensure it's a string
 
-    // Add generated fields
-    formData.append('golfClubId', generatedMemberId);
+    // Add generated fields (golfClubId is left to the server)
     formData.append('password', generatedPassword);
 
     // Add optional fields only if they have values (not empty or null)
@@ -461,24 +461,27 @@ export class CreateMemberComponent implements OnInit {
     const response = await this.memberService.processMember(formData);
 
     if (response?.data?.code === 1) {
+      // The server is the authority on the Golf Club ID it assigned
+      const assignedMemberId = response?.data?.data?.member_id || '';
+
       // Store credentials for display
       this.createdMemberCredentials = response?.data?.data || {
-        member_id: generatedMemberId,
+        member_id: assignedMemberId,
         email: formValues.email,
         password: generatedPassword,
         qr_token: response?.data?.data?.qr_token || ''
       };
 
-      let successMessage = `Member has been created successfully with Golf Club ID: ${generatedMemberId}. Credentials have been sent to the member's email.`;
+      let successMessage = `Member has been created successfully with Golf Club ID: ${assignedMemberId}. Credentials have been sent to the member's email.`;
 
       if (this.isFromEnquiry && this.enquiryId) {
         try {
-          await this.markEnquiryAsConverted(this.enquiryId, generatedMemberId);
-          successMessage = `Enquiry has been successfully converted to member with Golf Club ID: ${generatedMemberId}. Credentials have been sent to the member's email.`;
+          await this.markEnquiryAsConverted(this.enquiryId, assignedMemberId);
+          successMessage = `Enquiry has been successfully converted to member with Golf Club ID: ${assignedMemberId}. Credentials have been sent to the member's email.`;
         } catch (error) {
           await Swal.fire({
             title: 'Warning',
-            text: `Member created successfully with ID: ${generatedMemberId}, but failed to update enquiry status. Please manually update the enquiry status.`,
+            text: `Member created successfully with ID: ${assignedMemberId}, but failed to update enquiry status. Please manually update the enquiry status.`,
             icon: 'warning',
             confirmButtonText: 'Ok'
           });
@@ -534,29 +537,6 @@ export class CreateMemberComponent implements OnInit {
       }
     } catch (error) {
       throw error;
-    }
-  }
-
-  private async generateMemberId(): Promise<string> {
-    try {
-      const currentDate = new Date();
-      const year = currentDate.getFullYear().toString().slice(-2);
-      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-
-      const lastMemberId = await this.memberService.getLastMemberId(year, month);
-
-      let sequence: number;
-      if (!lastMemberId) {
-        sequence = 1;
-      } else {
-        const lastSequence = parseInt(lastMemberId.slice(-4));
-        sequence = lastSequence + 1;
-      }
-
-      const sequenceStr = sequence.toString().padStart(4, '0');
-      return `${this.CLUB_PREFIX}${year}${month}${sequenceStr}`;
-    } catch (error) {
-      throw new Error('Failed to generate member ID');
     }
   }
 

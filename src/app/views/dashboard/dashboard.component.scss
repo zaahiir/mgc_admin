@@ -1,0 +1,82 @@
+// KPI cards
+.kpi-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left-width: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .kpi-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+
+  .kpi-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2c3e50;
+  }
+
+  .kpi-sub {
+    font-size: 0.75rem;
+    color: #8a939b;
+  }
+
+  .kpi-icon {
+    opacity: 0.35;
+  }
+}
+
+.kpi-primary { border-left-color: #667eea; .kpi-icon { color: #667eea; } }
+.kpi-success { border-left-color: #28a745; .kpi-icon { color: #28a745; } }
+.kpi-warning { border-left-color: #ffc107; .kpi-icon { color: #ffc107; } }
+.kpi-info    { border-left-color: #17a2b8; .kpi-icon { color: #17a2b8; } }
+
+// 7-day bar chart, drawn with plain divs so there is no chart dependency
+.trend-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 180px;
+
+  .trend-bar-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .trend-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c757d;
+  }
+
+  .trend-track {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 120px;
+  }
+
+  .trend-bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    transition: height 0.3s ease;
+  }
+
+  .trend-label {
+    font-size: 0.75rem;
+    color: #8a939b;
+  }
+}

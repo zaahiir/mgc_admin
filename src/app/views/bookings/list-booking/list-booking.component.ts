@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 import { BookingService } from '../../common-service/booking/booking.service';
 import { Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
 
+type BookingView = 'all' | 'bookings' | 'approved' | 'pending' | 'expired';
+
 interface BookingStatistics {
   totalBookings: number;
   confirmedBookings: number;
@@ -95,7 +97,16 @@ export class ListBookingComponent implements OnInit, OnDestroy {
   isExporting = false;
   
   // View toggle
-  currentView: 'all' | 'bookings' | 'requests' = 'all';
+  currentView: BookingView = 'all';
+
+  // Tab definitions - label/colour live here so the template stays a simple loop
+  readonly views: { value: BookingView; label: string; color: string }[] = [
+    { value: 'all', label: 'All Records', color: 'primary' },
+    { value: 'bookings', label: 'Bookings', color: 'success' },
+    { value: 'approved', label: 'Approved', color: 'info' },
+    { value: 'pending', label: 'Pending', color: 'warning' },
+    { value: 'expired', label: 'Expired', color: 'secondary' }
+  ];
   
   // Statistics
   statistics: BookingStatistics = {
@@ -360,9 +371,8 @@ export class ListBookingComponent implements OnInit, OnDestroy {
         });
       }
       
-      this.filteredBookings = [...this.bookings];
-      this.totalItems = this.bookings.length;
-      this.updatePagination();
+      // Keep whatever tab the admin is on after a refresh
+      this.applyViewFilter();
     } catch (error) {
       console.error('Error loading bookings:', error);
       this.bookings = [];
@@ -394,34 +404,58 @@ export class ListBookingComponent implements OnInit, OnDestroy {
   }
 
   private performSearch(searchTerm: string) {
-    if (!searchTerm.trim()) {
-      this.filteredBookings = [...this.bookings];
-    } else {
-      this.filteredBookings = this.bookings.filter(booking => 
-        booking.booking_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        booking.member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        booking.course.name.toLowerCase().includes(searchTerm.toLowerCase())
+    // Search narrows within the active tab rather than replacing it
+    let rows = this.bookings.filter(b => this.matchesView(b, this.currentView));
+
+    const term = searchTerm.trim().toLowerCase();
+    if (term) {
+      rows = rows.filter(booking =>
+        (booking.booking_id || '').toLowerCase().includes(term) ||
+        (booking.member?.name || '').toLowerCase().includes(term) ||
+        (booking.course?.name || '').toLowerCase().includes(term)
       );
     }
+
+    this.filteredBookings = rows;
     this.updatePagination();
   }
 
-  switchView(view: 'all' | 'bookings' | 'requests') {
+  switchView(view: BookingView) {
     this.currentView = view;
     this.applyViewFilter();
   }
 
-  private applyViewFilter() {
-    let filtered = [...this.bookings];
-    
-    if (this.currentView === 'bookings') {
-      filtered = filtered.filter(booking => booking.type === 'BOOKING');
-    } else if (this.currentView === 'requests') {
-      filtered = filtered.filter(booking => booking.type === 'REQUEST');
+  /**
+   * Which tab a row belongs to. Expiry wins over the stored status, so a past
+   * slot lands under Expired rather than lingering in Bookings or Pending.
+   * Tab counts and the table both read this, so they can never disagree.
+   */
+  private matchesView(booking: BookingDetail, view: BookingView): boolean {
+    const status = (booking.status || '').toUpperCase();
+    switch (view) {
+      case 'all': return true;
+      case 'expired': return status === 'EXPIRED';
+      case 'approved': return status === 'APPROVED';
+      case 'pending': return status === 'PENDING_APPROVAL';
+      case 'bookings': return booking.type === 'BOOKING' && status !== 'EXPIRED';
+      default: return true;
     }
-    
-    this.filteredBookings = filtered;
-    this.updatePagination();
+  }
+
+  /** Live per-tab counts, derived from the rows actually loaded. */
+  get viewCounts(): Record<BookingView, number> {
+    const counts: Record<BookingView, number> = {
+      all: 0, bookings: 0, approved: 0, pending: 0, expired: 0
+    };
+    for (const view of this.views) {
+      counts[view.value] = this.bookings.filter(b => this.matchesView(b, view.value)).length;
+    }
+    return counts;
+  }
+
+  private applyViewFilter() {
+    // Delegates so tab + search always compose, whichever changed last
+    this.performSearch(this.searchTerm);
   }
 
   private updatePagination() {
