@@ -1,32 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  ButtonDirective,
-  TableDirective,
-  TableColorDirective,
-  TableActiveDirective,
-  BorderDirective,
-  AlignDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective,
-  PageItemDirective,
-  SpinnerComponent
-} from '@coreui/angular';
 import { BlogService } from '../../common-service/blog/blog.service';
 import Swal from 'sweetalert2';
 
@@ -46,32 +21,17 @@ interface BlogInterface {
     NgClass,
     CommonModule,
     DatePipe,
-    TooltipDirective,
-    IconDirective,
     RouterLink,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
-    SpinnerComponent
+    FormsModule
   ],
   templateUrl: './list-blog.component.html',
   styleUrl: './list-blog.component.scss'
 })
 export class ListBlogComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit';
   tooltipDeleteText = 'Delete';
+  Math = Math;
 
   blogList: BlogInterface[] = [];
   pageRange: number[] = [];
@@ -177,6 +137,16 @@ export class ListBlogComponent implements OnInit {
     }
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.blogList.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.blogList.filter(blog =>
+      blog.blogTitle.toLowerCase().includes(searchTermLower) ||
+      blog.blogDescription.toLowerCase().includes(searchTermLower) ||
+      blog.blogDate.toLowerCase().includes(searchTermLower)
+    ).length;
   }
 
   get totalPages() {

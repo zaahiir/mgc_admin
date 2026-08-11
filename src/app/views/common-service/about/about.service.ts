@@ -33,6 +33,6 @@ export class AboutService {
   }
 
   deletion(id: string) {
-    return axios.get(this.apiUrl + `about/deletion/${id}/`);
+    return axios.delete(this.apiUrl + `about/deletion/${id}/`);
   }
 }

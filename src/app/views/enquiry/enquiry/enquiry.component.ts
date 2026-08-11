@@ -1,29 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule, DatePipe } from '@angular/common';
-import { IconDirective } from '@coreui/icons-angular';
 import { FormsModule } from '@angular/forms';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  CardComponent,
-  CardBodyComponent,
-  FormControlDirective,
-  ButtonDirective,
-  TableDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective,
-  SpinnerComponent,
-  BadgeComponent
-} from '@coreui/angular';
 import { EnquiryService } from '../../common-service/enquiry/enquiry.service';
 import Swal from 'sweetalert2';
-import {
-  cilClock,
-  cilCheckCircle,
-  cilTrash
-} from '@coreui/icons';
 
 // Interface for enquiry data
 interface EnquiryInterface {
@@ -44,29 +23,14 @@ interface EnquiryInterface {
     NgClass,
     CommonModule,
     DatePipe,
-    TooltipDirective,
-    IconDirective,
-    ColComponent,
-    CardComponent,
-    CardBodyComponent,
-    FormsModule,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
-    BadgeComponent
+    FormsModule
   ],
   templateUrl: './enquiry.component.html',
   styleUrl: './enquiry.component.scss'
 })
 export class EnquiryComponent implements OnInit {
-  icons = {
-    cilClock,
-    cilCheckCircle,
-    cilTrash
-  };
+
+  Math = Math;
 
   enquiryList: EnquiryInterface[] = [];
   pageRange: number[] = [];
@@ -153,6 +117,18 @@ export class EnquiryComponent implements OnInit {
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.enquiryList.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.enquiryList.filter(enquiry =>
+      enquiry.contactEnquiryFirstName.toLowerCase().includes(searchTermLower) ||
+      enquiry.contactEnquiryLastName.toLowerCase().includes(searchTermLower) ||
+      enquiry.contactEnquiryEmail.toLowerCase().includes(searchTermLower) ||
+      enquiry.contactEnquiryPhoneNumber.toLowerCase().includes(searchTermLower) ||
+      enquiry.contactEnquiryMessage.toLowerCase().includes(searchTermLower)
+    ).length;
+  }
+
   get totalPages() {
     const filteredLength = this.searchTerm
       ? this.enquiryList.filter(enquiry =>
@@ -189,14 +165,9 @@ export class EnquiryComponent implements OnInit {
     return currentStatus === 'pending' ? 'completed' : 'pending';
   }
 
-  // Helper method to get the appropriate icon
-  getStatusIcon(currentStatus: string): any {
-    return currentStatus === 'pending' ? this.icons.cilCheckCircle : this.icons.cilClock;
-  }
-
   // Helper method to get button color
   getButtonColor(currentStatus: string): string {
-    return currentStatus === 'pending' ? 'success' : 'warning';
+    return currentStatus === 'pending' ? 'text-bg-success' : 'text-bg-warning';
   }
 
   // Optional: Method to filter enquiries by status

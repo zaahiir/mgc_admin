@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from '@coreui/angular';
 
 @Component({
     selector: 'app-default-footer',
@@ -7,8 +6,8 @@ import { FooterComponent } from '@coreui/angular';
     styleUrls: ['./default-footer.component.scss'],
     standalone: true,
 })
-export class DefaultFooterComponent extends FooterComponent {
-  constructor() {
-    super();
-  }
+export class DefaultFooterComponent {
+  currentYear: number = new Date().getFullYear();
+
+  constructor() {}
 }

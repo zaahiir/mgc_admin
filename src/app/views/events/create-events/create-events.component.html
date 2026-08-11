@@ -1,61 +1,69 @@
 <!-- create-member-events.component.html -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-header>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header">
         <strong>{{ isEditMode ? 'Edit Member Event' : 'New Member Event' }}</strong>
-      </c-card-header>
-      <c-card-body>
-        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" #form="ngForm" cForm class="row g-3 needs-validation">
+      </div>
+      <div class="card-body">
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" #form="ngForm" class="row g-3 needs-validation">
           
           <!-- Basic Information -->
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventTitle" formControlName="EventTitle" type="text" placeholder="Event Title" />
-            <label cLabel for="EventTitle" class="ms-2">Event Title *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventTitle')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventTitle" formControlName="EventTitle" type="text" placeholder="Event Title" />
+              <label for="EventTitle" class="ms-2">Event Title *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventTitle')">
               {{ getErrorMessage('EventTitle') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventDate" formControlName="EventDate" type="date" placeholder="Event Date" />
-            <label cLabel for="EventDate" class="ms-2">Event Date *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventDate')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventDate" formControlName="EventDate" type="date" placeholder="Event Date" />
+              <label for="EventDate" class="ms-2">Event Date *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventDate')">
               {{ getErrorMessage('EventDate') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventVenue" formControlName="EventVenue" type="text" placeholder="Event Venue" />
-            <label cLabel for="EventVenue" class="ms-2">Event Venue *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventVenue')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventVenue" formControlName="EventVenue" type="text" placeholder="Event Venue" />
+              <label for="EventVenue" class="ms-2">Event Venue *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventVenue')">
               {{ getErrorMessage('EventVenue') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventEntryPrice" formControlName="EventEntryPrice" type="text" placeholder="Event Entry Price (e.g., '$60')" />
-            <label cLabel for="EventEntryPrice" class="ms-2">Event Entry Price *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventEntryPrice')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventEntryPrice" formControlName="EventEntryPrice" type="text" placeholder="Event Entry Price (e.g., '$60')" />
+              <label for="EventEntryPrice" class="ms-2">Event Entry Price *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventEntryPrice')">
               {{ getErrorMessage('EventEntryPrice') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Main Event Image Upload -->
-          <c-col md="12">
-            <label cLabel for="EventImage" class="form-label">Main Event Image *</label>
+          <div class="col-md-12">
+            <label for="EventImage" class="form-label">Main Event Image *</label>
             <div class="mb-3">
-              <input cFormControl id="EventImage" type="file" accept="image/*" (change)="onMainImageChange($event)" class="form-control" />
+              <input id="EventImage" type="file" accept="image/*" (change)="onMainImageChange($event)" class="form-control" />
             </div>
             <div *ngIf="imagePreview" class="mb-3">
               <img [src]="imagePreview" alt="Main Image Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
-              <button type="button" cButton color="danger" size="sm" class="ms-2" (click)="removeMainImage()">Remove</button>
+              <button type="button" class="btn btn-danger btn-sm ms-2" (click)="removeMainImage()">Remove</button>
             </div>
-          </c-col>
+          </div>
 
           <!-- Event Details Section with TinyMCE -->
-          <c-col md="12">
-            <label cLabel for="EventDetails" class="form-label">Event Details *</label>
+          <div class="col-md-12">
+            <label for="EventDetails" class="form-label">Event Details *</label>
             <editor apiKey="jrj64u0e25jw0n4a9v0jbajhi9iakdkeyta9ryl58xwmqwz7"
             formControlName="EventDetails"
               [init]="{
@@ -63,16 +71,16 @@
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
               }"
             ></editor>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventDetails')">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventDetails')">
               {{ getErrorMessage('EventDetails') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
 
 
           <!-- Event Activities Section with TinyMCE -->
-          <c-col md="12">
-            <label cLabel for="EventActivities" class="form-label">Event Activities *</label>
+          <div class="col-md-12">
+            <label for="EventActivities" class="form-label">Event Activities *</label>
             <editor apiKey="jrj64u0e25jw0n4a9v0jbajhi9iakdkeyta9ryl58xwmqwz7"
             formControlName="EventActivities"
               [init]="{
@@ -80,109 +88,119 @@
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
               }"
             ></editor>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventActivities')">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventActivities')">
               {{ getErrorMessage('EventActivities') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Event Activities Images -->
-          <c-col md="12">
-            <label cLabel class="form-label">Event Activities Images</label>
+          <div class="col-md-12">
+            <label class="form-label">Event Activities Images</label>
             <div class="row">
-              <c-col md="6">
+              <div class="col-md-6">
                 <div class="mb-3">
-                  <input cFormControl id="EventActivitiesimageOne" type="file" accept="image/*" (change)="onAdditionalImageChange($event, 'EventActivitiesimageOne')" class="form-control" />
+                  <input id="EventActivitiesimageOne" type="file" accept="image/*" (change)="onAdditionalImageChange($event, 'EventActivitiesimageOne')" class="form-control" />
                   <div *ngIf="additionalImagePreviews['EventActivitiesimageOne']" class="mt-2">
                     <img [src]="additionalImagePreviews['EventActivitiesimageOne']" alt="Activities Image 1 Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px;" />
-                    <button type="button" cButton color="danger" size="sm" class="ms-1" (click)="removeAdditionalImage('EventActivitiesimageOne')">Remove</button>
+                    <button type="button" class="btn btn-danger btn-sm ms-1" (click)="removeAdditionalImage('EventActivitiesimageOne')">Remove</button>
                   </div>
                 </div>
-              </c-col>
-              <c-col md="6">
+              </div>
+              <div class="col-md-6">
                 <div class="mb-3">
-                  <input cFormControl id="EventActivitiesimageTwo" type="file" accept="image/*" (change)="onAdditionalImageChange($event, 'EventActivitiesimageTwo')" class="form-control" />
+                  <input id="EventActivitiesimageTwo" type="file" accept="image/*" (change)="onAdditionalImageChange($event, 'EventActivitiesimageTwo')" class="form-control" />
                   <div *ngIf="additionalImagePreviews['EventActivitiesimageTwo']" class="mt-2">
                     <img [src]="additionalImagePreviews['EventActivitiesimageTwo']" alt="Activities Image 2 Preview" class="img-thumbnail" style="max-width: 150px; max-height: 150px;" />
-                    <button type="button" cButton color="danger" size="sm" class="ms-1" (click)="removeAdditionalImage('EventActivitiesimageTwo')">Remove</button>
+                    <button type="button" class="btn btn-danger btn-sm ms-1" (click)="removeAdditionalImage('EventActivitiesimageTwo')">Remove</button>
                   </div>
                 </div>
-              </c-col>
+              </div>
             </div>
-          </c-col>
+          </div>
 
           <!-- Event Details -->
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventDetailOrganizer" formControlName="EventDetailOrganizer" type="text" placeholder="Event Organizer" />
-            <label cLabel for="EventDetailOrganizer" class="ms-2">Event Organizer *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventDetailOrganizer')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventDetailOrganizer" formControlName="EventDetailOrganizer" type="text" placeholder="Event Organizer" />
+              <label for="EventDetailOrganizer" class="ms-2">Event Organizer *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventDetailOrganizer')">
               {{ getErrorMessage('EventDetailOrganizer') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventEndDate" formControlName="EventEndDate" type="date" />
-            <label cLabel for="EventEndDate" class="ms-2">Event End Date *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventEndDate')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventEndDate" formControlName="EventEndDate" type="date" />
+              <label for="EventEndDate" class="ms-2">Event End Date *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventEndDate')">
               {{ getErrorMessage('EventEndDate') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventTime" formControlName="EventTime" type="time" placeholder="Event Time" />
-            <label cLabel for="EventTime" class="ms-2">Event Time *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventTime')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventTime" formControlName="EventTime" type="time" placeholder="Event Time" />
+              <label for="EventTime" class="ms-2">Event Time *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventTime')">
               {{ getErrorMessage('EventTime') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventEmail" formControlName="EventEmail" type="email" placeholder="Contact Email" />
-            <label cLabel for="EventEmail" class="ms-2">Contact Email *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventEmail')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventEmail" formControlName="EventEmail" type="email" placeholder="Contact Email" />
+              <label for="EventEmail" class="ms-2">Contact Email *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventEmail')">
               {{ getErrorMessage('EventEmail') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="EventPhone" formControlName="EventPhone" type="text" placeholder="Contact Phone" />
-            <label cLabel for="EventPhone" class="ms-2">Contact Phone *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('EventPhone')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="EventPhone" formControlName="EventPhone" type="text" placeholder="Contact Phone" />
+              <label for="EventPhone" class="ms-2">Contact Phone *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('EventPhone')">
               {{ getErrorMessage('EventPhone') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Status and Visibility -->
-          <c-col md="6">
+          <div class="col-md-6">
             <div class="form-check">
-              <input cFormControl id="is_active" formControlName="is_active" type="checkbox" class="form-check-input" />
-              <label cLabel for="is_active" class="form-check-label">
+              <input id="is_active" formControlName="is_active" type="checkbox" class="form-check-input" />
+              <label for="is_active" class="form-check-label">
                 Event is active/visible
               </label>
             </div>
-          </c-col>
+          </div>
 
           <!-- Action Buttons -->
-          <c-col xs="12" class="d-flex justify-content-between">
+          <div class="col-12 d-flex justify-content-between">
             <div>
-              <button type="submit" cButton color="primary" [disabled]="loading">
+              <button type="submit" class="btn btn-primary" [disabled]="loading">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
                 {{ isEditMode ? 'Update Event' : 'Create Event' }}
               </button>
-              <button type="button" cButton color="secondary" class="ms-2" (click)="onReset()">
+              <button type="button" class="btn btn-secondary ms-2" (click)="onReset()">
                 Reset
               </button>
             </div>
             <div>
-              <button type="button" cButton color="info" (click)="navigateToEvents()">
+              <button type="button" class="btn btn-info" (click)="navigateToEvents()">
                 Back to Events
               </button>
-              <button *ngIf="isEditMode" type="button" cButton color="danger" class="ms-2" (click)="onDelete()">
+              <button *ngIf="isEditMode" type="button" class="btn btn-danger ms-2" (click)="onDelete()">
                 Delete Event
               </button>
             </div>
-          </c-col>
+          </div>
         </form>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>

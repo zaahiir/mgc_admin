@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormFloatingDirective, FormDirective, FormLabelDirective, FormControlDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective, FormSelectDirective, ButtonDirective } from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberService } from '../../common-service/member/member.service';
@@ -38,11 +37,8 @@ interface MemberEnquiry {
   selector: 'app-create-members',
   standalone: true,
   imports: [
-    NgIf, CommonModule, NgForOf, RowComponent, ColComponent,
-    TextColorDirective, CardComponent, FormFloatingDirective, CardHeaderComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule, FormDirective,
-    FormLabelDirective, FormControlDirective, FormFeedbackComponent,
-    FormSelectDirective, ButtonDirective
+    NgIf, CommonModule, NgForOf,
+    ReactiveFormsModule, FormsModule
   ],
   templateUrl: './create-members.component.html',
   styleUrl: './create-members.component.scss'

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/concept/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const couponRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Concept'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./create-concept/create-concept.component').then(m => m.CreateConceptComponent),\r\n        data: {\r\n          title: 'Update Concept'\r\n        },\r\n      },\r\n      {\r\n        path: 'update',\r\n        loadComponent: () => import('./update-concept/update-concept.component').then(m => m.UpdateConceptComponent),\r\n        data: {\r\n          title: 'Update Concept'\r\n        },\r\n      },\r\n    ]\r\n  }\r\n];\r\n"],
-  "mappings": ";;;AAEO,IAAM,eAAuB;EAClC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAA2C,EAAE,KAAK,OAAK,EAAE,sBAAsB;QAC3G,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

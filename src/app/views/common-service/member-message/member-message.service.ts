@@ -24,7 +24,7 @@ export class MemberMessageService {
 
   deleteMemberMessage(id: string) {
     const url = `${this.apiUrl}message/deletion/${id}/`;
-    return axios.get(url);
+    return axios.delete(url);
   }
 
   markMessageAsRead(id: string) {

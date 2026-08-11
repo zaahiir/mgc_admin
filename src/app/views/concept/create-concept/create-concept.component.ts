@@ -9,24 +9,10 @@ import {
   FormArray,
   Validators
 } from '@angular/forms';
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ConceptService, ConceptData, ConceptItem } from '../../common-service/concept/concept.service';
+import { AutoResizeDirective } from '../../../shared/directives/auto-resize.directive';
 
 @Component({
   selector: 'app-create-concept',
@@ -35,21 +21,9 @@ import { ConceptService, ConceptData, ConceptItem } from '../../common-service/c
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
     FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    ButtonDirective,
-    ButtonModule
+    AutoResizeDirective
   ],
   templateUrl: './create-concept.component.html',
   styleUrl: './create-concept.component.scss'

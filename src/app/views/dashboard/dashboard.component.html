@@ -1,6 +1,8 @@
 <!-- Initial load -->
 <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
-  <c-spinner color="primary"></c-spinner>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
 </div>
 
 <div *ngIf="!isLoading">
@@ -13,8 +15,8 @@
         <span *ngIf="isRefreshing" class="ms-1">&middot; refreshing&hellip;</span>
       </div>
     </div>
-    <button cButton color="outline-primary" size="sm" (click)="loadStats()" [disabled]="isRefreshing">
-      <svg [cIcon]="icons.cilReload" class="me-1"></svg>
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="loadStats()" [disabled]="isRefreshing">
+      <i class="bi bi-arrow-clockwise me-1"></i>
       Refresh
     </button>
   </div>
@@ -22,74 +24,74 @@
   <div *ngIf="errorMessage" class="alert alert-warning py-2 small">{{ errorMessage }}</div>
 
   <!-- Key figures -->
-  <c-row class="mb-4">
-    <c-col xs="12" sm="6" lg="3" class="mb-3">
-      <c-card class="h-100 kpi-card kpi-primary">
-        <c-card-body>
+  <div class="row mb-4">
+    <div class="col-12 col-sm-6 col-lg-3 mb-3">
+      <div class="card h-100 kpi-card kpi-primary">
+        <div class="card-body">
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <div class="kpi-label">Bookings Today</div>
               <div class="kpi-value">{{ stats?.bookings?.today ?? 0 }}</div>
               <div class="kpi-sub">{{ stats?.bookings?.upcoming ?? 0 }} upcoming</div>
             </div>
-            <svg [cIcon]="icons.cilCalendar" size="xl" class="kpi-icon"></svg>
+            <i class="bi bi-calendar kpi-icon"></i>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
+        </div>
+      </div>
+    </div>
 
-    <c-col xs="12" sm="6" lg="3" class="mb-3">
-      <c-card class="h-100 kpi-card kpi-success">
-        <c-card-body>
+    <div class="col-12 col-sm-6 col-lg-3 mb-3">
+      <div class="card h-100 kpi-card kpi-success">
+        <div class="card-body">
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <div class="kpi-label">Members</div>
               <div class="kpi-value">{{ stats?.members?.total ?? 0 }}</div>
               <div class="kpi-sub">{{ stats?.members?.newThisMonth ?? 0 }} new this month</div>
             </div>
-            <svg [cIcon]="icons.cilPeople" size="xl" class="kpi-icon"></svg>
+            <i class="bi bi-people kpi-icon"></i>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
+        </div>
+      </div>
+    </div>
 
-    <c-col xs="12" sm="6" lg="3" class="mb-3">
-      <c-card class="h-100 kpi-card kpi-warning">
-        <c-card-body>
+    <div class="col-12 col-sm-6 col-lg-3 mb-3">
+      <div class="card h-100 kpi-card kpi-warning">
+        <div class="card-body">
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <div class="kpi-label">Pending Requests</div>
               <div class="kpi-value">{{ stats?.joinRequests?.pending ?? 0 }}</div>
               <div class="kpi-sub">awaiting approval</div>
             </div>
-            <svg [cIcon]="icons.cilClock" size="xl" class="kpi-icon"></svg>
+            <i class="bi bi-clock kpi-icon"></i>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
+        </div>
+      </div>
+    </div>
 
-    <c-col xs="12" sm="6" lg="3" class="mb-3">
-      <c-card class="h-100 kpi-card kpi-info">
-        <c-card-body>
+    <div class="col-12 col-sm-6 col-lg-3 mb-3">
+      <div class="card h-100 kpi-card kpi-info">
+        <div class="card-body">
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <div class="kpi-label">Courses</div>
               <div class="kpi-value">{{ stats?.courses?.active ?? 0 }}</div>
               <div class="kpi-sub">{{ stats?.courses?.tees ?? 0 }} tees</div>
             </div>
-            <svg [cIcon]="icons.cilLocationPin" size="xl" class="kpi-icon"></svg>
+            <i class="bi bi-geo-alt kpi-icon"></i>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <c-row>
+  <div class="row">
     <!-- 7-day trend -->
-    <c-col xs="12" lg="5" class="mb-4">
-      <c-card class="h-100">
-        <c-card-header class="fw-semibold">Bookings Made (last 7 days)</c-card-header>
-        <c-card-body>
+    <div class="col-12 col-lg-5 mb-4">
+      <div class="card h-100">
+        <div class="card-header fw-semibold">Bookings Made (last 7 days)</div>
+        <div class="card-body">
           <div *ngIf="trendPeak === 0" class="text-body-secondary small text-center py-5">
             No bookings created in the last 7 days.
           </div>
@@ -102,23 +104,23 @@
               <div class="trend-label">{{ day.label }}</div>
             </div>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
+        </div>
+      </div>
+    </div>
 
     <!-- Recent bookings -->
-    <c-col xs="12" lg="7" class="mb-4">
-      <c-card class="h-100">
-        <c-card-header class="d-flex justify-content-between align-items-center">
+    <div class="col-12 col-lg-7 mb-4">
+      <div class="card h-100">
+        <div class="card-header d-flex justify-content-between align-items-center">
           <span class="fw-semibold">Latest Bookings</span>
           <a routerLink="/bookings" class="small text-decoration-none">View all</a>
-        </c-card-header>
-        <c-card-body class="p-0">
+        </div>
+        <div class="card-body p-0">
           <div *ngIf="!stats?.recentBookings?.length" class="text-body-secondary small text-center py-5">
             No bookings yet.
           </div>
           <div *ngIf="stats?.recentBookings?.length" class="table-responsive">
-            <table cTable class="mb-0 align-middle">
+            <table class="table mb-0 align-middle">
               <thead>
                 <tr>
                   <th>Booking ID</th>
@@ -138,42 +140,42 @@
                   </td>
                   <td class="small">{{ formatSlot(booking.slotDate, booking.bookingTime) }}</td>
                   <td>
-                    <c-badge [color]="statusColor(booking.status)" class="text-uppercase small">
+                    <span [class]="'badge text-uppercase small ' + statusColor(booking.status)">
                       {{ booking.status }}
-                    </c-badge>
+                    </span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Enquiries -->
-  <c-row>
-    <c-col xs="12" sm="6" class="mb-3">
-      <c-card>
-        <c-card-body class="d-flex justify-content-between align-items-center">
+  <div class="row">
+    <div class="col-12 col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-body d-flex justify-content-between align-items-center">
           <div>
             <div class="kpi-label">Contact Enquiries</div>
             <div class="fs-4 fw-bold">{{ stats?.enquiries?.contact ?? 0 }}</div>
           </div>
-          <svg [cIcon]="icons.cilEnvelopeClosed" size="xl" class="text-body-secondary"></svg>
-        </c-card-body>
-      </c-card>
-    </c-col>
-    <c-col xs="12" sm="6" class="mb-3">
-      <c-card>
-        <c-card-body class="d-flex justify-content-between align-items-center">
+          <i class="bi bi-envelope fs-2 text-body-secondary"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-body d-flex justify-content-between align-items-center">
           <div>
             <div class="kpi-label">Member Enquiries</div>
             <div class="fs-4 fw-bold">{{ stats?.enquiries?.member ?? 0 }}</div>
           </div>
-          <svg [cIcon]="icons.cilEnvelopeClosed" size="xl" class="text-body-secondary"></svg>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
+          <i class="bi bi-envelope fs-2 text-body-secondary"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

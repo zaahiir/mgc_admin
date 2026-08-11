@@ -2,28 +2,11 @@
 import { Component, OnInit, SecurityContext } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormDirective,
-  FormControlDirective,
-  ButtonDirective,
-  TableDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective
-} from '@coreui/angular';
 import { AmenitiesService } from '../../common-service/amenities/amenities.service';
 import Swal from 'sweetalert2';
+import { sanitizeSvg } from '../../../shared/sanitize-svg';
 
 interface AmenityInterface {
   id: number;
@@ -61,32 +44,17 @@ interface AmenityInterface {
   standalone: true,
   imports: [
     CommonModule,
-    TooltipDirective,
-    IconDirective,
     RouterLink,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
     FormsModule,
-    FormDirective,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
   ],
   templateUrl: './list-amenities.component.html',
   styleUrls: ['./list-amenities.component.scss']
 })
 export class ListAmenitiesComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit Amenity';
   tooltipDeleteText = 'Delete Amenity';
+  Math = Math;
 
   amenityList: AmenityInterface[] = [];
   pageRange: number[] = [];
@@ -196,6 +164,20 @@ export class ListAmenitiesComponent implements OnInit {
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.amenityList.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.amenityList.filter(amenity => {
+      const name = amenity.title || amenity.amenityName || '';
+      const tooltip = amenity.tooltip || amenity.amenityTooltip || '';
+      const description = amenity.description || amenity.amenitiesDescription || '';
+
+      return name.toLowerCase().includes(searchTermLower) ||
+             tooltip.toLowerCase().includes(searchTermLower) ||
+             description.toLowerCase().includes(searchTermLower);
+    }).length;
+  }
+
   get totalPages() {
     const filteredLength = this.searchTerm ?
       this.amenityList.filter(amenity => {
@@ -258,7 +240,7 @@ export class ListAmenitiesComponent implements OnInit {
           processedSvg = processedSvg.replace('<svg', '<svg viewBox="0 0 24 24"');
         }
 
-        return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
+        return this.sanitizer.bypassSecurityTrustHtml(sanitizeSvg(processedSvg));
       }
     } catch (error) {
       console.warn('Error sanitizing SVG for amenity:', amenity.id, error);

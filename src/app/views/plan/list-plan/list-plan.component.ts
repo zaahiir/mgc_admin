@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TooltipDirective, RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormDirective, FormLabelDirective, FormControlDirective, ButtonDirective, TableDirective, TableColorDirective, TableActiveDirective, BorderDirective, AlignDirective, PaginationComponent, PageItemComponent, PageLinkDirective, PageItemDirective } from '@coreui/angular';
 import { PlanService } from '../../common-service/plan/plan.service';
 import Swal from 'sweetalert2';
 
@@ -19,21 +16,16 @@ interface PlanInterface {
   selector: 'app-list-plan',
   standalone: true,
   imports: [
-    CommonModule, TooltipDirective, IconDirective, RouterLink,
-    RowComponent, ColComponent, TextColorDirective, CardComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule,
-    FormDirective, FormControlDirective, ButtonDirective,
-    TableDirective,
-    PaginationComponent, PageItemComponent,
-    PageLinkDirective, 
+    CommonModule, RouterLink,
+    ReactiveFormsModule, FormsModule
   ],
   templateUrl: './list-plan.component.html',
   styleUrl: './list-plan.component.scss'
 })
 export class ListPlanComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit';
   tooltipDeleteText = 'Delete';
+  Math = Math;
 
   planList: PlanInterface[] = [];
   pageRange: number[] = [];
@@ -116,6 +108,16 @@ export class ListPlanComponent implements OnInit {
     }
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.planList.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.planList.filter(plan =>
+      plan.planName.toLowerCase().includes(searchTermLower) ||
+      plan.planDuration.toString().includes(searchTermLower) ||
+      plan.planPrice.toString().includes(searchTermLower)
+    ).length;
   }
 
   get totalPages() {

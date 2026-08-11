@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/bookings/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const bookingRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Booking'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-booking/list-booking.component').then(m => m.ListBookingComponent),\r\n        data: {\r\n          title: 'List Booking'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
-  "mappings": ";;;;AAEO,IAAM,gBAAwB;EACnC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,uCAAuC,EAAE,KAAK,OAAK,EAAE,oBAAoB;QACrG,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

@@ -43,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let faq of faqs">
+                  <tr *ngFor="let faq of paginatedFaqList; let i = index">
                     <td>
                       <strong>{{ faq.faqQuestion }}</strong>
                     </td>
@@ -71,12 +71,40 @@
                       </button>
                     </td>
                   </tr>
+                  <tr *ngIf="paginatedFaqList.length === 0">
+                    <td colspan="5" class="text-center py-4">
+                      {{ loading ? 'Loading...' : 'No FAQs found' }}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
+
+              <nav *ngIf="totalPages > 1" aria-label="FAQ navigation">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" (click)="previousPage()" [ngClass]="{'disabled': currentPage === 1}">Previous</a>
+                  </li>
+                  <li class="page-item" *ngFor="let page of pageRange">
+                    <a class="page-link" (click)="changePage(page)" [ngClass]="{'active': currentPage === page}">{{ page }}</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" (click)="nextPage()" [ngClass]="{'disabled': currentPage === totalPages}">Next</a>
+                  </li>
+                </ul>
+              </nav>
+
+              <!-- Summary -->
+              <div class="mt-3 text-muted">
+                <small>
+                  Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+                  {{ Math.min(currentPage * itemsPerPage, filteredCount) }} of
+                  {{ filteredCount }} FAQs
+                </small>
+              </div>
             </div>
 
             <!-- No FAQs Message -->
-            <div class="alert alert-warning" *ngIf="!loading && faqs.length === 0">
+            <div class="alert alert-warning" *ngIf="!loading && paginatedFaqList.length === 0">
               <h5><i class="fas fa-exclamation-triangle"></i> No FAQs Found</h5>
               <p class="mb-0">No FAQs have been created yet. Click the button above to create one.</p>
             </div>

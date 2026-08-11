@@ -1,105 +1,127 @@
-<!-- Option 1: Modern Pill Button Design -->
-<c-col xs="12">
-  <c-card class="mb-4">
-    <c-card-body>
-      <c-col md="3" class="mb-4 flex justify-content-md-end">
-        <input
-          cFormControl
-          id="searchInput"
-          (input)="search()"
-          [(ngModel)]="searchTerm"
-          type="search"
-          placeholder="Search Enquiries"
-        />
-      </c-col>
+<!-- enquiry.component.html -->
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <!-- Search Input -->
+        <div class="col-md-3 mb-4">
+          <div class="position-relative">
+            <input
+              class="form-control"
+              id="searchInput"
+              [(ngModel)]="searchTerm"
+              (input)="search()"
+              type="search"
+              placeholder="Search Enquiries"
+              autocomplete="off"
+            />
+          </div>
+        </div>
 
-      <table [hover]="true" [striped]="true" [bordered]="true" cTable>
-        <thead>
-          <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-            <th scope="col">Date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let enquiry of paginatedEnquiryList; let i = index">
-            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-            <td>{{ enquiry.contactEnquiryFirstName + ' ' + enquiry.contactEnquiryLastName }}</td>
-            <td>{{ enquiry.contactEnquiryPhoneNumber }}</td>
-            <td>{{ enquiry.contactEnquiryEmail }}</td>
-            <td>{{ enquiry.contactEnquiryMessage }}</td>
-            <td>{{ enquiry.contactEnquiryDate | date:'mediumDate' }}</td>
-            <td>
-              <span
-                class="status-badge"
-                [ngClass]="enquiry.status === 'completed' ? 'status-completed' : 'status-pending'">
-                {{ enquiry.status | titlecase }}
-              </span>
-            </td>
-            <td>
-              <div class="toggle-switch-container">
-                <input
-                  type="checkbox"
-                  class="toggle-switch-input"
-                  [id]="'toggle-' + enquiry.id"
-                  [checked]="enquiry.status === 'completed'"
-                  (change)="toggleStatus(enquiry.id)"
-                >
-                <label
-                  [for]="'toggle-' + enquiry.id"
-                  class="toggle-switch-label"
-                  [cTooltip]="'Toggle status: ' + (enquiry.status === 'complete' ? 'Mark as Complete' : 'Reopen Enquiry')"
-                  cTooltipPlacement="top"
-                >
-                  <span class="toggle-switch-slider"></span>
-                  <span class="toggle-switch-text"></span>
-                </label>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Enquiry Table -->
+        <table class="table table-hover table-striped table-bordered align-middle">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 70px">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+              <th scope="col">Message</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+              <th scope="col" style="width: 120px">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let enquiry of paginatedEnquiryList; let i = index">
+              <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+              <td>{{ enquiry.contactEnquiryFirstName + ' ' + enquiry.contactEnquiryLastName }}</td>
+              <td>{{ enquiry.contactEnquiryPhoneNumber }}</td>
+              <td>{{ enquiry.contactEnquiryEmail }}</td>
+              <td>{{ enquiry.contactEnquiryMessage }}</td>
+              <td>{{ enquiry.contactEnquiryDate | date:'mediumDate' }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-success': enquiry.status === 'completed',
+                    'bg-warning': enquiry.status !== 'completed'
+                  }">
+                  {{ enquiry.status | titlecase }}
+                </span>
+              </td>
+              <td>
+                <div class="toggle-switch-container">
+                  <input
+                    type="checkbox"
+                    class="toggle-switch-input"
+                    [id]="'toggle-' + enquiry.id"
+                    [checked]="enquiry.status === 'completed'"
+                    (change)="toggleStatus(enquiry.id)"
+                  >
+                  <label
+                    [for]="'toggle-' + enquiry.id"
+                    class="toggle-switch-label"
+                  >
+                    <span class="toggle-switch-slider"></span>
+                    <span class="toggle-switch-text"></span>
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="paginatedEnquiryList.length === 0">
+              <td colspan="8" class="text-center py-4">
+                {{ isLoading ? 'Loading...' : 'No enquiries found' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <c-pagination
-        *ngIf="enquiryList.length > itemsPerPage"
-        aria-label="Enquiry navigation"
-      >
-        <c-page-item>
-          <a
-            cPageLink
-            (click)="previousPage()"
-            [ngClass]="{'disabled': currentPage === 1}"
-          >
-            Previous
-          </a>
-        </c-page-item>
-        <c-page-item *ngFor="let page of pageRange">
-          <a
-            cPageLink
-            (click)="changePage(page)"
-            [ngClass]="{'active': currentPage === page}"
-          >
-            {{ page }}
-          </a>
-        </c-page-item>
-        <c-page-item>
-          <a
-            cPageLink
-            (click)="nextPage()"
-            [ngClass]="{'disabled': currentPage === totalPages}"
-          >
-            Next
-          </a>
-        </c-page-item>
-      </c-pagination>
-    </c-card-body>
-  </c-card>
-</c-col>
+        <!-- Pagination -->
+        <nav
+          *ngIf="enquiryList.length > itemsPerPage"
+          aria-label="Enquiry navigation"
+        >
+          <ul class="pagination">
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="previousPage()"
+                [ngClass]="{'disabled': currentPage === 1}"
+              >
+                Previous
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let page of pageRange">
+              <a
+                class="page-link"
+                (click)="changePage(page)"
+                [ngClass]="{'active': currentPage === page}"
+              >
+                {{ page }}
+              </a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="nextPage()"
+                [ngClass]="{'disabled': currentPage === totalPages}"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-<!-- Alternative Option 2: Toggle Switch Design -->
-
+        <!-- Summary -->
+        <div class="mt-3 text-muted">
+          <small>
+            Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+            {{ Math.min(currentPage * itemsPerPage, filteredCount) }} of
+            {{ filteredCount }} enquiries
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

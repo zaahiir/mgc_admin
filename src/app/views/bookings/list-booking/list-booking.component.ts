@@ -1,20 +1,7 @@
 import { Component, OnInit, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash, cilZoom, cilCalendar, cilUser, cilCheckCircle, cilClock, cilXCircle, cilBan, cilChart, cilBuilding, cilSearch, cilOptions, cilCloudDownload, cilReload } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { 
-  TooltipDirective, RowComponent, ColComponent, TextColorDirective, CardComponent, 
-  CardHeaderComponent, CardBodyComponent, FormDirective, FormLabelDirective, 
-  FormControlDirective, ButtonDirective, TableDirective, TableColorDirective, 
-  TableActiveDirective, BorderDirective, AlignDirective, PaginationComponent, 
-  PageItemComponent, PageLinkDirective, PageItemDirective, ModalComponent, 
-  ModalHeaderComponent, ModalBodyComponent, ModalFooterComponent, ModalTitleDirective,
-  BadgeComponent, SpinnerComponent, FormSelectDirective, FormCheckComponent,
-  FormCheckInputDirective, FormCheckLabelDirective, ButtonGroupComponent,
-  DropdownComponent, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { BookingService } from '../../common-service/booking/booking.service';
 import { Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
@@ -64,29 +51,13 @@ interface BookingDetail {
   selector: 'app-list-booking',
   standalone: true,
   imports: [
-    NgClass, CommonModule, TooltipDirective, IconDirective, RouterLink, 
-    RowComponent, ColComponent, TextColorDirective, CardComponent, 
-    CardHeaderComponent, CardBodyComponent, ReactiveFormsModule, FormsModule, 
-    FormDirective, FormLabelDirective, FormControlDirective, ButtonDirective, 
-    NgStyle, TableDirective, TableColorDirective, TableActiveDirective, 
-    BorderDirective, AlignDirective, PaginationComponent, PageItemComponent, 
-    PageLinkDirective, PageItemDirective, ModalComponent, ModalHeaderComponent,
-    ModalBodyComponent, ModalFooterComponent, ModalTitleDirective, BadgeComponent,
-    SpinnerComponent, FormSelectDirective, FormCheckComponent, FormCheckInputDirective,
-    FormCheckLabelDirective, ButtonGroupComponent, DropdownComponent, 
-    DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective
+    NgClass, CommonModule, RouterLink, ReactiveFormsModule, FormsModule, NgStyle
   ],
   templateUrl: './list-booking.component.html',
   styleUrl: './list-booking.component.scss'
 })
 export class ListBookingComponent implements OnInit, OnDestroy {
   @ViewChild('detailsModal') detailsModal!: TemplateRef<any>;
-  
-  icons = { 
-    cilPen, cilTrash, cilEye: cilZoom, cilCalendar, cilUser, cilCheckCircle, 
-    cilClock, cilXCircle, cilBan, cilChart, cilBuilding, cilSearch, 
-    cilFilter: cilOptions, cilDownload: cilCloudDownload, cilRefresh: cilReload 
-  };
   
   private destroy$ = new Subject<void>();
   private searchSubject = new Subject<string>();
@@ -478,13 +449,13 @@ export class ListBookingComponent implements OnInit, OnDestroy {
 
   getStatusBadgeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case 'confirmed': return 'success';
-      case 'pending_approval': return 'warning';
-      case 'approved': return 'success';
-      case 'rejected': return 'danger';
-      case 'cancelled': return 'secondary';
-      case 'expired': return 'secondary';
-      default: return 'primary';
+      case 'confirmed': return 'text-bg-success';
+      case 'pending_approval': return 'text-bg-warning';
+      case 'approved': return 'text-bg-success';
+      case 'rejected': return 'text-bg-danger';
+      case 'cancelled': return 'text-bg-secondary';
+      case 'expired': return 'text-bg-secondary';
+      default: return 'text-bg-primary';
     }
   }
 
@@ -564,18 +535,18 @@ export class ListBookingComponent implements OnInit, OnDestroy {
     return `${booking.participants}/4 players`;
   }
 
-  getTypeIcon(type: string): any {
-    return type === 'BOOKING' ? this.icons.cilCalendar : this.icons.cilUser;
+  getTypeIcon(type: string): string {
+    return type === 'BOOKING' ? 'bi bi-calendar' : 'bi bi-person';
   }
 
-  getStatusIcon(status: string): any {
+  getStatusIcon(status: string): string {
     switch (status.toLowerCase()) {
-      case 'confirmed': return this.icons.cilCheckCircle;
-      case 'pending_approval': return this.icons.cilClock;
-      case 'approved': return this.icons.cilCheckCircle;
-      case 'rejected': return this.icons.cilXCircle;
-      case 'cancelled': return this.icons.cilBan;
-      default: return this.icons.cilCalendar;
+      case 'confirmed': return 'bi bi-check-circle';
+      case 'pending_approval': return 'bi bi-clock';
+      case 'approved': return 'bi bi-check-circle';
+      case 'rejected': return 'bi bi-x-circle';
+      case 'cancelled': return 'bi bi-ban';
+      default: return 'bi bi-calendar';
     }
   }
 

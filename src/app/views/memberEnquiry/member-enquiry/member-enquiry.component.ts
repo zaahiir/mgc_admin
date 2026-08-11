@@ -3,22 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { FormsModule } from '@angular/forms';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  CardComponent,
-  CardBodyComponent,
-  ButtonDirective,
-  TableDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective,
-  FormControlDirective
-} from '@coreui/angular';
 import { MemberEnquiryService } from '../../common-service/memberEnquiry/member-enquiry.service';
 import Swal from 'sweetalert2';
 
@@ -44,29 +29,17 @@ interface MemberEnquiryInterface {
   imports: [
     CommonModule,
     DatePipe,
-    TooltipDirective,
-    IconDirective,
     RouterLink,
-    RowComponent,
-    ColComponent,
-    CardComponent,
-    CardBodyComponent,
-    FormsModule,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
+    FormsModule
   ],
   templateUrl: './member-enquiry.component.html',
   styleUrl: './member-enquiry.component.scss'
 })
 export class MemberEnquiryComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Convert to Member';
   tooltipDeleteText = 'Delete';
   tooltipConvertedText = 'Already Converted to Member';
+  Math = Math;
 
   memberEnquiryList: MemberEnquiryInterface[] = [];
   filteredList: MemberEnquiryInterface[] = [];
@@ -199,6 +172,10 @@ export class MemberEnquiryComponent implements OnInit {
     if (this.currentPage > 1 && !this.isLoading) {
       this.changePage(this.currentPage - 1);
     }
+  }
+
+  get filteredCount(): number {
+    return this.filteredList.length;
   }
 
   get paginatedMemberEnquiryList() {

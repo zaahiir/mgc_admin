@@ -2,25 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AmenitiesService } from '../../common-service/amenities/amenities.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { sanitizeSvg } from '../../../shared/sanitize-svg';
 
 interface AmenityData {
   id?: number;
@@ -38,21 +24,8 @@ interface AmenityData {
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    ButtonDirective,
-    ButtonModule
+    FormsModule
   ],
   templateUrl: './create-amenities.component.html',
   styleUrls: ['./create-amenities.component.scss']
@@ -167,7 +140,7 @@ export class CreateAmenitiesComponent implements OnInit {
   private updateSVGPreview(svgContent: string): void {
     try {
       // Sanitize the SVG content for preview
-      this.svgPreview = this.sanitizer.bypassSecurityTrustHtml(svgContent);
+      this.svgPreview = this.sanitizer.bypassSecurityTrustHtml(sanitizeSvg(svgContent));
     } catch (error) {
       console.error('Error creating SVG preview:', error);
       this.svgPreview = null;

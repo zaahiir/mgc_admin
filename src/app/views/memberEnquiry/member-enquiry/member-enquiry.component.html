@@ -1,13 +1,13 @@
 <!-- Updated member-enquiry.component.html -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-body>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
         <!-- Search Input -->
-        <c-col md="3" class="mb-4">
+        <div class="col-md-3 mb-4">
           <div class="position-relative">
             <input
-              cFormControl
+              class="form-control"
               id="searchInput"
               [(ngModel)]="searchTerm"
               (input)="search()"
@@ -16,10 +16,10 @@
               autocomplete="off"
             />
           </div>
-        </c-col>
+        </div>
 
         <!-- Member Enquiry Table -->
-        <table [hover]="true" [striped]="true" [bordered]="true" cTable class="align-middle">
+        <table class="table table-hover table-striped table-bordered align-middle">
           <thead>
             <tr>
               <th scope="col" style="width: 70px">S.No</th>
@@ -54,20 +54,15 @@
               <td>
                 <!-- Convert Button -->
                 <a
-                  cButton
-                  (click)="convertToMember(enquiry.id)"
-                  color="btn-transparent"
-                  class="btn-sm border-0 py-0"
+                  (click)="!isEnquiryConverted(enquiry) && convertToMember(enquiry.id)"
+                  class="btn btn-transparent btn-sm border-0 py-0"
                   [ngClass]="{
                     'text-primary': !isEnquiryConverted(enquiry),
                     'text-muted': isEnquiryConverted(enquiry)
                   }"
-                  [disabled]="isEnquiryConverted(enquiry)"
-                  [cTooltip]="isEnquiryConverted(enquiry) ? tooltipConvertedText : tooltipEditText"
-                  cTooltipPlacement="top"
                   [style.cursor]="isEnquiryConverted(enquiry) ? 'not-allowed' : 'pointer'"
                 >
-                  <svg [cIcon]="icons.cilPen" size="xl"></svg>
+                  <i class="bi bi-pencil"></i>
                 </a>
               </td>
             </tr>
@@ -80,39 +75,50 @@
         </table>
 
         <!-- Pagination -->
-        <c-pagination
+        <nav
           *ngIf="memberEnquiryList.length > itemsPerPage"
           aria-label="Member enquiry navigation"
         >
-          <c-page-item>
-            <a
-              cPageLink
-              (click)="previousPage()"
-              [ngClass]="{'disabled': currentPage === 1}"
-            >
-              Previous
-            </a>
-          </c-page-item>
-          <c-page-item *ngFor="let page of pageRange">
-            <a
-              cPageLink
-              (click)="changePage(page)"
-              [ngClass]="{'active': currentPage === page}"
-            >
-              {{ page }}
-            </a>
-          </c-page-item>
-          <c-page-item>
-            <a
-              cPageLink
-              (click)="nextPage()"
-              [ngClass]="{'disabled': currentPage === totalPages}"
-            >
-              Next
-            </a>
-          </c-page-item>
-        </c-pagination>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+          <ul class="pagination">
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="previousPage()"
+                [ngClass]="{'disabled': currentPage === 1}"
+              >
+                Previous
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let page of pageRange">
+              <a
+                class="page-link"
+                (click)="changePage(page)"
+                [ngClass]="{'active': currentPage === page}"
+              >
+                {{ page }}
+              </a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="nextPage()"
+                [ngClass]="{'disabled': currentPage === totalPages}"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Summary -->
+        <div class="mt-3 text-muted">
+          <small>
+            Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+            {{ Math.min(currentPage * itemsPerPage, filteredCount) }} of
+            {{ filteredCount }} enquiries
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -61,7 +61,7 @@ export class CourseService {
   }
 
   deleteCourse(id: string) {
-    return axios.get(this.deletion.replace('0', id));
+    return axios.delete(this.deletion.replace('0', id));
   }
 
   // Collection Methods (Frontend)

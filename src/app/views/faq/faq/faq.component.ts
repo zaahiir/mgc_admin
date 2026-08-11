@@ -2,21 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FaqService, FAQData } from '../../common-service/faq/faq.service';
@@ -28,21 +13,8 @@ import { FaqService, FAQData } from '../../common-service/faq/faq.service';
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    ButtonDirective,
-    ButtonModule
+    FormsModule
   ],
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.scss'
@@ -56,6 +28,53 @@ export class FaqComponent implements OnInit {
   itemId: string | null = null;
   faqs: any[] = [];
   showForm = false;
+
+  Math = Math;
+  currentPage = 1;
+  itemsPerPage = 10;
+  pageRange: number[] = [];
+
+  get filteredCount(): number {
+    return this.faqs.length;
+  }
+
+  get paginatedFaqList(): any[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.faqs.slice(start, start + this.itemsPerPage);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredCount / this.itemsPerPage);
+  }
+
+  updatePageRange(): void {
+    const total = this.totalPages;
+    let start = Math.max(1, this.currentPage - 1);
+    let end = Math.min(total, start + 2);
+    if (end === total) {
+      start = Math.max(1, total - 2);
+    }
+    this.pageRange = Array.from({ length: Math.min(3, total) }, (_, i) => start + i);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePageRange();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.changePage(this.currentPage + 1);
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.changePage(this.currentPage - 1);
+    }
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -84,6 +103,7 @@ export class FaqComponent implements OnInit {
       const response = await this.faqService.getAllFAQs().toPromise();
       if (response && response.data) {
         this.faqs = response.data;
+        this.updatePageRange();
       }
     } catch (error) {
       console.error('Error loading FAQs:', error);

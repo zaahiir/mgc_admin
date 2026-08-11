@@ -1,64 +1,49 @@
+html,
 body {
-  background-color: var(--cui-tertiary-bg);
+  overflow-x: hidden;
 }
 
-.wrapper {
-  width: 100%;
-  @include ltr-rtl("padding-left", var(--cui-sidebar-occupy-start, 0));
-  @include ltr-rtl("padding-right", var(--cui-sidebar-occupy-end, 0));
-  will-change: auto;
-  @include transition(padding .15s);
+body {
+  background-color: var(--bs-tertiary-bg);
 }
 
-.header > .container-fluid,
-.sidebar-header {
-  min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
-}
-
-.sidebar-brand-full {
-  margin-left: 3px;
-}
-
-.sidebar-header {
-  .nav-underline-border {
-    --cui-nav-underline-border-link-padding-x: 1rem;
-    --cui-nav-underline-border-gap: 0;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    min-height: calc(4rem + 1px); // stylelint-disable-line function-disallowed-list
-  }
-}
-
-.sidebar-toggler {
-  @include ltr-rtl("margin-left", auto);
-}
-
-.sidebar-narrow,
-.sidebar-narrow-unfoldable:not(:hover) {
-  .sidebar-toggler {
-    @include ltr-rtl("margin-right", auto);
-  }
-}
-
-.header > .container-fluid + .container-fluid {
-  min-height: 3rem;
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background-color: #fff;
 }
 
 .footer {
-  min-height: calc(3rem + 1px); // stylelint-disable-line function-disallowed-list
+  min-height: calc(3rem + 1px);
 }
 
-@if $enable-dark-mode {
-  @include color-mode(dark) {
-    body {
-      background-color: var(--cui-dark-bg-subtle);
-    }
+// ---------------------------------------------------------------------------
+// Mobile responsiveness (global)
+// ---------------------------------------------------------------------------
+@media (max-width: 991.98px) {
+  // allow all tables to scroll horizontally instead of breaking layout
+  .table-responsive,
+  .card .table,
+  .card-body .table,
+  table.table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
 
-    .footer {
-      --cui-footer-bg: var(--cui-body-bg);
-    }
+  // keep header compact on small screens
+  .header .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .body .container-fluid {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
   }
 }

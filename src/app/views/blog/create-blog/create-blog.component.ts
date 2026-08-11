@@ -2,19 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgIf, NgClass, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import {
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  ButtonDirective,
-  RowComponent,
-  ColComponent,
-  SpinnerComponent
-} from '@coreui/angular';
 import { BlogService } from '../../common-service/blog/blog.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -26,18 +13,7 @@ import Swal from 'sweetalert2';
     NgIf,
     CommonModule,
     ReactiveFormsModule,
-    EditorModule,
-    CardComponent,
-    CardHeaderComponent,
-    CardBodyComponent,
-    FormFloatingDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    ButtonDirective,
-    RowComponent,
-    ColComponent,
-    SpinnerComponent
+    EditorModule
   ],
   templateUrl: './create-blog.component.html',
   styleUrl: './create-blog.component.scss'

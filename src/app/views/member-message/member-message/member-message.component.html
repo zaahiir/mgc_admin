@@ -1,13 +1,13 @@
 <!-- Member Message Management Component -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-body>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
         <!-- Search Input -->
-        <c-col md="3" class="mb-4">
+        <div class="col-md-3 mb-4">
           <div class="position-relative">
             <input
-              cFormControl
+              class="form-control"
               id="searchInput"
               [(ngModel)]="searchTerm"
               (input)="search()"
@@ -16,10 +16,10 @@
               autocomplete="off"
             />
           </div>
-        </c-col>
+        </div>
 
         <!-- Message Table -->
-        <table [hover]="true" [striped]="true" [bordered]="true" cTable class="align-middle">
+        <table class="table table-hover table-striped table-bordered align-middle">
           <thead>
             <tr>
               <th scope="col" style="width: 70px">S.No</th>
@@ -52,43 +52,31 @@
                 <!-- Mark as Read Button -->
                 <a
                   *ngIf="isMessageNew(message)"
-                  cButton
                   (click)="markMessageAsRead(message.id)"
-                  color="btn-transparent"
-                  class="btn-sm border-0 py-0 me-2"
-                  cTooltip="Mark as Read"
-                  cTooltipPlacement="top"
+                  class="btn btn-transparent btn-sm border-0 py-0 me-2"
                   style="cursor: pointer;"
                 >
-                  <svg [cIcon]="icons.cilPen" size="xl" class="text-info"></svg>
+                  <i class="bi bi-pencil text-info"></i>
                 </a>
 
                 <!-- Mark as Replied Button -->
                 <a
                   *ngIf="!isMessageReplied(message) && !isMessageClosed(message)"
-                  cButton
                   (click)="markMessageAsReplied(message.id)"
-                  color="btn-transparent"
-                  class="btn-sm border-0 py-0 me-2"
-                  cTooltip="Mark as Replied"
-                  cTooltipPlacement="top"
+                  class="btn btn-transparent btn-sm border-0 py-0 me-2"
                   style="cursor: pointer;"
                 >
-                  <svg [cIcon]="icons.cilPen" size="xl" class="text-success"></svg>
+                  <i class="bi bi-pencil text-success"></i>
                 </a>
 
                 <!-- Mark as Closed Button -->
                 <a
                   *ngIf="!isMessageClosed(message)"
-                  cButton
                   (click)="markMessageAsClosed(message.id)"
-                  color="btn-transparent"
-                  class="btn-sm border-0 py-0 me-2"
-                  cTooltip="Mark as Closed"
-                  cTooltipPlacement="top"
+                  class="btn btn-transparent btn-sm border-0 py-0 me-2"
                   style="cursor: pointer;"
                 >
-                  <svg [cIcon]="icons.cilPen" size="xl" class="text-secondary"></svg>
+                  <i class="bi bi-pencil text-secondary"></i>
                 </a>
               </td>
             </tr>
@@ -101,38 +89,40 @@
         </table>
 
         <!-- Pagination -->
-        <c-pagination
+        <nav
           *ngIf="messageList.length > itemsPerPage"
           aria-label="Message navigation"
         >
-          <c-page-item>
-            <a
-              cPageLink
-              (click)="previousPage()"
-              [ngClass]="{'disabled': currentPage === 1}"
-            >
-              Previous
-            </a>
-          </c-page-item>
-          <c-page-item *ngFor="let page of pageRange">
-            <a
-              cPageLink
-              (click)="changePage(page)"
-              [ngClass]="{'active': currentPage === page}"
-            >
-              {{ page }}
-            </a>
-          </c-page-item>
-          <c-page-item>
-            <a
-              cPageLink
-              (click)="nextPage()"
-              [ngClass]="{'disabled': currentPage === totalPages}"
-            >
-              Next
-            </a>
-          </c-page-item>
-        </c-pagination>
+          <ul class="pagination">
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="previousPage()"
+                [ngClass]="{'disabled': currentPage === 1}"
+              >
+                Previous
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let page of pageRange">
+              <a
+                class="page-link"
+                (click)="changePage(page)"
+                [ngClass]="{'active': currentPage === page}"
+              >
+                {{ page }}
+              </a>
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link"
+                (click)="nextPage()"
+                [ngClass]="{'disabled': currentPage === totalPages}"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
 
         <!-- Summary -->
         <div class="mt-3 text-muted">
@@ -142,7 +132,7 @@
             {{ filteredList.length }} messages
           </small>
         </div>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,69 +1,56 @@
-<!--<c-header class="mb-4 d-print-none" position="sticky">-->
-<ng-container>
-  <c-container [fluid]="true" class="border-bottom px-4">
+<header class="mb-4 d-print-none header header-sticky p-0 shadow-sm">
+  <div class="d-flex align-items-center border-bottom px-4 py-2">
     <button
-      [cSidebarToggle]="sidebarId()"
-      cHeaderToggler
-      class="btn"
-      toggle="visible"
-      style="margin-inline-start: -14px;"
+      class="btn btn-link p-0 me-3"
+      (click)="toggleSidebar()"
       aria-label="Toggle sidebar navigation"
     >
-      <svg cIcon name="cilMenu" size="lg"></svg>
+      <i class="bi bi-list fs-4"></i>
     </button>
 
-    <c-header-nav class="mx-0">
-      <ng-container *ngTemplateOutlet="userDropdown" />
-    </c-header-nav>
-
-  </c-container>
-  <c-container [fluid]="true" class="px-4">
-    <c-breadcrumb-router />
-  </c-container>
-</ng-container>
-<!--</c-header>-->
-
-<ng-template #userDropdown>
-  <c-dropdown [popperOptions]="{ placement: 'bottom-start' }" variant="nav-item">
-    <button [caret]="false" cDropdownToggle class="py-0 pe-0" aria-label="Open user menu">
-      <c-avatar
-        shape="rounded-1"
-        [size]="'md'"
-        src="./assets/images/avatars/8.jpg"
-        status="success"
-        textColor="primary"
-        alt="User avatar"
-      />
-    </button>
-    <ul cDropdownMenu class="pt-0 w-auto">
-      <li></li>
-      <li>
-        <a cDropdownItem routerLink="/profile">
-          <svg cIcon class="me-2" name="cilUser"></svg>
-          Profile
-        </a>
-      </li>
-      <li>
-        <a cDropdownItem routerLink="/settings">
-          <svg cIcon class="me-2" name="cilSettings"></svg>
-          Settings
-        </a>
-      </li>
-      <li>
-        <hr cDropdownDivider />
-      </li>
-      <li>
-        <a
-          cDropdownItem
-          (click)="onLogout()"
-          style="cursor: pointer;"
-          data-logout-btn
-          [attr.disabled]="false"
+    <div class="ms-auto">
+      <div class="dropdown position-relative">
+        <button
+          type="button"
+          class="btn p-0 border-0"
+          (click)="toggleUserMenu()"
+          [attr.aria-expanded]="userMenuOpen"
+          aria-label="Open user menu"
         >
-          <svg cIcon class="me-2" name="cilAccountLogout"></svg>
-          Logout
-        </a>
-      </li>
-    </ul>
-  </c-dropdown>
-</ng-template>
+          <img
+            src="./assets/images/avatars/8.jpg"
+            class="rounded-1"
+            width="32"
+            height="32"
+            alt="User avatar"
+          />
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" [class.show]="userMenuOpen">
+          <li>
+            <a class="dropdown-item" routerLink="/profile" (click)="closeUserMenu()">
+              <i class="bi bi-person me-2"></i>Profile
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/settings" (click)="closeUserMenu()">
+              <i class="bi bi-gear me-2"></i>Settings
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" (click)="onLogout()" style="cursor: pointer;" data-logout-btn>
+              <i class="bi bi-box-arrow-right me-2"></i>Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- click-away backdrop to close the user menu -->
+  <div
+    *ngIf="userMenuOpen"
+    class="dropdown-backdrop"
+    (click)="closeUserMenu()"
+  ></div>
+</header>

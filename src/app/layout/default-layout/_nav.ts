@@ -1,84 +1,83 @@
-import { INavData } from '@coreui/angular';
+export interface NavItem {
+  name: string;
+  url: string;
+  icon?: string;
+}
 
-export const navItems: INavData[] = [
+export const navItems: NavItem[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    iconComponent: { name: 'cil-speedometer' }
+    icon: 'speedometer2'
   },
   {
     name: 'About',
     url: '/about',
-    iconComponent: { name: 'cil-star' }
+    icon: 'star'
   },
   {
     name: 'Update Concept',
     url: '/concept',
-    iconComponent: { name: 'cil-indent-decrease' }
+    icon: 'text-indent-left'
   },
   {
     name: 'Enquiries',
     url: '/enquiry',
-    iconComponent: { name: 'cil-notes' }
+    icon: 'card-text'
   },
   {
     name: 'Member Enquiries',
     url: '/memberEnquiry',
-    iconComponent: { name: 'cil-location-pin' }
+    icon: 'geo-alt'
   },
   {
     name: 'Member Message',
     url: '/memberMessage',
-    iconComponent: { name: 'cil-location-pin' }
+    icon: 'geo-alt'
   },
   {
     name: 'Plan',
     url: '/plan',
-    iconComponent: { name: 'cil-notes' }
+    icon: 'card-text'
   },
   {
     name: 'Members',
     url: '/members',
-    iconComponent: { name: 'cilPeople' }
+    icon: 'people'
   },
   {
     name: 'Booking',
     url: '/bookings',
-    iconComponent: { name: 'cil-pencil' }
+    icon: 'pencil'
   },
   {
     name: 'Amenities',
     url: '/amenities',
-    iconComponent: { name: 'cil-location-pin' }
+    icon: 'geo-alt'
   },
   {
     name: 'Courses',
     url: '/courses',
-    iconComponent: { name: 'cil-layers' }
+    icon: 'layers'
   },
   {
     name: 'Blog',
     url: '/blog',
-    iconComponent: { name: 'cil-indent-decrease' }
+    icon: 'text-indent-left'
   },
   {
     name: 'Events',
     url: '/events',
-    iconComponent: { name: 'cil-calendar' }
+    icon: 'calendar'
   },
   {
     name: 'Team',
     url: '/team',
-    iconComponent: { name: 'cil-star' }
+    icon: 'star'
   },
   {
     name: 'FAQ',
     url: '/faq',
-    iconComponent: { name: 'cil-credit-card' }
-  },
-  // {
-  //   name: 'Report',
-  //   url: '/base/popovers',
-  //   iconComponent: { name: 'cil-description' }
-  // }
+    icon: 'credit-card'
+  }
 ];

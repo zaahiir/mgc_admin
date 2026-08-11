@@ -2,7 +2,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    /* `baseUrl` was removed: it is deprecated as of TS 6 and removed in 7.
+       The only `paths` mapping (@docs-components/*) is already written
+       relative to this file, which is how paths resolve without a baseUrl,
+       so resolution is unchanged. No source file imports via a bare
+       `src/...` specifier, which is the other thing baseUrl enabled. */
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
@@ -14,7 +18,9 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    /* "node" (node10) is deprecated in TS 6 and removed in 7. "bundler" is
+       the Angular 17+ default and matches how esbuild actually resolves. */
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",

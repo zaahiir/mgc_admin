@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormFloatingDirective, FormDirective, FormLabelDirective, FormControlDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective, FormSelectDirective, ButtonDirective } from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { PlanService } from '../../common-service/plan/plan.service';
@@ -10,9 +9,9 @@ import { PlanService } from '../../common-service/plan/plan.service';
   selector: 'app-create-plan',
   standalone: true,
   imports: [
-    NgIf, CommonModule, NgForOf, RowComponent, ColComponent, TextColorDirective, CardComponent, FormFloatingDirective, CardHeaderComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule, FormDirective, FormLabelDirective, FormControlDirective,
-    FormFeedbackComponent, FormSelectDirective, ButtonDirective ],
+    NgIf, CommonModule, NgForOf,
+    ReactiveFormsModule, FormsModule
+  ],
   templateUrl: './create-plan.component.html',
   styleUrl: './create-plan.component.scss'
 })

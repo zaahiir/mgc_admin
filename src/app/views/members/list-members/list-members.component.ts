@@ -1,31 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  ButtonDirective,
-  TableDirective,
-  TableColorDirective,
-  TableActiveDirective,
-  BorderDirective,
-  AlignDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective,
-  PageItemDirective
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { MemberService } from '../../common-service/member/member.service';
 
@@ -44,34 +20,20 @@ interface Member {
   imports: [
     NgClass,
     CommonModule,
-    TooltipDirective,
-    IconDirective,
     RouterLink,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
+    FormsModule
   ],
   templateUrl: './list-members.component.html',
   styleUrl: './list-members.component.scss'
 })
 export class ListMembersComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit';
   tooltipDeleteText = 'Delete';
 
   isLoading = false;
   searchTerm = '';
+  Math = Math;
   members: Member[] = [];
   pageRange: number[] = [];
   currentPage = 1;
@@ -153,6 +115,18 @@ export class ListMembersComponent implements OnInit {
     }
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.members.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.members.filter(member =>
+      member.golfClubId?.toLowerCase().includes(searchTermLower) ||
+      member.firstName?.toLowerCase().includes(searchTermLower) ||
+      member.lastName?.toLowerCase().includes(searchTermLower) ||
+      member.email?.toLowerCase().includes(searchTermLower) ||
+      member.phoneNumber?.includes(this.searchTerm)
+    ).length;
   }
 
   get totalPages() {

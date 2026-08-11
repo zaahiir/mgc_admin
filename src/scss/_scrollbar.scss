@@ -13,14 +13,14 @@
 //}
 
 ::-webkit-scrollbar-track {
-  background: var(--cui-body-bg, #fff);
+  background: var(--bs-body-bg, #fff);
   border-radius: 100vw;
   margin-block: .2em;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #999;
-  border: .15em solid var(--cui-body-bg, #fff);
+  border: .15em solid var(--bs-body-bg, #fff);
   border-radius: 100vw;
 }
 
@@ -29,11 +29,11 @@
 }
 
 .dark-theme::-webkit-scrollbar-thumb {
-  background: var(--cui-gray-600, #444);
+  background: var(--bs-gray-600, #444);
 }
 
 .dark-theme::-webkit-scrollbar-thumb:hover {
-  background: var(--cui-gray-400, #999);
+  background: var(--bs-gray-400, #999);
 }
 
 .ng-scroll-content {

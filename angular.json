@@ -46,13 +46,9 @@
             "allowedCommonJsDependencies": [
               "form-data",
               "proxy-from-env",
-              "follow-redirects"
-            ],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+              "follow-redirects",
+              "bootstrap"
+            ]
           },
           "configurations": {
             "production": {

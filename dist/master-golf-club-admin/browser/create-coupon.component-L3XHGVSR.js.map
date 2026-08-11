@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/coupon/create-coupon/create-coupon.component.ts", "src/app/views/coupon/create-coupon/create-coupon.component.html"],
-  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-create-coupon',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './create-coupon.component.html',\r\n  styleUrl: './create-coupon.component.scss'\r\n})\r\nexport class CreateCouponComponent {\r\n\r\n}\r\n", "<p>create-coupon works!</p>\r\n"],
-  "mappings": ";;;;;;;;;;;AASM,IAAO,yBAAP,MAAO,uBAAqB;;;mCAArB,wBAAqB;AAAA;uFAArB,wBAAqB,WAAA,CAAA,CAAA,mBAAA,CAAA,GAAA,YAAA,MAAA,UAAA,CAAA,6BAAA,GAAA,OAAA,GAAA,MAAA,GAAA,UAAA,SAAA,+BAAA,IAAA,KAAA;AAAA,MAAA,KAAA,GAAA;ACTlC,IAAA,yBAAA,GAAA,GAAA;AAAG,IAAA,iBAAA,GAAA,sBAAA;AAAoB,IAAA,uBAAA;;;ADSjB,IAAO,wBAAP;;6EAAO,uBAAqB,EAAA,WAAA,yBAAA,UAAA,sEAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

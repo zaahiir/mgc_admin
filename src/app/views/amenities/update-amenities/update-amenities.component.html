@@ -1,60 +1,63 @@
 <!-- update-amenities.component.html -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
+<div class="row">
+  <div class="col-12">
 
     <!-- Loading Indicator -->
     <div *ngIf="loadingData" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
       <div class="text-center">
-        <c-spinner variant="border" role="status" aria-hidden="true"></c-spinner>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
         <div class="mt-2">Loading amenity data...</div>
       </div>
     </div>
 
     <!-- Main Form Card -->
-    <c-card class="mb-4" *ngIf="!loadingData">
-      <c-card-header>
+    <div class="card mb-4" *ngIf="!loadingData">
+      <div class="card-header">
         <strong>Edit Amenity</strong>
-      </c-card-header>
-      <c-card-body>
-        <form [formGroup]="amenityForm" (ngSubmit)="onSubmit()" #form="ngForm" cForm class="row g-3 needs-validation">
+      </div>
+      <div class="card-body">
+        <form [formGroup]="amenityForm" (ngSubmit)="onSubmit()" #form="ngForm" class="row g-3 needs-validation">
 
           <!-- Amenity Name -->
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="amenityName" formControlName="amenityName" type="text" placeholder="Amenity Name" />
-            <label cLabel for="amenityName" class="ms-2">Amenity Name *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('amenityName')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input id="amenityName" formControlName="amenityName" type="text" placeholder="Amenity Name" class="form-control" />
+              <label for="amenityName" class="ms-2">Amenity Name *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('amenityName')">
               {{ getErrorMessage('amenityName') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- SVG Icon Input -->
-          <c-col md="6">
-            <label cLabel for="amenityIcon" class="form-label">
+          <div class="col-md-6">
+            <label for="amenityIcon" class="form-label">
               Amenity Icon (SVG) *
               <a href="https://fontawesome.com/icons" target="_blank" class="text-primary ms-2 text-decoration-none">
                 <i class="fas fa-external-link-alt"></i> Get from Font Awesome
               </a>
             </label>
             <textarea
-              cFormControl
               id="amenityIcon"
               formControlName="amenityIcon"
               placeholder="Paste your SVG code here..."
               rows="4"
-              class="font-monospace"
+              class="form-control font-monospace"
               [class.is-invalid]="isFieldInvalid('amenityIcon')"
               (input)="onSVGInput($event)"
             ></textarea>
             <div class="form-text">
               Copy the full SVG code from Font Awesome (right-click → Copy SVG) and paste it here.
             </div>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('amenityIcon')">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('amenityIcon')">
               {{ getErrorMessage('amenityIcon') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- SVG Icon Preview -->
-          <c-col xs="12" *ngIf="svgPreview">
+          <div class="col-12" *ngIf="svgPreview">
             <div class="mb-3">
               <label class="form-label">Icon Preview:</label>
               <div class="d-flex align-items-center gap-3 p-3 border rounded bg-light">
@@ -76,35 +79,39 @@
                 </button>
               </div>
             </div>
-          </c-col>
+          </div>
 
           <!-- Amenity Tooltip -->
-          <c-col [cFormFloating]="true" xs="12">
-            <textarea cFormControl id="amenityTooltip" formControlName="amenityTooltip"
-                     placeholder="Amenity Tooltip/Description" rows="3"></textarea>
-            <label cLabel for="amenityTooltip" class="ms-2">Tooltip/Description</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('amenityTooltip')">
+          <div class="col-12">
+            <div class="form-floating">
+              <textarea id="amenityTooltip" formControlName="amenityTooltip"
+                       placeholder="Amenity Tooltip/Description" rows="3" class="form-control"></textarea>
+              <label for="amenityTooltip" class="ms-2">Tooltip/Description</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('amenityTooltip')">
               {{ getErrorMessage('amenityTooltip') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Amenities Description -->
-          <c-col [cFormFloating]="true" xs="12">
-            <textarea cFormControl id="amenitiesDescription" formControlName="amenitiesDescription"
-                     placeholder="Detailed description of the amenity" rows="4"></textarea>
-            <label cLabel for="amenitiesDescription" class="ms-2">Detailed Description</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('amenitiesDescription')">
+          <div class="col-12">
+            <div class="form-floating">
+              <textarea id="amenitiesDescription" formControlName="amenitiesDescription"
+                       placeholder="Detailed description of the amenity" rows="4" class="form-control"></textarea>
+              <label for="amenitiesDescription" class="ms-2">Detailed Description</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('amenitiesDescription')">
               {{ getErrorMessage('amenitiesDescription') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Font Awesome Guidelines -->
-          <c-col xs="12">
-            <c-card class="mt-3">
-              <c-card-header>
+          <div class="col-12">
+            <div class="card mt-3">
+              <div class="card-header">
                 <small><strong>How to get Font Awesome SVG Icons:</strong></small>
-              </c-card-header>
-              <c-card-body>
+              </div>
+              <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <h6>Steps to get SVG:</h6>
@@ -133,18 +140,16 @@
   &lt;path d="M64 32C28.7 32..."&gt;&lt;/path&gt;
 &lt;/svg&gt;</code></pre>
                 </div>
-              </c-card-body>
-            </c-card>
-          </c-col>
+              </div>
+            </div>
+          </div>
 
           <!-- Form Actions -->
-          <c-col xs="12" class="d-flex gap-2 mt-4">
+          <div class="col-12 d-flex gap-2 mt-4">
             <button
-              cButton
-              color="primary"
               type="submit"
               [disabled]="loading"
-              class="d-inline-flex align-items-center"
+              class="btn btn-primary d-inline-flex align-items-center"
             >
               <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
               {{ loading ? 'Updating...' : 'Update Amenity' }}
@@ -152,20 +157,18 @@
 
             <button
               (click)="onCancel()"
-              cButton
-              color="light"
               type="button"
               [disabled]="loading"
-              class="ms-auto"
+              class="btn btn-light ms-auto"
             >
               Cancel
             </button>
-          </c-col>
+          </div>
         </form>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
 .icon-preview-container {

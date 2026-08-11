@@ -1,96 +1,113 @@
 <!-- create-courses.component.html -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-header>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header">
         <strong>{{ isEditMode ? 'Edit Golf Course' : 'New Golf Course' }}</strong>
-      </c-card-header>
-      <c-card-body>
-        <form [formGroup]="golfCourseForm" (ngSubmit)="onSubmit()" #form="ngForm" cForm class="row g-3 needs-validation">
+      </div>
+      <div class="card-body">
+        <form [formGroup]="golfCourseForm" (ngSubmit)="onSubmit()" #form="ngForm" class="row g-3 needs-validation">
           <!-- Basic Information -->
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="courseName" formControlName="courseName" type="text" placeholder="Course Name" />
-            <label cLabel for="courseName" class="ms-2">Course Name *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseName')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="courseName" formControlName="courseName" type="text" placeholder="Course Name" />
+              <label for="courseName" class="ms-2">Course Name *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseName')">
               {{ getErrorMessage('courseName') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="coursePhoneNumber" formControlName="coursePhoneNumber" type="text" placeholder="Phone Number" />
-            <label cLabel for="coursePhoneNumber" class="ms-2">Phone Number *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('coursePhoneNumber')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="coursePhoneNumber" formControlName="coursePhoneNumber" type="text" placeholder="Phone Number" />
+              <label for="coursePhoneNumber" class="ms-2">Phone Number *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('coursePhoneNumber')">
               {{ getErrorMessage('coursePhoneNumber') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="courseAlternatePhoneNumber" formControlName="courseAlternatePhoneNumber" type="text" placeholder="Alternate Phone Number" />
-            <label cLabel for="courseAlternatePhoneNumber" class="ms-2">Alternate Phone Number</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseAlternatePhoneNumber')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="courseAlternatePhoneNumber" formControlName="courseAlternatePhoneNumber" type="text" placeholder="Alternate Phone Number" />
+              <label for="courseAlternatePhoneNumber" class="ms-2">Alternate Phone Number</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseAlternatePhoneNumber')">
               {{ getErrorMessage('courseAlternatePhoneNumber') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="6">
-            <input cFormControl id="courseWebsite" formControlName="courseWebsite" type="url" placeholder="Website" />
-            <label cLabel for="courseWebsite" class="ms-2">Website</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseWebsite')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input class="form-control" id="courseWebsite" formControlName="courseWebsite" type="url" placeholder="Website" />
+              <label for="courseWebsite" class="ms-2">Website</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseWebsite')">
               {{ getErrorMessage('courseWebsite') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="12">
-            <input cFormControl id="courseOpenFrom" formControlName="courseOpenFrom" type="time" placeholder="Opening Time" />
-            <label cLabel for="courseOpenFrom" class="ms-2">Opening Time *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseOpenFrom')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <input class="form-control" id="courseOpenFrom" formControlName="courseOpenFrom" type="time" placeholder="Opening Time" />
+              <label for="courseOpenFrom" class="ms-2">Opening Time *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseOpenFrom')">
               {{ getErrorMessage('courseOpenFrom') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Join Request Auto-Expiry (optional) -->
-          <c-col [cFormFloating]="true" md="12">
-            <input cFormControl id="joinRequestExpiryHours" formControlName="joinRequestExpiryHours" type="number" min="0" placeholder="Auto-expiry hours" />
-            <label cLabel for="joinRequestExpiryHours" class="ms-2">Join-request auto-expiry (hours before tee time)</label>
+          <div class="col-md-12">
+            <div class="form-floating">
+              <input class="form-control" id="joinRequestExpiryHours" formControlName="joinRequestExpiryHours" type="number" min="0" placeholder="Auto-expiry hours" />
+              <label for="joinRequestExpiryHours" class="ms-2">Join-request auto-expiry (hours before tee time)</label>
+            </div>
             <small class="text-muted d-block mt-1 ms-2">Leave blank to disable. Pending join requests auto-expire this many hours before the tee time.</small>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('joinRequestExpiryHours')">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('joinRequestExpiryHours')">
               {{ getErrorMessage('joinRequestExpiryHours') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Address Field -->
-          <c-col [cFormFloating]="true" md="12">
-            <textarea cFormControl id="courseAddress" formControlName="courseAddress" placeholder="Course Address" rows="4"></textarea>
-            <label cLabel for="courseAddress" class="ms-2">Course Address *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseAddress')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea class="form-control" id="courseAddress" formControlName="courseAddress" placeholder="Course Address" rows="4"></textarea>
+              <label for="courseAddress" class="ms-2">Course Address *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseAddress')">
               {{ getErrorMessage('courseAddress') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Location Field -->
-          <c-col [cFormFloating]="true" md="12">
-            <input cFormControl id="courseLocation" formControlName="courseLocation" type="text" placeholder="GPS Coordinates or Detailed Location" />
-            <label cLabel for="courseLocation" class="ms-2">Course Location (GPS/Directions) *</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseLocation')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <input class="form-control" id="courseLocation" formControlName="courseLocation" type="text" placeholder="GPS Coordinates or Detailed Location" />
+              <label for="courseLocation" class="ms-2">Course Location (GPS/Directions) *</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseLocation')">
               {{ getErrorMessage('courseLocation') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Description Field -->
-          <c-col [cFormFloating]="true" md="12">
-            <textarea cFormControl id="courseDescription" formControlName="courseDescription" placeholder="Course Description" rows="8"></textarea>
-            <label cLabel for="courseDescription" class="ms-2">Course Description</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseDescription')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea class="form-control" id="courseDescription" formControlName="courseDescription" placeholder="Course Description" rows="8"></textarea>
+              <label for="courseDescription" class="ms-2">Course Description</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('courseDescription')">
               {{ getErrorMessage('courseDescription') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Course Image -->
-          <c-col md="12">
+          <div class="col-md-12">
             <div class="mb-3">
-              <label cLabel for="courseImage" class="form-label">Course Image</label>
+              <label for="courseImage" class="form-label">Course Image</label>
               <input
-                cFormControl
                 id="courseImage"
                 type="file"
                 accept="image/*"
@@ -98,32 +115,30 @@
                 class="form-control"
               />
               <div class="form-text">Maximum file size: 5MB. Supported formats: JPG, PNG, GIF</div>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseImage')">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('courseImage')">
                 {{ getErrorMessage('courseImage') }}
-              </c-form-feedback>
+              </div>
             </div>
             <!-- Image Preview -->
             <div *ngIf="imagePreview" class="mb-3">
               <p class="mb-2">Image Preview:</p>
               <img [src]="imagePreview" class="img-thumbnail" style="max-width: 300px; max-height: 200px;" alt="Course Image Preview">
             </div>
-          </c-col>
+          </div>
 
           <!-- Amenities Section -->
-          <c-col md="12">
+          <div class="col-md-12">
             <div class="mb-3">
-              <label cLabel class="form-label">Amenities *</label>
+              <label class="form-label">Amenities *</label>
               <div class="amenities-container mt-2">
                 <div *ngIf="amenitiesList.length === 0" class="text-muted">
                   Loading amenities...
                 </div>
                 <button
                   *ngFor="let amenity of amenitiesList"
-                  cButton
-                  [color]="isAmenitySelected(amenity.id) ? 'primary' : 'secondary'"
+                  [class]="isAmenitySelected(amenity.id) ? 'btn btn-outline-primary' : 'btn btn-outline-secondary'"
                   (click)="toggleAmenity(amenity)"
                   class="me-2 mb-2"
-                  variant="outline"
                   type="button"
                   [title]="amenity.tooltip"
                 >
@@ -141,22 +156,19 @@
                   <i *ngIf="isAmenitySelected(amenity.id)" class="fas fa-check ms-1"></i>
                 </button>
               </div>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('courseAmenities')">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('courseAmenities')">
                 {{ getErrorMessage('courseAmenities') }}
-              </c-form-feedback>
+              </div>
             </div>
-          </c-col>
+          </div>
 
           <!-- Tee Management Section -->
-          <c-col md="12">
+          <div class="col-md-12">
             <div class="mb-3">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <label cLabel class="form-label mb-0">Course Tees *</label>
+                <label class="form-label mb-0">Course Tees *</label>
                 <button
-                  cButton
-                  color="success"
-                  variant="outline"
-                  size="sm"
+                  class="btn btn-outline-success btn-sm"
                   type="button"
                   (click)="addTee()"
                   [disabled]="loading"
@@ -175,10 +187,7 @@
                     <h6 class="mb-0">Tee #{{ i + 1 }}</h6>
                     <button
                       *ngIf="teesFormArray.length > 1"
-                      cButton
-                      color="danger"
-                      variant="outline"
-                      size="sm"
+                      class="btn btn-outline-danger btn-sm"
                       type="button"
                       (click)="removeTee(i)"
                       [disabled]="loading"
@@ -189,10 +198,9 @@
                   <div class="card-body">
                     <div class="row g-3">
                       <!-- Hole Number -->
-                      <c-col md="6">
-                        <label cLabel [for]="'holeNumber_' + i" class="form-label">Holes *</label>
+                      <div class="col-md-6">
+                        <label [for]="'holeNumber_' + i" class="form-label">Holes *</label>
                         <input 
-                          cFormControl 
                           [id]="'holeNumber_' + i"
                           formControlName="holeNumber" 
                           type="number" 
@@ -202,10 +210,10 @@
                           class="form-control"
                           [class.is-invalid]="isTeeFieldInvalid(i, 'holeNumber')"
                         />
-                        <c-form-feedback [valid]="false" *ngIf="isTeeFieldInvalid(i, 'holeNumber')">
+                        <div class="invalid-feedback" *ngIf="isTeeFieldInvalid(i, 'holeNumber')">
                           {{ getTeeErrorMessage(i, 'holeNumber') }}
-                        </c-form-feedback>
-                      </c-col>
+                        </div>
+                      </div>
 
                       <!-- Price field removed -->
                     </div>
@@ -214,9 +222,9 @@
               </div>
 
               <!-- Validation Error for Tees Array -->
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tees')">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tees')">
                 {{ getErrorMessage('tees') }}
-              </c-form-feedback>
+              </div>
 
               <!-- Help Text -->
               <div class="form-text">
@@ -226,36 +234,33 @@
                 </small>
               </div>
             </div>
-          </c-col>
+          </div>
 
           <!-- Hide Status (for admin use) -->
-          <c-col md="6">
+          <div class="col-md-6">
             <div class="mb-3">
-              <label cLabel class="form-label">Status</label>
-              <select cFormSelect formControlName="hideStatus" class="form-select">
+              <label class="form-label">Status</label>
+              <select formControlName="hideStatus" class="form-select">
                 <option value="0">Active</option>
                 <option value="1">Hidden</option>
               </select>
             </div>
-          </c-col>
+          </div>
 
           <!-- Form Actions -->
-          <c-col xs="12" class="d-flex gap-2">
+          <div class="col-12 d-flex gap-2">
             <button
-              cButton
-              color="primary"
+              class="btn btn-primary d-inline-flex align-items-center"
               type="submit"
               [disabled]="loading"
-              class="d-inline-flex align-items-center"
             >
               <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
               {{ loading ? 'Saving...' : (isEditMode ? 'Update Course' : 'Create Course') }}
             </button>
 
             <button
+              class="btn btn-secondary"
               (click)="onReset()"
-              cButton
-              color="secondary"
               type="button"
               [disabled]="loading"
             >
@@ -264,21 +269,19 @@
 
             <button
               *ngIf="isEditMode && hasExistingData"
+              class="btn btn-danger ms-auto"
               (click)="onDelete()"
-              cButton
-              color="danger"
               type="button"
               [disabled]="loading"
-              class="ms-auto"
             >
               Delete Course
             </button>
-          </c-col>
+          </div>
         </form>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
 .amenities-container button {

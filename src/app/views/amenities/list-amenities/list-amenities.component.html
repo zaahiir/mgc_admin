@@ -1,31 +1,32 @@
 <!-- list-amenities.component.html - Updated Template -->
 <!-- Header Section with Create Button -->
-<c-col xs="12">
-  <c-card class="mb-4">
-    <c-card-body>
-      <form cForm class="row g-3">
+<div class="col-12">
+  <div class="card mb-4">
+    <div class="card-body">
+      <form class="row g-3">
         <div class="col-auto">
-          <a cButton [routerLink]="['/amenities/add']" color="primary" role="button">Create New Amenity</a>
+          <a [routerLink]="['/amenities/add']" role="button" class="btn btn-primary">Create New Amenity</a>
         </div>
       </form>
-    </c-card-body>
-  </c-card>
-</c-col>
+    </div>
+  </div>
+</div>
 
 <!-- Main Content Section -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-body>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
         <!-- Search Section -->
-        <c-col md="3" class="mb-4 flex justify-content-md-end">
-          <input cFormControl
+        <div class="col-md-3 mb-4 flex justify-content-md-end">
+          <input
                  id="searchInput"
                  (input)="search()"
                  [(ngModel)]="searchTerm"
                  type="search"
-                 placeholder="Search amenities..." />
-        </c-col>
+                 placeholder="Search amenities..."
+                 class="form-control" />
+        </div>
 
         <!-- Loading indicator -->
         <div *ngIf="isLoading" class="text-center">
@@ -35,7 +36,7 @@
         </div>
 
         <!-- Amenities Table -->
-        <table [hover]="true" [striped]="true" [bordered]="true" cTable *ngIf="!isLoading">
+        <table class="table" *ngIf="!isLoading">
           <thead>
             <tr>
               <th scope="col">S.No</th>
@@ -110,23 +111,17 @@
               <td>{{ amenity.tooltip || amenity.amenityTooltip || amenity.title || amenity.amenityName }}</td>
               <td>{{ amenity.description || amenity.amenitiesDescription }}</td>
               <td>
-                <a cButton
+                <a
                    [routerLink]="['/amenities/update', amenity.id]"
-                   color="btn-transparent"
                    role="button"
-                   class="btn-sm text-primary border-0 py-0"
-                   [cTooltip]="tooltipEditText"
-                   cTooltipPlacement="top">
-                  <svg [cIcon]="icons.cilPen" size="xl" title="Edit"></svg>
+                   class="btn btn-sm text-primary border-0 py-0">
+                  <i class="bi bi-pencil" title="Edit"></i>
                 </a>
-                <a cButton
+                <a
                    (click)="deleteAmenity(amenity.id)"
-                   color="btn-transparent"
                    role="button"
-                   class="btn-sm text-danger border-0 py-0"
-                   [cTooltip]="tooltipDeleteText"
-                   cTooltipPlacement="top">
-                  <svg [cIcon]="icons.cilTrash" width="25" title="Delete"></svg>
+                   class="btn btn-sm text-danger border-0 py-0">
+                  <i class="bi bi-trash" title="Delete"></i>
                 </a>
               </td>
             </tr>
@@ -141,20 +136,31 @@
         </table>
 
         <!-- Pagination Section - Simplified like courses component -->
-        <c-pagination aria-label="Page navigation"
+        <nav aria-label="Page navigation"
                       *ngIf="!isLoading && amenityList.length > itemsPerPage"
                       class="mt-3">
-          <c-page-item [disabled]="currentPage === 1">
-            <a cPageLink (click)="previousPage()" [attr.aria-disabled]="currentPage === 1">Previous</a>
-          </c-page-item>
-          <c-page-item *ngFor="let page of pageRange" [active]="currentPage === page">
-            <a cPageLink (click)="changePage(page)">{{ page }}</a>
-          </c-page-item>
-          <c-page-item [disabled]="currentPage === totalPages">
-            <a cPageLink (click)="nextPage()" [attr.aria-disabled]="currentPage === totalPages">Next</a>
-          </c-page-item>
-        </c-pagination>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+          <ul class="pagination">
+            <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
+              <a class="page-link" (click)="previousPage()" [attr.aria-disabled]="currentPage === 1">Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pageRange" [ngClass]="{'active': currentPage === page}">
+              <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
+              <a class="page-link" (click)="nextPage()" [attr.aria-disabled]="currentPage === totalPages">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Summary -->
+        <div class="mt-3 text-muted">
+          <small>
+            Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+            {{ Math.min(currentPage * itemsPerPage, filteredCount) }} of
+            {{ filteredCount }} amenities
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,77 +1,91 @@
-<c-row ngPreserveWhitespaces>
-    <c-col xs="12">
-      <c-card class="mb-4">
-        <c-card-header>
+<div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header">
           <strong>Update New Tournament</strong>
-        </c-card-header>
-        <c-card-body>
-          <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()" cForm class="row g-3 needs-validation">
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="tournamentName" formControlName="tournamentName" required type="text" placeholder="Tournament Name" />
-              <label cLabel for="tournamentName" class="ms-2">Tournament Name</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tournamentName')">
+        </div>
+        <div class="card-body">
+          <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()" class="row g-3 needs-validation">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="tournamentName" formControlName="tournamentName" required type="text" placeholder="Tournament Name" />
+                <label for="tournamentName" class="ms-2">Tournament Name</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tournamentName')">
                 {{ getErrorMessage('tournamentName') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="tournamentDate" formControlName="tournamentDate" required type="date" placeholder="Tournament Date" />
-              <label cLabel for="tournamentDate" class="ms-2">Tournament Date</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tournamentDate')">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="tournamentDate" formControlName="tournamentDate" required type="date" placeholder="Tournament Date" />
+                <label for="tournamentDate" class="ms-2">Tournament Date</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tournamentDate')">
                 {{ getErrorMessage('tournamentDate') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="tournamentTime" formControlName="tournamentTime" required type="time" placeholder="Tournament Time" />
-              <label cLabel for="tournamentTime" class="ms-2">Tournament Time</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tournamentTime')">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="tournamentTime" formControlName="tournamentTime" required type="time" placeholder="Tournament Time" />
+                <label for="tournamentTime" class="ms-2">Tournament Time</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tournamentTime')">
                 {{ getErrorMessage('tournamentTime') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="tournamentLocation" formControlName="tournamentLocation" required type="text" placeholder="Tournament Location" />
-              <label cLabel for="tournamentLocation" class="ms-2">Tournament Location</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tournamentLocation')">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="tournamentLocation" formControlName="tournamentLocation" required type="text" placeholder="Tournament Location" />
+                <label for="tournamentLocation" class="ms-2">Tournament Location</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tournamentLocation')">
                 {{ getErrorMessage('tournamentLocation') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="12">
-              <textarea cFormControl id="tournamentDescription" formControlName="tournamentDescription" required rows="3" placeholder="Tournament Description"></textarea>
-              <label cLabel for="tournamentDescription" class="ms-2">Tournament Description</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('tournamentDescription')">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-floating">
+                <textarea class="form-control" id="tournamentDescription" formControlName="tournamentDescription" required rows="3" placeholder="Tournament Description"></textarea>
+                <label for="tournamentDescription" class="ms-2">Tournament Description</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('tournamentDescription')">
                 {{ getErrorMessage('tournamentDescription') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="entryFee" formControlName="entryFee" required type="number" step="0.01" placeholder="Entry Fee" />
-              <label cLabel for="entryFee" class="ms-2">Entry Fee</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('entryFee')">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="entryFee" formControlName="entryFee" required type="number" step="0.01" placeholder="Entry Fee" />
+                <label for="entryFee" class="ms-2">Entry Fee</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('entryFee')">
                 {{ getErrorMessage('entryFee') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col [cFormFloating]="true" md="6">
-              <input cFormControl id="maxParticipants" formControlName="maxParticipants" required type="number" placeholder="Max Participants" />
-              <label cLabel for="maxParticipants" class="ms-2">Max Participants</label>
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('maxParticipants')">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input class="form-control" id="maxParticipants" formControlName="maxParticipants" required type="number" placeholder="Max Participants" />
+                <label for="maxParticipants" class="ms-2">Max Participants</label>
+              </div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('maxParticipants')">
                 {{ getErrorMessage('maxParticipants') }}
-              </c-form-feedback>
-            </c-col>
-  
-            <c-col xs="12">
-              <button cButton class="me-1" color="primary" type="submit" [disabled]="loading">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="me-1 btn btn-primary" [disabled]="loading">
                 {{ loading ? 'Saving...' : 'Save Tournament' }}
               </button>
-              <button (click)="onReset()" cButton color="secondary" type="button" [disabled]="loading">
+              <button (click)="onReset()" type="button" class="btn btn-secondary" [disabled]="loading">
                 Reset Form
               </button>
-            </c-col>
+            </div>
           </form>
-        </c-card-body>
-      </c-card>
-    </c-col>
-  </c-row>
+        </div>
+      </div>
+    </div>
+  </div>

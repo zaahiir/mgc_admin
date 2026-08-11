@@ -3,7 +3,6 @@ import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormFloatingDirective, FormDirective, FormLabelDirective, FormControlDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective, FormSelectDirective, ButtonDirective } from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberEventsService } from '../../common-service/member-events/member-events.service';
@@ -12,12 +11,9 @@ import { MemberEventsService } from '../../common-service/member-events/member-e
   selector: 'app-update-events',
   standalone: true,
   imports: [
-    NgIf, CommonModule, NgClass, NgForOf, RowComponent, ColComponent,
-    TextColorDirective, CardComponent, FormFloatingDirective, CardHeaderComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule, FormDirective,
-    FormLabelDirective, FormControlDirective, FormFeedbackComponent,
-    InputGroupComponent, InputGroupTextDirective, FormSelectDirective,
-    ButtonDirective, RouterModule, EditorModule
+    NgIf, CommonModule, NgClass, NgForOf,
+    ReactiveFormsModule, FormsModule,
+    RouterModule, EditorModule
   ],
   templateUrl: './update-events.component.html',
   styleUrl: './update-events.component.scss'

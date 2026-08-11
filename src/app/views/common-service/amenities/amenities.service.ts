@@ -41,7 +41,7 @@ export class AmenitiesService {
   }
 
   deleteAmenities(id: string) {
-    return axios.get(this.deletion.replace('0', id));
+    return axios.delete(this.deletion.replace('0', id));
   }
 
   /**

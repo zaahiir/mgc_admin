@@ -1,14 +1,14 @@
-<c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-body>
-        <form cForm class="row g-3">
+<div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form class="row g-3">
           <div class="col-auto">
-            <a cButton [routerLink]="['/events/add']" color="primary" role="button">Create New Events</a>
+            <a [routerLink]="['/events/add']" class="btn btn-primary" role="button">Create New Events</a>
           </div>
         </form>
-      </c-card-body>
-    </c-card>
-</c-col>
+      </div>
+    </div>
+</div>
 
 <!-- Loading Spinner -->
 <div *ngIf="isLoading" class="text-center py-4">
@@ -17,19 +17,19 @@
   </div>
 </div>
 
-<c-row ngPreserveWhitespaces *ngIf="!isLoading">
-    <c-col xs="12">
-      <c-card class="mb-4">
-        <c-card-body>
-          <c-col md="3" class="mb-4 flex justify-content-md-end">
-            <input cFormControl id="validationCustom09" 
+<div class="row" *ngIf="!isLoading">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="col-md-3 mb-4 flex justify-content-md-end">
+            <input class="form-control" id="validationCustom09" 
             (input)="search()"
             [(ngModel)]="searchTerm"
             type="search" 
             placeholder="Search events..." />
-          </c-col>
+          </div>
           
-          <table [hover]="true" [striped]="true" [bordered]="true" cTable>
+          <table class="table table-hover table-striped table-bordered">
             <thead>
             <tr>
               <th scope="col">S.No</th>
@@ -54,11 +54,11 @@
                 </span>
               </td>
               <td>
-                <a cButton [routerLink]="['/events/update', event.id]" color="btn-transparent" role="button" class="btn-sm text-primary border-0 py-0" [cTooltip]="tooltipEditText" cTooltipPlacement="top">
-                  <svg [cIcon]="icons.cilPen" size="xl" title="Edit Icon"></svg>
+                <a [routerLink]="['/events/update', event.id]" class="btn btn-transparent btn-sm text-primary border-0 py-0" role="button">
+                  <i class="bi bi-pencil"></i>
                 </a>
-                <a cButton color="btn-transparent" role="button" class="btn-sm text-danger border-0 py-0" [cTooltip]="tooltipDeleteText" cTooltipPlacement="top" (click)="deleteEvent(event.id)">
-                  <svg [cIcon]="icons.cilTrash" width="25" title="Delete Icon"></svg>
+                <a class="btn btn-transparent btn-sm text-danger border-0 py-0" role="button" (click)="deleteEvent(event.id)">
+                  <i class="bi bi-trash"></i>
                 </a>
               </td>
             </tr>
@@ -75,19 +75,29 @@
             </tbody>
           </table>
           
-          <c-pagination aria-label="Page navigation example" *ngIf="filteredEvents.length > itemsPerPage">
-            <c-page-item>
-              <a cPageLink (click)="previousPage()" [attr.aria-disabled]="currentPage === 1">Previous</a>
-            </c-page-item>
-            <c-page-item *ngFor="let page of pageRange">
-              <a cPageLink (click)="changePage(page)" [ngClass]="{'active': currentPage === page}">{{ page }}</a>
-            </c-page-item>
-            <c-page-item>
-              <a cPageLink (click)="nextPage()" [attr.aria-disabled]="currentPage === totalPages">Next</a>
-            </c-page-item>
-          </c-pagination>
-        </c-card-body>
-      </c-card>
-    </c-col>
-</c-row>
-  
+          <nav aria-label="Page navigation example" *ngIf="filteredEvents.length > itemsPerPage">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" (click)="previousPage()" [attr.aria-disabled]="currentPage === 1">Previous</a>
+              </li>
+              <li class="page-item" *ngFor="let page of pageRange">
+                <a class="page-link" (click)="changePage(page)" [ngClass]="{'active': currentPage === page}">{{ page }}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="nextPage()" [attr.aria-disabled]="currentPage === totalPages">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Summary -->
+        <div class="mt-3 text-muted">
+          <small>
+            Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+            {{ Math.min(currentPage * itemsPerPage, filteredCount) }} of
+            {{ filteredCount }} events
+          </small>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

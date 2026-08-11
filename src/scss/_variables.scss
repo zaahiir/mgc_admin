@@ -3,3 +3,8 @@
 // If you want to customize your project please add your variables below.
 
 $enable-deprecation-messages: false !default;
+
+// Brand purple theme - makes all buttons/links/primary elements purple
+$primary:       #6f42c1 !default;
+$purple:        #6f42c1 !default;
+$primary-rgb:   111, 66, 193 !default;

@@ -39,7 +39,7 @@ export class FaqService {
   }
 
   deleteFAQ(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}faq/${id}${this.deletion}`);
+    return this.http.delete(`${this.apiUrl}faq/${id}${this.deletion}`);
   }
 
   getActiveFAQs(): Observable<any> {

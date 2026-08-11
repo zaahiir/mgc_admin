@@ -7,16 +7,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import {
-  ContainerComponent,
-  RowComponent,
-  ColComponent,
-  CardComponent,
-  CardBodyComponent,
-  FormDirective,
-  FormControlDirective,
-  ButtonDirective
-} from '@coreui/angular';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -26,14 +16,6 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ContainerComponent,
-    RowComponent,
-    ColComponent,
-    CardComponent,
-    CardBodyComponent,
-    FormDirective,
-    FormControlDirective,
-    ButtonDirective,
     NgIf
   ]
 })

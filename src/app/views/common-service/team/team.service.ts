@@ -65,7 +65,7 @@ export class TeamService {
   }
 
   deleteProtocol(id: string) {
-    return axios.get(this.deletion.replace('0', id));
+    return axios.delete(this.deletion.replace('0', id));
   }
 
   getActiveProtocols() {
@@ -103,7 +103,7 @@ export class TeamService {
   }
 
   deleteInstructor(id: string) {
-    return axios.get(this.apiUrl + `instructor/${id}/deletion/`);
+    return axios.delete(this.apiUrl + `instructor/${id}/deletion/`);
   }
 
   getActiveInstructors() {

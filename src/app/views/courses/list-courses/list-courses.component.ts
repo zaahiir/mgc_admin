@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TooltipDirective, RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormDirective, FormControlDirective, ButtonDirective, TableDirective, PaginationComponent, PageItemComponent, PageLinkDirective } from '@coreui/angular';
 import { CourseService } from '../../common-service/course/course.service';
 import Swal from 'sweetalert2';
 
@@ -33,21 +30,15 @@ interface CourseInterface {
   selector: 'app-list-courses',
   standalone: true,
   imports: [
-    CommonModule, TooltipDirective, IconDirective, RouterLink,
-    RowComponent, ColComponent, TextColorDirective, CardComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule,
-    FormDirective, FormControlDirective, ButtonDirective,
-    TableDirective,
-    PaginationComponent, PageItemComponent,
-    PageLinkDirective,
+    CommonModule, RouterLink, ReactiveFormsModule, FormsModule,
   ],
   templateUrl: './list-courses.component.html',
   styleUrl: './list-courses.component.scss'
 })
 export class ListCoursesComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit';
   tooltipDeleteText = 'Delete';
+  Math = Math;
 
   courseList: CourseInterface[] = [];
   pageRange: number[] = [];
@@ -178,6 +169,19 @@ export class ListCoursesComponent implements OnInit {
     }
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get filteredCount(): number {
+    if (!this.searchTerm) return this.courseList.length;
+    const searchTermLower = this.searchTerm.toLowerCase();
+    return this.courseList.filter(course =>
+      this.getCourseName(course).toLowerCase().includes(searchTermLower) ||
+      this.getTownFromAddress(course).toLowerCase().includes(searchTermLower) ||
+      this.getCoursePhone(course).toLowerCase().includes(searchTermLower) ||
+      this.getCourseWebsite(course).toLowerCase().includes(searchTermLower) ||
+      this.getCourseLocation(course).toLowerCase().includes(searchTermLower) ||
+      this.getTeeInfo(course).toLowerCase().includes(searchTermLower)
+    ).length;
   }
 
   get totalPages() {

@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+.app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: calc(3rem + 1px);
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.footer-left {
+  margin-right: auto;
+}
+
+.footer-right {
+  margin-left: auto;
+}
+
+.footer-link {
+  color: #321fdb;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    color: #1d0ec4;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .app-footer {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+
+  .footer-left,
+  .footer-right {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

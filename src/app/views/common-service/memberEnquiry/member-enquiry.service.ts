@@ -24,7 +24,7 @@ export class MemberEnquiryService {
 
   deleteMemberEnquiry(id: string) {
     const url = `${this.apiUrl}memberEnquiry/deletion/${id}/`;
-    return axios.get(url);
+    return axios.delete(url);
   }
 
   // FIXED: Enhanced markEnquiryConverted method with better error handling and logging

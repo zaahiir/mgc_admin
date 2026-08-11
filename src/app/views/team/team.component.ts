@@ -2,26 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  FormSelectDirective,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeamService } from '../common-service/team/team.service';
+import { sanitizeSvg } from '../../shared/sanitize-svg';
 
 @Component({
   selector: 'app-team',
@@ -30,22 +14,8 @@ import { TeamService } from '../common-service/team/team.service';
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    FormSelectDirective,
-    ButtonDirective,
-    ButtonModule
+    FormsModule
   ],
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss'
@@ -64,6 +34,53 @@ export class TeamComponent implements OnInit {
   protocols: any[] = [];
   instructors: any[] = [];
   showForm = false;
+
+  Math = Math;
+  currentPage = 1;
+  itemsPerPage = 10;
+  pageRange: number[] = [];
+
+  get filteredCount(): number {
+    return this.instructors.length;
+  }
+
+  get paginatedInstructorList(): any[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.instructors.slice(start, start + this.itemsPerPage);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredCount / this.itemsPerPage);
+  }
+
+  updatePageRange(): void {
+    const total = this.totalPages;
+    let start = Math.max(1, this.currentPage - 1);
+    let end = Math.min(total, start + 2);
+    if (end === total) {
+      start = Math.max(1, total - 2);
+    }
+    this.pageRange = Array.from({ length: Math.min(3, total) }, (_, i) => start + i);
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePageRange();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.changePage(this.currentPage + 1);
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.changePage(this.currentPage - 1);
+    }
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -114,6 +131,7 @@ export class TeamComponent implements OnInit {
       if (instructorResponse && instructorResponse.data && instructorResponse.data.status === 'success') {
         this.instructors = instructorResponse.data.data || [];
       }
+      this.updatePageRange();
     } catch (error) {
       console.error('Error loading data:', error);
     } finally {
@@ -320,7 +338,7 @@ export class TeamComponent implements OnInit {
   }
 
   getSafeHtml(html: string): SafeHtml {
-    return this.domSanitizer.bypassSecurityTrustHtml(html);
+    return this.domSanitizer.bypassSecurityTrustHtml(sanitizeSvg(html));
   }
 
   setActiveTab(tab: 'protocol' | 'instructor'): void {

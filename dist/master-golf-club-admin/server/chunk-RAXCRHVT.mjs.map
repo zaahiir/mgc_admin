@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/common-service/blog/blog.service.ts"],
-  "sourcesContent": ["import { Injectable } from '@angular/core';\r\nimport { BaseAPIUrl, baseURLType } from '../commom-api-url';\r\nimport axios from 'axios';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class BlogService {\r\n  private apiUrl: string;\r\n  private lists: string;\r\n  private processing: string;\r\n  private deletion: string;\r\n\r\n  constructor() {\r\n    this.apiUrl = new BaseAPIUrl().getUrl(baseURLType);\r\n    this.lists = this.apiUrl + \"blog/0/listing/\";\r\n    this.processing = this.apiUrl + \"blog/0/processing/\";\r\n    this.deletion = this.apiUrl + \"blog/0/deletion/\";\r\n  }\r\n\r\n  listBlog(id: string = '0') {\r\n    return axios.get(this.lists.replace('0', id));\r\n  }\r\n\r\n  processBlog(data: any, id: string = '0') {\r\n    return axios.post(this.processing.replace('0', id), data);\r\n  }\r\n\r\n  deleteBlog(id: string) {\r\n    return axios.get(this.deletion.replace('0', id));\r\n  }\r\n}\r\n"],
-  "mappings": ";;;;;;;;;;;;;AAOM,IAAO,eAAP,MAAO,aAAW;EAMtB,cAAA;AACE,SAAK,SAAS,IAAI,WAAU,EAAG,OAAO,WAAW;AACjD,SAAK,QAAQ,KAAK,SAAS;AAC3B,SAAK,aAAa,KAAK,SAAS;AAChC,SAAK,WAAW,KAAK,SAAS;EAChC;EAEA,SAAS,KAAa,KAAG;AACvB,WAAO,cAAM,IAAI,KAAK,MAAM,QAAQ,KAAK,EAAE,CAAC;EAC9C;EAEA,YAAY,MAAW,KAAa,KAAG;AACrC,WAAO,cAAM,KAAK,KAAK,WAAW,QAAQ,KAAK,EAAE,GAAG,IAAI;EAC1D;EAEA,WAAW,IAAU;AACnB,WAAO,cAAM,IAAI,KAAK,SAAS,QAAQ,KAAK,EAAE,CAAC;EACjD;;;mCAvBW,cAAW;AAAA;gFAAX,cAAW,SAAX,aAAW,WAAA,YAFV,OAAM,CAAA;AAEd,IAAO,cAAP;",
-  "names": []
-}

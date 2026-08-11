@@ -75,7 +75,7 @@ export class BookingService {
   }
 
   deleteCourse(id: string) {
-    return axios.get(this.deletion.replace('0', id));
+    return axios.delete(this.deletion.replace('0', id));
   }
 
   // ==================== BOOKING MANAGEMENT METHODS ====================

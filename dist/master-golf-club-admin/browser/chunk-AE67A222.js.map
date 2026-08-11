@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/common-service/commom-api-url.ts"],
-  "sourcesContent": ["export class BaseAPIUrl {\r\n\r\n  localUrl: string = \"http://localhost/apis/\"\r\n  stagingUrl: string = \"http://localhost/apis/\"\r\n  productionUrl: string = \"http://localhost/apis/\";\r\n  // localUrl: string = \"https://mastergolfclub.com/apis/\"\r\n  // stagingUrl: string = \"https://mastergolfclub.com/apis/\"\r\n  // productionUrl: string = \"https://mastergolfclub.com/apis/\";\r\n  constructor() { }\r\n\r\n  getUrl(urlType: number) {\r\n    if (urlType == 1) {\r\n      return this.localUrl\r\n    } else if (urlType == 2) {\r\n      return this.stagingUrl\r\n    } else {\r\n      return this.productionUrl\r\n    }\r\n  }\r\n}\r\n\r\nexport const baseURLType: number = 3\r\n"],
-  "mappings": ";AAAM,IAAO,aAAP,MAAiB;;;;EAQrB,cAAA;AANA,SAAA,WAAmB;AACnB,SAAA,aAAqB;AACrB,SAAA,gBAAwB;EAIR;EAEhB,OAAO,SAAe;AACpB,QAAI,WAAW,GAAG;AAChB,aAAO,KAAK;IACd,WAAW,WAAW,GAAG;AACvB,aAAO,KAAK;IACd,OAAO;AACL,aAAO,KAAK;IACd;EACF;;AAGK,IAAM,cAAsB;",
-  "names": []
-}

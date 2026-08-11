@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/events/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const eventsRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Events'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-events/list-events.component').then(m => m.ListEventsComponent),\r\n        data: {\r\n          title: 'List Events'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-events/create-events.component').then(m => m.CreateEventsComponent),\r\n        data: {\r\n          title: 'New Events'\r\n        },\r\n      },\r\n      {\r\n        path: 'update/:id',\r\n        loadComponent: () => import('./update-events/update-events.component').then(m => m.UpdateEventsComponent),\r\n        data: {\r\n          title: 'Update Events'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
-  "mappings": ";;;;AAEO,IAAM,eAAuB;EAClC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,sCAAqC,EAAE,KAAK,OAAK,EAAE,mBAAmB;QAClG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAAyC,EAAE,KAAK,OAAK,EAAE,qBAAqB;QACxG,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,wCAAyC,EAAE,KAAK,OAAK,EAAE,qBAAqB;QACxG,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

@@ -3,11 +3,11 @@
 // If you want to override variables do it here
 @import "variables";
 
-// Import styles with default layout.
-@import "@coreui/coreui/scss/coreui";
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
 
-// Import Chart.js custom tooltips styles
-@import "@coreui/chartjs/scss/coreui-chartjs";
+// Import Bootstrap Icons
+@import "bootstrap-icons/font/bootstrap-icons";
 
 // Custom styles for this theme
 @import "theme";

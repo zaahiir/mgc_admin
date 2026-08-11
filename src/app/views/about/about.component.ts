@@ -2,20 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AboutService } from '../common-service/about/about.service';
-import {
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  ButtonDirective,
-  ButtonModule,
-  ColComponent,
-  RowComponent,
-  FormFloatingDirective,
-  FormFeedbackComponent,
-  FormControlDirective,
-  FormLabelDirective,
-  SpinnerModule
-} from '@coreui/angular';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 @Component({
@@ -24,18 +10,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CardComponent,
-    CardHeaderComponent,
-    CardBodyComponent,
-    ButtonDirective,
-    ButtonModule,
-    ColComponent,
-    RowComponent,
-    FormFloatingDirective,
-    FormFeedbackComponent,
-    FormControlDirective,
-    FormLabelDirective,
-    SpinnerModule,
     EditorModule
   ],
   templateUrl: './about.component.html',

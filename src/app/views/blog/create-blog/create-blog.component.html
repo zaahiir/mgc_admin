@@ -1,53 +1,59 @@
 <!-- create-blog.component.html -->
-<c-row>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-header>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header">
         <strong>Create New Blog Post</strong>
-      </c-card-header>
-      <c-card-body>
+      </div>
+      <div class="card-body">
         <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="row g-3 needs-validation">
           <!-- Blog Title -->
-          <c-col [cFormFloating]="true" md="6">
-            <input
-              cFormControl
-              id="blogTitle"
-              formControlName="blogTitle"
-              type="text"
-              placeholder="Blog Title"
-            />
-            <label cLabel for="blogTitle">Blog Title</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogTitle')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input
+                id="blogTitle"
+                formControlName="blogTitle"
+                type="text"
+                placeholder="Blog Title"
+                class="form-control"
+              />
+              <label for="blogTitle">Blog Title</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogTitle')">
               {{ getErrorMessage('blogTitle') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Blog Date -->
-          <c-col [cFormFloating]="true" md="6">
-            <input
-              cFormControl
-              id="blogDate"
-              formControlName="blogDate"
-              type="date"
-              placeholder="Blog Date"
-            />
-            <label cLabel for="blogDate">Blog Date</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogDate')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input
+                id="blogDate"
+                formControlName="blogDate"
+                type="date"
+                placeholder="Blog Date"
+                class="form-control"
+              />
+              <label for="blogDate">Blog Date</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogDate')">
               {{ getErrorMessage('blogDate') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
-          <c-col [cFormFloating]="true" md="12">
-            <textarea cFormControl id="blogHighlight" formControlName="blogHighlight" placeholder="Highlight" rows="3"></textarea>
-            <label cLabel for="blogHighlight" class="ms-2">Highlight</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogHighlight')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea id="blogHighlight" formControlName="blogHighlight" placeholder="Highlight" rows="3" class="form-control"></textarea>
+              <label for="blogHighlight" class="ms-2">Highlight</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogHighlight')">
               {{ getErrorMessage('blogHighlight') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Blog Description with TinyMCE -->
-          <c-col md="12">
-            <label cLabel for="blogDescription">Blog Description</label>
+          <div class="col-md-12">
+            <label for="blogDescription">Blog Description</label>
             <editor apiKey="jrj64u0e25jw0n4a9v0jbajhi9iakdkeyta9ryl58xwmqwz7"
             formControlName="blogDescription"
               [init]="{
@@ -55,68 +61,74 @@
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
               }"
             ></editor>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogDescription')">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogDescription')">
               {{ getErrorMessage('blogDescription') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Blog Quote -->
-          <c-col [cFormFloating]="true" md="12">
-            <textarea cFormControl id="blogQuote" formControlName="blogQuote" placeholder="Quote (Optional)" rows="3"></textarea>
-            <label cLabel for="blogQuote" class="ms-2">Quote (Optional)</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogQuote')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea id="blogQuote" formControlName="blogQuote" placeholder="Quote (Optional)" rows="3" class="form-control"></textarea>
+              <label for="blogQuote" class="ms-2">Quote (Optional)</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogQuote')">
               {{ getErrorMessage('blogQuote') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Blog Quote Creator -->
-          <c-col [cFormFloating]="true" md="6">
-            <input
-              cFormControl
-              id="blogQuoteCreator"
-              formControlName="blogQuoteCreator"
-              type="text"
-              placeholder="Quote Creator Name"
-            />
-            <label cLabel for="blogQuoteCreator">Quote Creator Name (Optional)</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogQuoteCreator')">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input
+                id="blogQuoteCreator"
+                formControlName="blogQuoteCreator"
+                type="text"
+                placeholder="Quote Creator Name"
+                class="form-control"
+              />
+              <label for="blogQuoteCreator">Quote Creator Name (Optional)</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('blogQuoteCreator')">
               {{ getErrorMessage('blogQuoteCreator') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Blog Image -->
-          <c-col md="12">
+          <div class="col-md-12">
             <div class="mb-3">
-              <label cLabel for="blogImage">Blog Image</label>
+              <label for="blogImage">Blog Image</label>
               <input
-                cFormControl
                 id="blogImage"
                 type="file"
                 accept="image/*"
                 (change)="onFileChange($event)"
+                class="form-control"
               />
-              <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('blogImage')">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('blogImage')">
                 {{ getErrorMessage('blogImage') }}
-              </c-form-feedback>
+              </div>
             </div>
             <!-- Image Preview -->
             <div *ngIf="imagePreview" class="mb-3">
               <img [src]="imagePreview" class="img-thumbnail" style="max-width: 200px" alt="Preview">
             </div>
-          </c-col>
+          </div>
 
           <!-- Form Actions -->
-          <c-col xs="12">
-            <button cButton class="me-2" color="primary" type="submit" [disabled]="loading || blogForm.invalid">
-              <c-spinner *ngIf="loading" size="sm" class="me-1"></c-spinner>
+          <div class="col-12">
+            <button class="me-2 btn btn-primary" type="submit" [disabled]="loading || blogForm.invalid">
+              <div *ngIf="loading" class="spinner-border spinner-border-sm me-1" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
               {{ loading ? 'Saving...' : 'Publish Blog' }}
             </button>
-            <button cButton color="secondary" type="button" (click)="onReset()" [disabled]="loading">
+            <button class="btn btn-secondary" type="button" (click)="onReset()" [disabled]="loading">
               Reset Form
             </button>
-          </c-col>
+          </div>
         </form>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>

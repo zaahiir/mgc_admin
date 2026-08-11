@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/enquiry/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const enquiryRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Enquiries'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./enquiry/enquiry.component').then(m => m.EnquiryComponent),\r\n        data: {\r\n          title: 'List Enquiries'\r\n        },\r\n      },\r\n    ]\r\n  }\r\n];\r\n"],
-  "mappings": ";;;;AAEO,IAAM,gBAAwB;EACnC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,kCAA6B,EAAE,KAAK,OAAK,EAAE,gBAAgB;QACvF,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

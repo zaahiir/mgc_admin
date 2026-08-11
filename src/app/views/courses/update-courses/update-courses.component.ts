@@ -3,24 +3,9 @@ import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  FormSelectDirective,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import { CourseService } from '../../common-service/course/course.service';
 import Swal from 'sweetalert2';
+import { sanitizeSvg } from '../../../shared/sanitize-svg';
 
 interface Amenity {
   id: number;
@@ -64,22 +49,8 @@ interface TeeData {
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
-    FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    FormSelectDirective,
-    ButtonDirective,
-    ButtonModule
+    FormsModule
   ],
   templateUrl: './update-courses.component.html',
   styleUrls: ['./update-courses.component.scss']
@@ -435,7 +406,7 @@ export class UpdateCoursesComponent implements OnInit {
 
   // Helper method to safely render HTML (for SVG icons)
   getSafeHtml(html: string): SafeHtml {
-    return this.domSanitizer.bypassSecurityTrustHtml(html);
+    return this.domSanitizer.bypassSecurityTrustHtml(sanitizeSvg(html));
   }
 
   // Get tee information for display

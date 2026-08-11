@@ -1,37 +1,38 @@
 <!-- create-concept.component.html -->
-<c-row ngPreserveWhitespaces>
-  <c-col xs="12">
-    <c-card class="mb-4">
-      <c-card-header>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header">
         <strong>Create/Edit Concept</strong>
-      </c-card-header>
-      <c-card-body>
-        <form [formGroup]="conceptForm" (ngSubmit)="onSubmit()" #form="ngForm" cForm class="row g-3 needs-validation">
+      </div>
+      <div class="card-body">
+        <form [formGroup]="conceptForm" (ngSubmit)="onSubmit()" #form="ngForm" class="row g-3 needs-validation">
 
           <!-- Concept Highlight -->
-          <c-col [cFormFloating]="true" md="12">
-            <textarea
-              cFormControl
-              id="conceptHighlight"
-              formControlName="conceptHighlight"
-              placeholder="Concept Highlight"
-              rows="3">
-            </textarea>
-            <label cLabel for="conceptHighlight" class="ms-2">Concept Highlight</label>
-            <c-form-feedback [valid]="false" *ngIf="isFieldInvalid('conceptHighlight')">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                id="conceptHighlight"
+                formControlName="conceptHighlight"
+                placeholder="Concept Highlight"
+                rows="3"
+                autoResize>
+              </textarea>
+              <label for="conceptHighlight" class="ms-2">Concept Highlight</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('conceptHighlight')">
               {{ getErrorMessage('conceptHighlight') }}
-            </c-form-feedback>
-          </c-col>
+            </div>
+          </div>
 
           <!-- Dynamic Concept Items -->
-          <c-col xs="12">
+          <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h5>Concept Items ({{ conceptItems.length }}/8)</h5>
               <button
                 type="button"
-                cButton
-                color="success"
-                size="sm"
+                class="btn btn-success btn-sm"
                 (click)="addConceptItem()"
                 [disabled]="conceptItems.length >= 8">
                 <i class="fas fa-plus me-1"></i>
@@ -49,65 +50,67 @@
                   <h6 class="mb-0">Concept Item {{ i + 1 }}</h6>
                   <button
                     type="button"
-                    cButton
-                    color="danger"
-                    size="sm"
-                    variant="outline"
+                    class="btn btn-outline-danger btn-sm"
                     (click)="removeConceptItem(i)"
                     [disabled]="conceptItems.length <= 1">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
 
-                <c-row>
-                  <c-col [cFormFloating]="true" md="4">
-                    <input
-                      cFormControl
-                      [id]="'heading_' + i"
-                      formControlName="heading"
-                      type="text"
-                      placeholder="Heading" />
-                    <label cLabel [for]="'heading_' + i" class="ms-2">Heading</label>
-                    <c-form-feedback [valid]="false" *ngIf="isItemFieldInvalid(i, 'heading')">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        [id]="'heading_' + i"
+                        formControlName="heading"
+                        type="text"
+                        placeholder="Heading" />
+                      <label [for]="'heading_' + i" class="ms-2">Heading</label>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="isItemFieldInvalid(i, 'heading')">
                       This field is required
-                    </c-form-feedback>
-                  </c-col>
+                    </div>
+                  </div>
 
-                  <c-col [cFormFloating]="true" md="8">
-                    <textarea
-                      cFormControl
-                      [id]="'paragraph_' + i"
-                      formControlName="paragraph"
-                      placeholder="Paragraph"
-                      rows="4">
-                    </textarea>
-                    <label cLabel [for]="'paragraph_' + i" class="ms-2">Paragraph</label>
-                    <c-form-feedback [valid]="false" *ngIf="isItemFieldInvalid(i, 'paragraph')">
+                  <div class="col-md-8">
+                    <div class="form-floating">
+                      <textarea
+                        class="form-control"
+                        [id]="'paragraph_' + i"
+                        formControlName="paragraph"
+                        placeholder="Paragraph"
+                        rows="4"
+                        autoResize>
+                      </textarea>
+                      <label [for]="'paragraph_' + i" class="ms-2">Paragraph</label>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="isItemFieldInvalid(i, 'paragraph')">
                       This field is required
-                    </c-form-feedback>
-                  </c-col>
-                </c-row>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </c-col>
+          </div>
 
           <!-- Form Actions -->
-          <c-col xs="12">
+          <div class="col-12">
             <div class="d-flex gap-2">
-              <button cButton class="me-1" color="primary" type="submit" [disabled]="loading">
+              <button class="btn btn-primary me-1" type="submit" [disabled]="loading">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
                 {{ loading ? 'Saving...' : 'Save Concept' }}
               </button>
-              <button (click)="onReset()" cButton color="secondary" type="button" [disabled]="loading">
+              <button class="btn btn-secondary" (click)="onReset()" type="button" [disabled]="loading">
                 Reset Form
               </button>
-              <button (click)="loadExistingConcept()" cButton color="info" type="button" [disabled]="loading">
+              <button class="btn btn-info" (click)="loadExistingConcept()" type="button" [disabled]="loading">
                 Load Existing
               </button>
             </div>
-          </c-col>
+          </div>
         </form>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</c-row>
+      </div>
+    </div>
+  </div>
+</div>

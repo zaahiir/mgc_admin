@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { cilPen, cilTrash } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { TooltipDirective, RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormDirective, FormLabelDirective, FormControlDirective, ButtonDirective,  TableDirective, TableColorDirective, TableActiveDirective, BorderDirective, AlignDirective, PaginationComponent, PageItemComponent, PageLinkDirective, PageItemDirective  } from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { MemberEventsService } from '../../common-service/member-events/member-events.service';
 
 @Component({
   selector: 'app-list-events',
   standalone: true,
-  imports: [NgClass, CommonModule, TooltipDirective, IconDirective, RouterLink, RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, ReactiveFormsModule, FormsModule, FormDirective, FormLabelDirective, FormControlDirective, ButtonDirective, NgStyle,  TableDirective, TableColorDirective, TableActiveDirective, BorderDirective, AlignDirective, PaginationComponent, PageItemComponent, PageLinkDirective, PageItemDirective ],
+  imports: [NgClass, CommonModule, RouterLink, ReactiveFormsModule, FormsModule, NgStyle ],
   templateUrl: './list-events.component.html',
   styleUrl: './list-events.component.scss'
 })
 export class ListEventsComponent implements OnInit {
-  icons = { cilPen, cilTrash };
   tooltipEditText = 'Edit';
   tooltipDeleteText = 'Delete';
   
   isLoading = false;
   searchTerm: string = '';
+  Math = Math;
   events: any[] = [];
   filteredEvents: any[] = [];
   currentPage = 1;
@@ -72,6 +69,10 @@ export class ListEventsComponent implements OnInit {
 
   calculatePagination(): void {
     this.totalPages = Math.ceil(this.filteredEvents.length / this.itemsPerPage);
+  }
+
+  get filteredCount(): number {
+    return this.filteredEvents.length;
   }
 
   get paginatedEvents(): any[] {

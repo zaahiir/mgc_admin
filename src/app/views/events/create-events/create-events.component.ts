@@ -3,25 +3,10 @@ import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import {
-  RowComponent,
-  ColComponent,
-  TextColorDirective,
-  CardComponent,
-  CardHeaderComponent,
-  CardBodyComponent,
-  FormFloatingDirective,
-  FormDirective,
-  FormLabelDirective,
-  FormControlDirective,
-  FormFeedbackComponent,
-  FormSelectDirective,
-  ButtonDirective,
-  ButtonModule
-} from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberEventsService } from '../../common-service/member-events/member-events.service';
+import { sanitizeSvg } from '../../../shared/sanitize-svg';
 
 interface EventOption {
   value: string;
@@ -58,22 +43,8 @@ interface EventData {
     NgIf,
     NgForOf,
     CommonModule,
-    RowComponent,
-    ColComponent,
-    TextColorDirective,
-    CardComponent,
-    FormFloatingDirective,
-    CardHeaderComponent,
-    CardBodyComponent,
     ReactiveFormsModule,
     FormsModule,
-    FormDirective,
-    FormLabelDirective,
-    FormControlDirective,
-    FormFeedbackComponent,
-    FormSelectDirective,
-    ButtonDirective,
-    ButtonModule,
     EditorModule
   ],
   templateUrl: './create-events.component.html',
@@ -380,7 +351,7 @@ export class CreateEventsComponent implements OnInit {
   }
 
   getSafeHtml(html: string): SafeHtml {
-    return this.domSanitizer.bypassSecurityTrustHtml(html);
+    return this.domSanitizer.bypassSecurityTrustHtml(sanitizeSvg(html));
   }
 
   navigateToEvents(): void {

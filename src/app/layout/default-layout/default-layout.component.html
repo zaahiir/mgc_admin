@@ -1,43 +1,74 @@
-<!--sidebar-->
-<c-sidebar
-  #sidebar1="cSidebar"
-  class="d-print-none sidebar sidebar-fixed border-end"
-  colorScheme="light"
-  id="sidebar1"
-  visible
->
-<c-sidebar-header class="d-flex justify-content-center align-items-center mt-3">
-  <c-sidebar-brand [routerLink]="[]" class="w-100 text-center">
-    <img src="../../../assets/mgc_logo-03.png" class="sidebar-brand-full" height="100" alt="logo">
-    <img src="../../../assets/mgc_logo-03.png" class="sidebar-brand-narrow" height="50" alt="logo">
-  </c-sidebar-brand>
-</c-sidebar-header>
+<div class="layout-shell">
+  <!--sidebar-->
+  <nav
+    id="sidebar1"
+    class="sidebar d-print-none"
+    [class.show]="sidebarVisible"
+    [class.narrow]="sidebarNarrow"
+  >
+    <button
+      type="button"
+      class="sidebar-close d-md-none"
+      (click)="closeSidebar()"
+      aria-label="Close sidebar"
+      title="Close sidebar"
+    >
+      <i class="bi bi-x-lg"></i>
+    </button>
 
-  <ng-scrollbar #scrollbar="ngScrollbar" (updated)="onScrollbarUpdate(scrollbar.state)" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
-    <c-sidebar-nav #overflow [navItems]="navItems" dropdownMode="close" compact />
-  </ng-scrollbar>
-  @if (!sidebar1.narrow) {
-    <c-sidebar-footer cSidebarToggle="sidebar1" class="border-top d-none d-lg-flex" toggle="unfoldable" style="cursor: pointer;">
-      <button cSidebarToggler aria-label="Toggle sidebar fold"></button>
-    </c-sidebar-footer>
-  }
-</c-sidebar>
+    <!--header: fixed, never shrinks-->
+    <div class="sidebar-header">
+      <a routerLink="/" class="sidebar-brand-link">
+        <img src="../../../assets/mgc_logo-03.png" class="sidebar-brand-logo" alt="logo">
+      </a>
+    </div>
 
-<!--main-->
-<div class="wrapper d-flex flex-column min-vh-100">
-  <!--app-header-->
-  <app-default-header
-    [cShadowOnScroll]="'sm'"
-    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
-    position="sticky"
-    sidebarId="sidebar1"
-  />
-  <!--app-body-->
-  <div class="body flex-grow-1">
-    <c-container breakpoint="lg" class="h-auto px-4">
-      <router-outlet />
-    </c-container>
+    <!--menu: the ONLY scrollable region-->
+    <div class="sidebar-menu-scroll">
+      <ul class="nav nav-pills sidebar-nav sidebar-menu-grid">
+        @for (item of navItems; track item.url) {
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex align-items-center gap-2"
+              routerLink="{{ item.url }}"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              (click)="onNavClick()"
+              [attr.title]="item.name"
+            >
+              <i class="bi" [ngClass]="item.icon ? 'bi-' + item.icon : 'bi-circle'"></i>
+              <span class="nav-text">{{ item.name }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!--footer: fixed, never shrinks-->
+    <div class="sidebar-footer">
+      <button
+        class="btn btn-sm btn-light w-100 sidebar-toggle-btn"
+        (click)="toggleSidebar()"
+        aria-label="Toggle sidebar"
+        title="Toggle sidebar"
+      >
+        <i class="bi" [ngClass]="sidebarNarrow ? 'bi-chevron-double-right' : 'bi-chevron-double-left'"></i>
+        <span class="nav-text">Collapse</span>
+      </button>
+    </div>
+  </nav>
+
+  <!--backdrop (mobile off-canvas)-->
+  <div class="sidebar-backdrop" *ngIf="sidebarVisible" (click)="closeSidebar()"></div>
+
+  <!--main-->
+  <div class="wrapper" [class.narrow]="sidebarNarrow">
+    <app-default-header (sidebarToggle)="toggleSidebar()" />
+    <div class="body flex-grow-1">
+      <div class="container-fluid px-4 py-3">
+        <router-outlet />
+      </div>
+    </div>
+    <app-default-footer />
   </div>
-  <!--app footer-->
-  <app-default-footer />
 </div>

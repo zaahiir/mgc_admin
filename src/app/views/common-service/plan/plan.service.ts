@@ -27,7 +27,7 @@ export class PlanService {
   }
 
   deletePlan(id: string) {
-    return axios.get(this.deletion.replace('0', id));
+    return axios.delete(this.deletion.replace('0', id));
   }
 
   // Plan Features Methods
@@ -44,6 +44,6 @@ export class PlanService {
   }
 
   deletePlanFeature(featureId: string) {
-    return axios.get(this.apiUrl + `planFeature/${featureId}/deletion/`);
+    return axios.delete(this.apiUrl + `planFeature/${featureId}/deletion/`);
   }
 }

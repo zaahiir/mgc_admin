@@ -1,22 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
-import { cilPen } from '@coreui/icons';
-import { IconDirective } from '@coreui/icons-angular';
 import { FormsModule } from '@angular/forms';
-import {
-  TooltipDirective,
-  RowComponent,
-  ColComponent,
-  CardComponent,
-  CardBodyComponent,
-  ButtonDirective,
-  TableDirective,
-  PaginationComponent,
-  PageItemComponent,
-  PageLinkDirective,
-  FormControlDirective
-} from '@coreui/angular';
 import { MemberMessageService } from '../../common-service/member-message/member-message.service';
 import Swal from 'sweetalert2';
 
@@ -39,26 +24,13 @@ interface MessageInterface {
   imports: [
     CommonModule,
     DatePipe,
-    TooltipDirective,
-    IconDirective,
     RouterLink,
-    RowComponent,
-    ColComponent,
-    CardComponent,
-    CardBodyComponent,
-    FormsModule,
-    FormControlDirective,
-    ButtonDirective,
-    TableDirective,
-    PaginationComponent,
-    PageItemComponent,
-    PageLinkDirective,
+    FormsModule
   ],
   templateUrl: './member-message.component.html',
   styleUrl: './member-message.component.scss'
 })
 export class MemberMessageComponent implements OnInit {
-  icons = { cilPen };
   tooltipViewText = 'View Message';
   tooltipMarkReadText = 'Mark as Read';
   tooltipMarkRepliedText = 'Mark as Replied';

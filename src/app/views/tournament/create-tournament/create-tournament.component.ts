@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgStyle, NgClass, NgForOf, NgIf, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RowComponent, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, FormFloatingDirective, FormDirective, FormLabelDirective, FormControlDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective, FormSelectDirective, ButtonDirective } from '@coreui/angular';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -9,12 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-create-tournament',
   standalone: true,
   imports: [
-    NgIf, CommonModule, NgClass, NgForOf, RowComponent, ColComponent,
-    TextColorDirective, CardComponent, FormFloatingDirective, CardHeaderComponent,
-    CardBodyComponent, ReactiveFormsModule, FormsModule, FormDirective,
-    FormLabelDirective, FormControlDirective, FormFeedbackComponent,
-    InputGroupComponent, InputGroupTextDirective, FormSelectDirective,
-    ButtonDirective
+    NgIf, CommonModule, NgClass, NgForOf,
+    ReactiveFormsModule, FormsModule
   ],
   templateUrl: './create-tournament.component.html',
   styleUrl: './create-tournament.component.scss'

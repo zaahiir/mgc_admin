@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/views/tournament/routes.ts"],
-  "sourcesContent": ["import { Routes } from '@angular/router';\r\n\r\nexport const tournamentRoutes: Routes = [\r\n  {\r\n    path: '',\r\n    data: {\r\n      title: 'Tournament'\r\n    },\r\n    children: [\r\n      {\r\n        path: '',\r\n        loadComponent: () => import('./list-tournament/list-tournament.component').then(m => m.ListTournamentComponent),\r\n        data: {\r\n          title: 'List Tournaments'\r\n        },\r\n      },\r\n      {\r\n        path: 'add',\r\n        loadComponent: () => import('./create-tournament/create-tournament.component').then(m => m.CreateTournamentComponent),\r\n        data: {\r\n          title: 'New Tournament'\r\n        },\r\n      },\r\n      {\r\n        path: 'update',\r\n        loadComponent: () => import('./update-tournament/update-tournament.component').then(m => m.UpdateTournamentComponent),\r\n        data: {\r\n          title: 'Update Tournaments'\r\n        },\r\n      }\r\n    ]\r\n  }\r\n];\r\n"],
-  "mappings": ";;;;AAEO,IAAM,mBAA2B;EACtC;IACE,MAAM;IACN,MAAM;MACJ,OAAO;;IAET,UAAU;MACR;QACE,MAAM;QACN,eAAe,MAAM,OAAO,0CAA6C,EAAE,KAAK,OAAK,EAAE,uBAAuB;QAC9G,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,4CAAiD,EAAE,KAAK,OAAK,EAAE,yBAAyB;QACpH,MAAM;UACJ,OAAO;;;MAGX;QACE,MAAM;QACN,eAAe,MAAM,OAAO,4CAAiD,EAAE,KAAK,OAAK,EAAE,yBAAyB;QACpH,MAAM;UACJ,OAAO;;;;;;",
-  "names": []
-}

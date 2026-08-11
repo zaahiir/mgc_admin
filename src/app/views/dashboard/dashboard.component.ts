@@ -1,21 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  ButtonDirective,
-  CardBodyComponent,
-  CardComponent,
-  CardHeaderComponent,
-  ColComponent,
-  RowComponent,
-  SpinnerComponent,
-  TableDirective,
-  BadgeComponent
-} from '@coreui/angular';
-import { IconDirective } from '@coreui/icons-angular';
-import {
-  cilCalendar, cilChartLine, cilClock, cilPeople, cilReload, cilEnvelopeClosed, cilLocationPin
-} from '@coreui/icons';
 
 import { DashboardService, DashboardStats } from '../common-service/dashboard/dashboard.service';
 
@@ -23,16 +8,12 @@ import { DashboardService, DashboardStats } from '../common-service/dashboard/da
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    CommonModule, RouterLink, RowComponent, ColComponent, CardComponent,
-    CardBodyComponent, CardHeaderComponent, ButtonDirective, IconDirective,
-    SpinnerComponent, TableDirective, BadgeComponent
+    CommonModule, RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-
-  icons = { cilCalendar, cilChartLine, cilClock, cilPeople, cilReload, cilEnvelopeClosed, cilLocationPin };
 
   /** How often the figures refresh themselves, in milliseconds. */
   private static readonly REFRESH_MS = 30000;
@@ -97,12 +78,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   statusColor(status: string): string {
     switch ((status || '').toLowerCase()) {
-      case 'confirmed': return 'success';
-      case 'approved': return 'info';
+      case 'confirmed': return 'text-bg-success';
+      case 'approved': return 'text-bg-info';
       case 'pending':
-      case 'pending_approval': return 'warning';
-      case 'completed': return 'primary';
-      default: return 'secondary';
+      case 'pending_approval': return 'text-bg-warning';
+      case 'completed': return 'text-bg-primary';
+      default: return 'text-bg-secondary';
     }
   }
 
