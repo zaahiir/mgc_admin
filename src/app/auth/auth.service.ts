@@ -367,6 +367,23 @@ export class AuthService {
     return this.getStorageItem('email');
   }
 
+  getProfile(): Observable<any> {
+    return this.http.get(`${this.apiUrl}user/profile/`);
+  }
+
+  updateProfile(payload: { username?: string; email?: string }): Observable<any> {
+    return this.http.put(`${this.apiUrl}user/update-profile/`, payload);
+  }
+
+  updateStoredProfile(username: string | null, email: string | null): void {
+    if (username) {
+      this.setStorageItem('username', username);
+    }
+    if (email) {
+      this.setStorageItem('email', email);
+    }
+  }
+
   getAccessToken(): string | null {
     return this.getStorageItem('access_token');
   }

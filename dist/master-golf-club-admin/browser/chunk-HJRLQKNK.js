@@ -1,0 +1,1 @@
+import"./chunk-TRNF7YA4.js";var t=[{path:"",data:{title:"Booking"},children:[{path:"",loadComponent:()=>import("./chunk-BAVW26PG.js").then(o=>o.ListBookingComponent),data:{title:"List Booking"}}]}];export{t as bookingRoutes};

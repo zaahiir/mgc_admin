@@ -1,0 +1,1 @@
+import"./chunk-TRNF7YA4.js";var e=[{path:"",data:{title:"Team"},children:[{path:"",loadComponent:()=>import("./chunk-H4D4S5OG.js").then(t=>t.TeamComponent),data:{title:"Team"}}]}];export{e as teamRoutes};

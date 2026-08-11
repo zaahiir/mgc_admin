@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title mb-0">System Settings</h4>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info mb-4">
+            <h5><i class="fas fa-cog"></i> System Settings</h5>
+            <p class="mb-0">
+              Manage SMTP email credentials and API keys. Secret fields are stored
+              encrypted. Leave a secret field blank to keep the current value.
+            </p>
+          </div>
+
+          <div class="text-center" *ngIf="loading && saved === false">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()" *ngIf="!loading || saved">
+
+            <!-- SMTP Section -->
+            <div class="section-block mb-4">
+              <h5 class="section-title"><i class="fas fa-envelope"></i> SMTP Email Settings</h5>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_HOST">SMTP Host</label>
+                <input
+                  type="text"
+                  id="SMTP_HOST"
+                  class="form-control"
+                  formControlName="SMTP_HOST"
+                  placeholder="smtp.gmail.com"
+                />
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_PORT">SMTP Port</label>
+                <input
+                  type="text"
+                  id="SMTP_PORT"
+                  class="form-control"
+                  formControlName="SMTP_PORT"
+                  placeholder="587"
+                />
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_USERNAME">SMTP Username / Email</label>
+                <input
+                  type="text"
+                  id="SMTP_USERNAME"
+                  class="form-control"
+                  formControlName="SMTP_USERNAME"
+                  placeholder="club@example.com"
+                />
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_PASSWORD">SMTP Mail App Password</label>
+                <input
+                  type="password"
+                  id="SMTP_PASSWORD"
+                  class="form-control"
+                  formControlName="SMTP_PASSWORD"
+                  placeholder="Leave blank to keep current"
+                />
+                <small class="form-text text-muted">
+                  Stored encrypted. Leave blank to keep the existing value.
+                </small>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_USE_TLS">Use TLS</label>
+                <select
+                  id="SMTP_USE_TLS"
+                  class="form-control"
+                  formControlName="SMTP_USE_TLS"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="SMTP_FROM_EMAIL">From Email</label>
+                <input
+                  type="text"
+                  id="SMTP_FROM_EMAIL"
+                  class="form-control"
+                  formControlName="SMTP_FROM_EMAIL"
+                  placeholder="noreply@example.com"
+                />
+              </div>
+            </div>
+
+            <!-- TinyMCE Section -->
+            <div class="section-block mb-4">
+              <h5 class="section-title"><i class="fas fa-pen"></i> TinyMCE API Key</h5>
+
+              <div class="form-group mb-3">
+                <label for="TINYMCE_API_KEY">TinyMCE API Key</label>
+                <input
+                  type="password"
+                  id="TINYMCE_API_KEY"
+                  class="form-control"
+                  formControlName="TINYMCE_API_KEY"
+                  placeholder="Leave blank to keep current"
+                />
+                <small class="form-text text-muted">
+                  Stored encrypted. Leave blank to keep the existing value.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" [disabled]="loading">
+                <i class="fas fa-save"></i> Save Settings
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 import { NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
 import { Component, EventEmitter, HostListener, input, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
   standalone: true,
+  styleUrl: './default-header.component.scss',
   imports: [RouterLink, RouterLinkActive, NgIf, NgTemplateOutlet, NgStyle]
 })
 export class DefaultHeaderComponent {
@@ -36,8 +38,20 @@ export class DefaultHeaderComponent {
     this.closeUserMenu();
   }
 
-  onLogout(): void {
-    if (confirm('Are you sure you want to logout?')) {
+  async onLogout(): Promise<void> {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out of the admin panel.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!'
+    });
+
+    this.closeUserMenu();
+
+    if (result.isConfirmed) {
       const logoutButton = document.querySelector('[data-logout-btn]') as HTMLElement;
       if (logoutButton) {
         logoutButton.style.pointerEvents = 'none';

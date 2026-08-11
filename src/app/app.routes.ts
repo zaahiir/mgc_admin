@@ -100,6 +100,14 @@ export const routes: Routes = [
         path: 'amenities',
         loadChildren: () => import('./views/amenities/routes').then((m) => m.amenitiesRoutes)
       },
+      {
+        path: 'profile',
+        loadChildren: () => import('./views/profile/routes').then((m) => m.profileRoutes)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('./views/settings/routes').then((m) => m.settingsRoutes)
+      },
     ]
   },
   { path: '**', redirectTo: 'dashboard' }

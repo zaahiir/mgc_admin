@@ -3,8 +3,9 @@
 }
 
 .layout-shell {
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 // ---------------------------------------------------------------------------
@@ -183,15 +184,27 @@
 }
 
 // ---------------------------------------------------------------------------
-// Main wrapper (mobile: full width, no offset)
+// Main wrapper: an app shell pinned to the viewport. The header (top) and
+// footer (bottom) are ordinary flex items that never scroll; ONLY the center
+// .body area is the scroll container.
 // ---------------------------------------------------------------------------
 .wrapper {
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   margin-left: 0;
   transition: margin-left 0.3s ease;
+
+  .body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+  }
 }
 
 // ---------------------------------------------------------------------------

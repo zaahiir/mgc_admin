@@ -79,5 +79,10 @@ export const navItems: NavItem[] = [
     name: 'FAQ',
     url: '/faq',
     icon: 'credit-card'
+  },
+  {
+    name: 'Settings',
+    url: '/settings',
+    icon: 'gear'
   }
 ];

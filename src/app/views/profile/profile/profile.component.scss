@@ -1,0 +1,28 @@
+.profile-avatar {
+  object-fit: cover;
+}
+
+.detail-row {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e9ecef;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.detail-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.detail-value {
+  display: block;
+  font-size: 1rem;
+  color: #3c4b64;
+  word-break: break-word;
+}

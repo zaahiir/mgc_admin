@@ -19,4 +19,4 @@ export class BaseAPIUrl {
   }
 }
 
-export const baseURLType: number = 3
+export const baseURLType: number = 1

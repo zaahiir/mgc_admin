@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title mb-0">Profile</h4>
+        </div>
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <img
+              src="./assets/images/avatars/8.jpg"
+              class="rounded-1 profile-avatar"
+              width="96"
+              height="96"
+              alt="User avatar"
+            />
+            <h5 class="mt-3 mb-0">{{ profileForm.value.username }}</h5>
+            <p class="text-muted mb-0">{{ userType }}</p>
+          </div>
+
+          <hr />
+
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="detail-row">
+              <label class="detail-label" for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                formControlName="username"
+              />
+              <div
+                *ngIf="profileForm.get('username')?.invalid && profileForm.get('username')?.touched"
+                class="invalid-feedback d-block"
+              >
+                Username is required (at least 3 characters).
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <label class="detail-label" for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+              />
+              <div
+                *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
+                class="invalid-feedback d-block"
+              >
+                A valid email address is required.
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">User ID</span>
+              <span class="detail-value">{{ userId }}</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">User Type</span>
+              <span class="detail-value">{{ userType }}</span>
+            </div>
+
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-primary" [disabled]="loading || profileForm.invalid">
+                <i class="fas fa-save"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
