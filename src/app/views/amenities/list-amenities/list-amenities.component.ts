@@ -21,6 +21,7 @@ interface AmenityInterface {
   amenity_icon_url?: string; // From backend serializer
   amenity_icon_svg?: string; // SVG content
   amenity_icon_path?: string; // SVG path data
+  amenity_viewbox?: string; // SVG viewBox from backend serializer
   viewbox?: string; // SVG viewBox
   // New format properties (from list_all endpoint)
   title?: string;
@@ -207,7 +208,10 @@ export class ListAmenitiesComponent implements OnInit {
 
   // Helper method to safely render SVG content
   getSafeIconSvg(amenity: AmenityInterface): SafeHtml | null {
-    const svgContent = amenity.icon_svg || amenity.amenity_icon_svg;
+    const legacySvg = amenity.amenityIcon && amenity.amenityIcon.includes('<svg')
+      ? amenity.amenityIcon
+      : null;
+    const svgContent = amenity.icon_svg || amenity.amenity_icon_svg || legacySvg;
     if (!svgContent) return null;
 
     try {
@@ -256,7 +260,7 @@ export class ListAmenitiesComponent implements OnInit {
 
   // Helper method to get viewBox
   getViewBox(amenity: AmenityInterface): string {
-    return amenity.viewbox || '0 0 448 512';
+    return amenity.amenity_viewbox || amenity.viewbox || '0 0 24 24';
   }
 
   // Check if amenity has any icon data
@@ -278,7 +282,7 @@ export class ListAmenitiesComponent implements OnInit {
            amenity.amenity_icon_size || 
            amenity.icon_width || 
            amenity.amenity_icon_width || 
-           32; // Default size
+           36; // Readable default size in admin tables
   }
 
   // Get icon width from backend data

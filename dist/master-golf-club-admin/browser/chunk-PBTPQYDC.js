@@ -1,1 +1,0 @@
-import"./chunk-TRNF7YA4.js";var t=[{path:"",data:{title:"Member Messages"},children:[{path:"",loadComponent:()=>import("./chunk-HVFTFAWF.js").then(e=>e.MemberMessageComponent),data:{title:"List Member Messages"}}]}];export{t as memberMessageRoutes};

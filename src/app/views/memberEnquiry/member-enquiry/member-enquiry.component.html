@@ -41,7 +41,7 @@
               <td>{{ enquiry.memberEnquiryFirstName }} {{ enquiry.memberEnquiryLastName }}</td>
               <td>{{ enquiry.memberEnquiryPhoneNumber }}</td>
               <td>{{ enquiry.memberEnquiryEmail }}</td>
-              <td>
+              <td class="text-nowrap">
                 <span
                   class="badge"
                   [ngClass]="{
@@ -55,14 +55,12 @@
                 <!-- Convert Button -->
                 <a
                   (click)="!isEnquiryConverted(enquiry) && convertToMember(enquiry.id)"
-                  class="btn btn-transparent btn-sm border-0 py-0"
-                  [ngClass]="{
-                    'text-primary': !isEnquiryConverted(enquiry),
-                    'text-muted': isEnquiryConverted(enquiry)
-                  }"
+                  class="btn btn-sm btn-primary"
+                  [class.disabled]="isEnquiryConverted(enquiry)"
                   [style.cursor]="isEnquiryConverted(enquiry) ? 'not-allowed' : 'pointer'"
+                  title="Convert to member" aria-label="Convert enquiry to member"
                 >
-                  <i class="bi bi-pencil"></i>
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
               </td>
             </tr>

@@ -1,1 +1,0 @@
-var s=class{constructor(){this.localUrl="http://localhost/apis/",this.stagingUrl="http://localhost/apis/",this.productionUrl="https://mastergolfclub.com/apis/"}getUrl(t){return t==1?this.localUrl:t==2?this.stagingUrl:this.productionUrl}},r=1;export{s as a,r as b};

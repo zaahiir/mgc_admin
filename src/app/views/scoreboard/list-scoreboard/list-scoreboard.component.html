@@ -38,9 +38,10 @@
               <td></td>
               <td></td>
               <td></td>
-              <td>
-                <a [routerLink]="['/scoreBoard/update']" role="button" class="btn btn-sm text-primary border-0 py-0 btn-transparent"><i class="bi bi-pencil" title="List Icon"></i></a>
-                <a role="button" class="btn btn-sm text-danger border-0 py-0 btn-transparent"><i class="bi bi-trash" title="List Icon"></i></a>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Scoreboard actions">
+                <a [routerLink]="['/scoreBoard/update']" role="button" class="btn btn-sm btn-primary" title="Edit" aria-label="Edit score"><i class="fas fa-edit" aria-hidden="true"></i></a>
+                <a role="button" class="btn btn-sm btn-danger" title="Delete" aria-label="Delete score"><i class="fas fa-trash" aria-hidden="true"></i></a>
+              </div>
               </td>
             </tr>
             <tr *ngIf="paginatedScoreboardList.length === 0">

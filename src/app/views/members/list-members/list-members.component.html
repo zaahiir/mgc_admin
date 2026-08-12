@@ -52,22 +52,22 @@
               <td>{{ getFullName(member) }}</td>
               <td>{{ member.email }}</td>
               <td>{{ member.phoneNumber }}</td>
-              <td>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Member actions">
                 <a
                   [routerLink]="['/members/update', member.id]"
                   role="button"
-                  class="btn btn-sm text-primary border-0 py-0 btn-transparent"
+                  class="btn btn-sm btn-primary" title="Edit" aria-label="Edit member"
                 >
-                  <i class="bi bi-pencil" title="Edit"></i>
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a
                   (click)="deleteMember(member.id)"
                   role="button"
-                  class="btn btn-sm text-danger border-0 py-0 btn-transparent"
+                  class="btn btn-sm btn-danger" title="Delete" aria-label="Delete member"
                 >
-                  <i class="bi bi-trash" title="Delete"></i>
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
-              </td>
+              </div></td>
             </tr>
             <!-- No Data Message -->
             <tr *ngIf="paginatedMembers.length === 0">

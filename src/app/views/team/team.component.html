@@ -173,13 +173,17 @@
                           {{ instructor.hideStatus === 0 ? 'Active' : 'Inactive' }}
                         </span>
                       </td>
-                      <td>
-                        <button type="button" class="btn btn-sm btn-primary me-2" (click)="editInstructor(instructor)">
-                          <i class="fas fa-edit"></i> Edit
+                      <td class="text-nowrap">
+                        <div class="d-inline-flex gap-2" role="group" aria-label="Instructor actions">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="editInstructor(instructor)"
+                                title="Edit" aria-label="Edit instructor">
+                          <i class="fas fa-edit" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-sm btn-danger" (click)="deleteInstructor(instructor.id)">
-                          <i class="fas fa-trash"></i> Delete
+                        <button type="button" class="btn btn-sm btn-danger" (click)="deleteInstructor(instructor.id)"
+                                title="Delete" aria-label="Delete instructor">
+                          <i class="fas fa-trash" aria-hidden="true"></i>
                         </button>
+                        </div>
                       </td>
                     </tr>
                     <tr *ngIf="paginatedInstructorList.length === 0">

@@ -110,19 +110,21 @@
               <td>{{ amenity.title || amenity.amenityName }}</td>
               <td>{{ amenity.tooltip || amenity.amenityTooltip || amenity.title || amenity.amenityName }}</td>
               <td>{{ amenity.description || amenity.amenitiesDescription }}</td>
-              <td>
+              <td class="text-nowrap">
+                <div class="d-inline-flex gap-2" role="group" aria-label="Amenity actions">
                 <a
                    [routerLink]="['/amenities/update', amenity.id]"
                    role="button"
-                   class="btn btn-sm text-primary border-0 py-0">
-                  <i class="bi bi-pencil" title="Edit"></i>
+                   class="btn btn-sm btn-primary" title="Edit" aria-label="Edit amenity">
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a
                    (click)="deleteAmenity(amenity.id)"
                    role="button"
-                   class="btn btn-sm text-danger border-0 py-0">
-                  <i class="bi bi-trash" title="Delete"></i>
+                   class="btn btn-sm btn-danger" title="Delete" aria-label="Delete amenity">
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
+                </div>
               </td>
             </tr>
             <!-- Empty State -->

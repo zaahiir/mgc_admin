@@ -53,14 +53,14 @@
                   {{ getEventStatus(event) }}
                 </span>
               </td>
-              <td>
-                <a [routerLink]="['/events/update', event.id]" class="btn btn-transparent btn-sm text-primary border-0 py-0" role="button">
-                  <i class="bi bi-pencil"></i>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Event actions">
+                <a [routerLink]="['/events/update', event.id]" class="btn btn-sm btn-primary" role="button" title="Edit" aria-label="Edit event">
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
-                <a class="btn btn-transparent btn-sm text-danger border-0 py-0" role="button" (click)="deleteEvent(event.id)">
-                  <i class="bi bi-trash"></i>
+                <a class="btn btn-sm btn-danger" role="button" (click)="deleteEvent(event.id)" title="Delete" aria-label="Delete event">
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
-              </td>
+              </div></td>
             </tr>
             <tr *ngIf="paginatedEvents.length === 0">
               <td colspan="7" class="text-center py-4">

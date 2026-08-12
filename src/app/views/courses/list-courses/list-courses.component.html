@@ -61,21 +61,21 @@
               <td>
                 <span class="badge bg-info">{{ getTeeInfo(course) }}</span>
               </td>
-              <td>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Course actions">
                 <a
                    [routerLink]="['/courses/update', course.id]"
                    role="button"
-                   class="btn btn-sm text-primary border-0 py-0 me-2">
-                  <i class="bi bi-pencil" title="Edit"></i>
+                   class="btn btn-sm btn-primary" title="Edit" aria-label="Edit course">
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a
                    (click)="!isLoading && deleteCourse(course.id)"
                    role="button"
                    [class.disabled]="isLoading"
-                   class="btn btn-sm text-danger border-0 py-0">
-                  <i class="bi bi-trash" title="Delete"></i>
+                   class="btn btn-sm btn-danger" title="Delete" aria-label="Delete course">
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
-              </td>
+              </div></td>
             </tr>
           </tbody>
         </table>

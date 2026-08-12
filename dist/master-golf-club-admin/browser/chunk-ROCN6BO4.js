@@ -1,0 +1,1 @@
+import"./chunk-TRNF7YA4.js";var o=[{path:"",data:{title:"about"},children:[{path:"",loadComponent:()=>import("./chunk-IVTQW6QX.js").then(t=>t.AboutComponent),data:{title:"About"}}]}];export{o as aboutRoutes};

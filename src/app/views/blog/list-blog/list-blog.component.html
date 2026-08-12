@@ -68,20 +68,20 @@
                 </div>
                 <span *ngIf="!blog.blogImage" class="text-muted">No Image</span>
               </td>
-              <td>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Blog actions">
                 <a
                   [routerLink]="['/blog/update', blog.id]"
-                  class="btn btn-sm text-primary border-0 py-0"
+                  class="btn btn-sm btn-primary" title="Edit" aria-label="Edit blog"
                 >
-                  <i class="bi bi-pencil"></i>
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a
                   (click)="deleteBlog(blog.id)"
-                  class="btn btn-sm text-danger border-0 py-0"
+                  class="btn btn-sm btn-danger" title="Delete" aria-label="Delete blog"
                 >
-                  <i class="bi bi-trash"></i>
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
-              </td>
+              </div></td>
             </tr>
             <tr *ngIf="paginatedBlogList.length === 0">
               <td colspan="6" class="text-center py-4">

@@ -110,6 +110,15 @@
   overflow-x: hidden;
   overscroll-behavior-y: contain;
   padding: 0.5rem;
+  // Keep the menu scrollable without showing a scrollbar track/thumb.
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 
   .sidebar-nav {
     margin: 0;

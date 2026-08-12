@@ -62,13 +62,17 @@
                         {{ faq.createdAt | date:'short' }}
                       </small>
                     </td>
-                    <td>
-                      <button type="button" class="btn btn-sm btn-primary me-2" (click)="editFAQ(faq)">
-                        <i class="fas fa-edit"></i> Edit
+                    <td class="text-nowrap">
+                      <div class="d-inline-flex gap-2" role="group" aria-label="FAQ actions">
+                      <button type="button" class="btn btn-sm btn-primary" (click)="editFAQ(faq)"
+                              title="Edit" aria-label="Edit FAQ">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
                       </button>
-                      <button type="button" class="btn btn-sm btn-danger" (click)="deleteFAQ(faq.id)">
-                        <i class="fas fa-trash"></i> Delete
+                      <button type="button" class="btn btn-sm btn-danger" (click)="deleteFAQ(faq.id)"
+                              title="Delete" aria-label="Delete FAQ">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
                       </button>
+                      </div>
                     </td>
                   </tr>
                   <tr *ngIf="paginatedFaqList.length === 0">

@@ -38,9 +38,10 @@
               <td></td>
               <td></td>
               <td></td>
-              <td>
-                <a class="btn btn-sm text-primary border-0 py-0" [routerLink]="['/coupon/update']" role="button"><i class="bi bi-pencil" title="List Icon"></i></a>
-                <a class="btn btn-sm text-danger border-0 py-0" role="button"><i class="bi bi-trash" width="25" title="List Icon"></i></a>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Coupon actions">
+                <a class="btn btn-sm btn-primary" [routerLink]="['/coupon/update']" role="button" title="Edit" aria-label="Edit coupon"><i class="fas fa-edit" aria-hidden="true"></i></a>
+                <a class="btn btn-sm btn-danger" role="button" title="Delete" aria-label="Delete coupon"><i class="fas fa-trash" aria-hidden="true"></i></a>
+              </div>
               </td>
             </tr>
             <tr *ngIf="paginatedCouponList.length === 0">

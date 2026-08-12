@@ -4,6 +4,7 @@ import { Observable, throwError, BehaviorSubject, interval, Subscription } from 
 import { catchError, tap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { BaseAPIUrl, baseURLType } from '../views/common-service/commom-api-url';
 
 export interface LoginResponse {
   access: string;
@@ -18,8 +19,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  // private apiUrl = 'https://mastergolfclub.com/apis/';
-  private apiUrl = 'http://localhost/apis/';
+  private apiUrl: string;
   private isBrowser: boolean;
 
   // Authentication state
@@ -40,6 +40,7 @@ export class AuthService {
   ) {
     const platformId = this.injector.get(PLATFORM_ID);
     this.isBrowser = isPlatformBrowser(platformId);
+    this.apiUrl = new BaseAPIUrl().getUrl(baseURLType);
 
     // Initialize authentication state
     this.initializeAuthState();

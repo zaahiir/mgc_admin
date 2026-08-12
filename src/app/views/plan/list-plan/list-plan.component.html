@@ -36,14 +36,14 @@
               <td>{{ plan.planName }}</td>
               <td>{{ plan.planDuration }}</td>
               <td>{{ plan.planPrice }}</td>
-              <td>
-                <a [routerLink]="['/plan/update', plan.id]" role="button" class="btn btn-sm text-primary border-0 py-0 btn-transparent">
-                  <i class="bi bi-pencil" title="List Icon"></i>
+              <td class="text-nowrap"><div class="d-inline-flex gap-2" role="group" aria-label="Plan actions">
+                <a [routerLink]="['/plan/update', plan.id]" role="button" class="btn btn-sm btn-primary" title="Edit" aria-label="Edit plan">
+                  <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
-                <a (click)="deletePlan(plan.id)" role="button" class="btn btn-sm text-danger border-0 py-0 btn-transparent">
-                  <i class="bi bi-trash" title="List Icon"></i>
+                <a (click)="deletePlan(plan.id)" role="button" class="btn btn-sm btn-danger" title="Delete" aria-label="Delete plan">
+                  <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
-              </td>
+              </div></td>
             </tr>
           </tbody>
         </table>
